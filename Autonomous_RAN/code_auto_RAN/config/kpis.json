@@ -1,0 +1,25 @@
+{
+  "target_kpis": {
+    "throughput_improvement_pct": {"baseline": "existing_ran", "target_min": 20, "target_max": 30, "unit": "percent"},
+    "latency_reduction_pct": {"baseline": "existing_ran", "target_min": 20, "target_max": 40, "unit": "percent"},
+    "energy_reduction_pct": {"baseline": "existing_ran", "target_min": 25, "target_max": 40, "unit": "percent"},
+    "security_detection_accuracy_pct": {"baseline": "conventional_ids", "target": 95, "unit": "percent"},
+    "handover_success_rate_pct": {"baseline": "current_networks", "target": 98, "unit": "percent"},
+    "qoe_improvement_pct": {"baseline": "baseline_qoe", "target_min": 20, "target_max": 30, "unit": "percent"},
+    "slice_efficiency_pct": {"baseline": "baseline", "target_min": 20, "target_max": 25, "unit": "percent"},
+    "automation_level_pct": {"baseline": "semi_automated", "target": 90, "unit": "percent"},
+    "opex_reduction_pct": {"baseline": "existing_network", "target_min": 20, "target_max": 40, "unit": "percent"}
+  },
+  "utility_function": {
+    "formula": "U = alpha*T - beta*L + gamma*S + delta*Q - epsilon*E + zeta*R",
+    "weights": {
+      "alpha_throughput": 0.25,
+      "beta_latency": 0.20,
+      "gamma_security": 0.15,
+      "delta_qoe": 0.20,
+      "epsilon_energy": 0.10,
+      "zeta_reliability": 0.10
+    }
+  },
+  "benchmark_baselines": ["round_robin", "proportional_fair", "max_throughput", "son_static", "single_agent_rl"]
+}

@@ -1,0 +1,18 @@
+{
+  "generator": "RANDatasetGenerator",
+  "seed": 42,
+  "num_cells": 7,
+  "num_ues": 50,
+  "num_steps": 500,
+  "slices": [
+    "eMBB",
+    "URLLC",
+    "mMTC"
+  ],
+  "3gpp_alignment": [
+    "TS 38.215",
+    "TS 38.214",
+    "TS 28.552",
+    "TS 33.501"
+  ]
+}

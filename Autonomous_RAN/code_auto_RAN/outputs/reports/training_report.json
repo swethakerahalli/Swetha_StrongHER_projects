@@ -1,0 +1,76 @@
+{
+  "training_metrics": {
+    "scheduler": {
+      "r2_score": 0.1272391507902636,
+      "samples": 25000
+    },
+    "resource": {
+      "r2_score": 0.9997030402169336,
+      "samples": 3500
+    },
+    "mobility": {
+      "accuracy": 1.0,
+      "samples": 5000
+    },
+    "security": {
+      "detection_accuracy": 1.0,
+      "samples": 5000
+    },
+    "energy": {
+      "accuracy": 1.0,
+      "samples": 3500
+    },
+    "qoe": {
+      "r2_score": 0.9729550064126619,
+      "samples": 25000
+    },
+    "knowledge": {
+      "kg_nodes": 175,
+      "cfam_features": 5
+    },
+    "intent": {
+      "intents_supported": 5
+    },
+    "federated_security": {
+      "rounds_completed": 5,
+      "final_score": 1.0,
+      "history": [
+        {
+          "round": 1,
+          "avg_client_score": 1.0,
+          "num_clients": 5
+        },
+        {
+          "round": 2,
+          "avg_client_score": 1.0,
+          "num_clients": 5
+        },
+        {
+          "round": 3,
+          "avg_client_score": 1.0,
+          "num_clients": 5
+        },
+        {
+          "round": 4,
+          "avg_client_score": 1.0,
+          "num_clients": 5
+        },
+        {
+          "round": 5,
+          "avg_client_score": 1.0,
+          "num_clients": 5
+        }
+      ]
+    }
+  },
+  "models_saved": [
+    "scheduler",
+    "resource",
+    "mobility",
+    "security",
+    "energy",
+    "qoe",
+    "knowledge",
+    "intent"
+  ]
+}

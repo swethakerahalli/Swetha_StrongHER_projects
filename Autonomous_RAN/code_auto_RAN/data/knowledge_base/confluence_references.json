@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "source": "EE Confluence MCP confluence_search_content",
+    "fetched": "2026-07-14",
+    "query": "AI-RAN autonomous network O-RAN RIC digital twin",
+    "note": "No matching pages returned in configured accessible spaces; local project docs used instead"
+  },
+  "results": [],
+  "fallback_sources": [
+    "extracted_docx.txt",
+    "extracted_pptx.txt",
+    "nokia_cfam_references.json",
+    "sharepoint_references.json"
+  ]
+}

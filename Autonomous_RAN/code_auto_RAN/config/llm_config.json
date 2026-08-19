@@ -1,0 +1,30 @@
+{
+  "llm_providers": {
+    "priority": ["ollama", "nokia_cached", "rule_based"],
+    "ollama": {
+      "enabled": true,
+      "base_url": "http://localhost:11434",
+      "model": "llama3.2",
+      "fallback_models": ["mistral", "gemma2", "phi3"],
+      "timeout_seconds": 60
+    },
+    "nokia_system_insights": {
+      "enabled": true,
+      "description": "Cached responses from Nokia System Insights MCP (gemini models)",
+      "cache_path": "data/knowledge_base/nokia_insights_cache.json"
+    },
+    "rule_based": {
+      "enabled": true,
+      "description": "Template and ontology-driven fallback when LLM unavailable"
+    }
+  },
+  "agents_using_llm": ["knowledge_agent", "intent_agent", "security_agent"],
+  "intent_templates": {
+    "reduce_energy": {"keywords": ["energy", "power", "green"], "primary_agent": "energy"},
+    "reduce_carbon": {"keywords": ["carbon", "co2", "emission", "greenhouse"], "primary_agent": "carbon"},
+    "low_latency": {"keywords": ["latency", "urllc", "delay", "ms"], "primary_agent": "scheduler"},
+    "high_throughput": {"keywords": ["throughput", "spectral", "capacity"], "primary_agent": "scheduler"},
+    "security_hardening": {"keywords": ["security", "threat", "attack", "jamming"], "primary_agent": "security"},
+    "mobility_optimize": {"keywords": ["handover", "mobility", "ping pong"], "primary_agent": "mobility"}
+  }
+}

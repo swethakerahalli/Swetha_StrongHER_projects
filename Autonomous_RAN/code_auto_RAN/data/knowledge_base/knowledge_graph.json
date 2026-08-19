@@ -1,0 +1,2246 @@
+{
+  "metadata": {
+    "nodes": 222,
+    "edges": 215
+  },
+  "ontology_ref": "telecom_ontology.json",
+  "nodes": [
+    {
+      "id": "CELL_000",
+      "type": "gNodeB",
+      "load": 0.5
+    },
+    {
+      "id": "CELL_001",
+      "type": "gNodeB",
+      "load": 0.5
+    },
+    {
+      "id": "CELL_002",
+      "type": "gNodeB",
+      "load": 0.5
+    },
+    {
+      "id": "CELL_003",
+      "type": "gNodeB",
+      "load": 0.5
+    },
+    {
+      "id": "CELL_004",
+      "type": "gNodeB",
+      "load": 0.5
+    },
+    {
+      "id": "CELL_005",
+      "type": "gNodeB",
+      "load": 0.5
+    },
+    {
+      "id": "CELL_006",
+      "type": "gNodeB",
+      "load": 0.5
+    },
+    {
+      "id": "UE_0000",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0001",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0002",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0003",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0004",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0005",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0006",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0007",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0008",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0009",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0010",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0011",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0012",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0013",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0014",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0015",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0016",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0017",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0018",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0019",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0020",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0021",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0022",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0023",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0024",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0025",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0026",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0027",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0028",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0029",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0030",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0031",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0032",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0033",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0034",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0035",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0036",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0037",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0038",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0039",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0040",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0041",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0042",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0043",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0044",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0045",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0046",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0047",
+      "type": "UserEquipment",
+      "slice": "mMTC"
+    },
+    {
+      "id": "SLICE_mMTC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0048",
+      "type": "UserEquipment",
+      "slice": "eMBB"
+    },
+    {
+      "id": "SLICE_eMBB",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "UE_0049",
+      "type": "UserEquipment",
+      "slice": "URLLC"
+    },
+    {
+      "id": "SLICE_URLLC",
+      "type": "NetworkSlice"
+    },
+    {
+      "id": "agent_scheduler",
+      "type": "AIAgent",
+      "agent_type": "scheduler"
+    },
+    {
+      "id": "agent_resource",
+      "type": "AIAgent",
+      "agent_type": "resource"
+    },
+    {
+      "id": "agent_mobility",
+      "type": "AIAgent",
+      "agent_type": "mobility"
+    },
+    {
+      "id": "agent_security",
+      "type": "AIAgent",
+      "agent_type": "security"
+    },
+    {
+      "id": "agent_energy",
+      "type": "AIAgent",
+      "agent_type": "energy"
+    },
+    {
+      "id": "agent_qoe",
+      "type": "AIAgent",
+      "agent_type": "qoe"
+    },
+    {
+      "id": "agent_knowledge",
+      "type": "AIAgent",
+      "agent_type": "knowledge"
+    },
+    {
+      "id": "agent_intent",
+      "type": "AIAgent",
+      "agent_type": "intent"
+    },
+    {
+      "id": "twin_ran",
+      "type": "DigitalTwin",
+      "fidelity": 0.95
+    },
+    {
+      "id": "T001",
+      "type": "Threat",
+      "threat_type": "jamming"
+    },
+    {
+      "id": "T002",
+      "type": "Threat",
+      "threat_type": "spoofing"
+    },
+    {
+      "id": "T003",
+      "type": "Threat",
+      "threat_type": "ddos"
+    },
+    {
+      "id": "T004",
+      "type": "Threat",
+      "threat_type": "rogue_gnb"
+    },
+    {
+      "id": "T005",
+      "type": "Threat",
+      "threat_type": "pilot_contamination"
+    },
+    {
+      "id": "T006",
+      "type": "Threat",
+      "threat_type": "model_poisoning"
+    },
+    {
+      "id": "KPI_UE_0000_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 28.2
+    },
+    {
+      "id": "KPI_UE_0001_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 28.74
+    },
+    {
+      "id": "KPI_UE_0002_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 57.26
+    },
+    {
+      "id": "KPI_UE_0003_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 50.57
+    },
+    {
+      "id": "KPI_UE_0004_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 66.69
+    },
+    {
+      "id": "KPI_UE_0005_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 12.84
+    },
+    {
+      "id": "KPI_UE_0006_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 14.58
+    },
+    {
+      "id": "KPI_UE_0007_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 38.38
+    },
+    {
+      "id": "KPI_UE_0008_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 1.33
+    },
+    {
+      "id": "KPI_UE_0009_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 5.82
+    },
+    {
+      "id": "KPI_UE_0010_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 31.97
+    },
+    {
+      "id": "KPI_UE_0011_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 60.05
+    },
+    {
+      "id": "KPI_UE_0012_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 10.95
+    },
+    {
+      "id": "KPI_UE_0013_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 21.6
+    },
+    {
+      "id": "KPI_UE_0014_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 45.75
+    },
+    {
+      "id": "KPI_UE_0015_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 83.82
+    },
+    {
+      "id": "KPI_UE_0016_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 32.28
+    },
+    {
+      "id": "KPI_UE_0017_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 58.21
+    },
+    {
+      "id": "KPI_UE_0018_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 1.91
+    },
+    {
+      "id": "KPI_UE_0019_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 15.3
+    },
+    {
+      "id": "KPI_UE_0020_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 47.25
+    },
+    {
+      "id": "KPI_UE_0021_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 3.33
+    },
+    {
+      "id": "KPI_UE_0022_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 4.56
+    },
+    {
+      "id": "KPI_UE_0023_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 0.16
+    },
+    {
+      "id": "KPI_UE_0024_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 11.57
+    },
+    {
+      "id": "KPI_UE_0025_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 38.47
+    },
+    {
+      "id": "KPI_UE_0026_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 74.28
+    },
+    {
+      "id": "KPI_UE_0027_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 55.72
+    },
+    {
+      "id": "KPI_UE_0028_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 53.4
+    },
+    {
+      "id": "KPI_UE_0029_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 1.41
+    },
+    {
+      "id": "KPI_UE_0030_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 3.91
+    },
+    {
+      "id": "KPI_UE_0031_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 4.8
+    },
+    {
+      "id": "KPI_UE_0032_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 11.96
+    },
+    {
+      "id": "KPI_UE_0033_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 54.51
+    },
+    {
+      "id": "KPI_UE_0034_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 32.97
+    },
+    {
+      "id": "KPI_UE_0035_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 4.12
+    },
+    {
+      "id": "KPI_UE_0036_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 31.94
+    },
+    {
+      "id": "KPI_UE_0037_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 23.18
+    },
+    {
+      "id": "KPI_UE_0038_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 46.55
+    },
+    {
+      "id": "KPI_UE_0039_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 19.73
+    },
+    {
+      "id": "KPI_UE_0040_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 48.71
+    },
+    {
+      "id": "KPI_UE_0041_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 13.15
+    },
+    {
+      "id": "KPI_UE_0042_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 30.99
+    },
+    {
+      "id": "KPI_UE_0043_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 202.9
+    },
+    {
+      "id": "KPI_UE_0044_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 174.65
+    },
+    {
+      "id": "KPI_UE_0045_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 75.13
+    },
+    {
+      "id": "KPI_UE_0046_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 52.03
+    },
+    {
+      "id": "KPI_UE_0047_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 7.47
+    },
+    {
+      "id": "KPI_UE_0048_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 25.99
+    },
+    {
+      "id": "KPI_UE_0049_0",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 7.5
+    },
+    {
+      "id": "KPI_UE_0000_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 14.37
+    },
+    {
+      "id": "KPI_UE_0001_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 213.65
+    },
+    {
+      "id": "KPI_UE_0002_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 41.38
+    },
+    {
+      "id": "KPI_UE_0003_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 2.21
+    },
+    {
+      "id": "KPI_UE_0004_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 51.03
+    },
+    {
+      "id": "KPI_UE_0005_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 6.27
+    },
+    {
+      "id": "KPI_UE_0006_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 114.76
+    },
+    {
+      "id": "KPI_UE_0007_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 34.42
+    },
+    {
+      "id": "KPI_UE_0008_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 7.85
+    },
+    {
+      "id": "KPI_UE_0009_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 31.95
+    },
+    {
+      "id": "KPI_UE_0010_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 0.1
+    },
+    {
+      "id": "KPI_UE_0011_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 14.07
+    },
+    {
+      "id": "KPI_UE_0012_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 5.42
+    },
+    {
+      "id": "KPI_UE_0013_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 28.52
+    },
+    {
+      "id": "KPI_UE_0014_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 0.1
+    },
+    {
+      "id": "KPI_UE_0015_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 48.35
+    },
+    {
+      "id": "KPI_UE_0016_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 13.78
+    },
+    {
+      "id": "KPI_UE_0017_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 1.96
+    },
+    {
+      "id": "KPI_UE_0018_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 19.8
+    },
+    {
+      "id": "KPI_UE_0019_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 103.36
+    },
+    {
+      "id": "KPI_UE_0020_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 34.11
+    },
+    {
+      "id": "KPI_UE_0021_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 40.44
+    },
+    {
+      "id": "KPI_UE_0022_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 2.05
+    },
+    {
+      "id": "KPI_UE_0023_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 11.0
+    },
+    {
+      "id": "KPI_UE_0024_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 4.87
+    },
+    {
+      "id": "KPI_UE_0025_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 33.23
+    },
+    {
+      "id": "KPI_UE_0026_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 45.2
+    },
+    {
+      "id": "KPI_UE_0027_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 13.89
+    },
+    {
+      "id": "KPI_UE_0028_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 57.0
+    },
+    {
+      "id": "KPI_UE_0029_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 40.74
+    },
+    {
+      "id": "KPI_UE_0030_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 2.36
+    },
+    {
+      "id": "KPI_UE_0031_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 23.22
+    },
+    {
+      "id": "KPI_UE_0032_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 68.47
+    },
+    {
+      "id": "KPI_UE_0033_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 9.36
+    },
+    {
+      "id": "KPI_UE_0034_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 19.1
+    },
+    {
+      "id": "KPI_UE_0035_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 12.94
+    },
+    {
+      "id": "KPI_UE_0036_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 24.3
+    },
+    {
+      "id": "KPI_UE_0037_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 11.13
+    },
+    {
+      "id": "KPI_UE_0038_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 109.14
+    },
+    {
+      "id": "KPI_UE_0039_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 31.91
+    },
+    {
+      "id": "KPI_UE_0040_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 50.55
+    },
+    {
+      "id": "KPI_UE_0041_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 10.85
+    },
+    {
+      "id": "KPI_UE_0042_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 54.06
+    },
+    {
+      "id": "KPI_UE_0043_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 5.83
+    },
+    {
+      "id": "KPI_UE_0044_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 4.09
+    },
+    {
+      "id": "KPI_UE_0045_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 167.35
+    },
+    {
+      "id": "KPI_UE_0046_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 0.91
+    },
+    {
+      "id": "KPI_UE_0047_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 4.34
+    },
+    {
+      "id": "KPI_UE_0048_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 18.74
+    },
+    {
+      "id": "KPI_UE_0049_1",
+      "type": "KPI",
+      "metric": "throughput_mbps",
+      "value": 28.62
+    }
+  ],
+  "edges": [
+    {
+      "source": "UE_0000",
+      "target": "CELL_000",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0000",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0001",
+      "target": "CELL_001",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0001",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0002",
+      "target": "CELL_002",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0002",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0003",
+      "target": "CELL_003",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0003",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0004",
+      "target": "CELL_004",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0004",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0005",
+      "target": "CELL_005",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0005",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0006",
+      "target": "CELL_006",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0006",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0007",
+      "target": "CELL_000",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0007",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0008",
+      "target": "CELL_001",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0008",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0009",
+      "target": "CELL_002",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0009",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0010",
+      "target": "CELL_003",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0010",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0011",
+      "target": "CELL_004",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0011",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0012",
+      "target": "CELL_005",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0012",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0013",
+      "target": "CELL_006",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0013",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0014",
+      "target": "CELL_000",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0014",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0015",
+      "target": "CELL_001",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0015",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0016",
+      "target": "CELL_002",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0016",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0017",
+      "target": "CELL_003",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0017",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0018",
+      "target": "CELL_004",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0018",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0019",
+      "target": "CELL_005",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0019",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0020",
+      "target": "CELL_006",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0020",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0021",
+      "target": "CELL_000",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0021",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0022",
+      "target": "CELL_001",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0022",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0023",
+      "target": "CELL_002",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0023",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0024",
+      "target": "CELL_003",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0024",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0025",
+      "target": "CELL_004",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0025",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0026",
+      "target": "CELL_005",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0026",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0027",
+      "target": "CELL_006",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0027",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0028",
+      "target": "CELL_000",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0028",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0029",
+      "target": "CELL_001",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0029",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0030",
+      "target": "CELL_002",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0030",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0031",
+      "target": "CELL_003",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0031",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0032",
+      "target": "CELL_004",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0032",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0033",
+      "target": "CELL_005",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0033",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0034",
+      "target": "CELL_006",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0034",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0035",
+      "target": "CELL_000",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0035",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0036",
+      "target": "CELL_001",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0036",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0037",
+      "target": "CELL_002",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0037",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0038",
+      "target": "CELL_003",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0038",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0039",
+      "target": "CELL_004",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0039",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0040",
+      "target": "CELL_005",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0040",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0041",
+      "target": "CELL_006",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0041",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0042",
+      "target": "CELL_000",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0042",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0043",
+      "target": "CELL_001",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0043",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0044",
+      "target": "CELL_002",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0044",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0045",
+      "target": "CELL_003",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0045",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0046",
+      "target": "CELL_004",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0046",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0047",
+      "target": "CELL_005",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0047",
+      "target": "SLICE_mMTC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0048",
+      "target": "CELL_006",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0048",
+      "target": "SLICE_eMBB",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "UE_0049",
+      "target": "CELL_000",
+      "relation": "CONNECTED_TO"
+    },
+    {
+      "source": "UE_0049",
+      "target": "SLICE_URLLC",
+      "relation": "BELONGS_TO"
+    },
+    {
+      "source": "agent_scheduler",
+      "target": "CELL_000",
+      "relation": "MANAGES"
+    },
+    {
+      "source": "agent_resource",
+      "target": "CELL_000",
+      "relation": "MANAGES"
+    },
+    {
+      "source": "agent_mobility",
+      "target": "CELL_000",
+      "relation": "MANAGES"
+    },
+    {
+      "source": "agent_security",
+      "target": "CELL_000",
+      "relation": "MANAGES"
+    },
+    {
+      "source": "agent_energy",
+      "target": "CELL_000",
+      "relation": "MANAGES"
+    },
+    {
+      "source": "agent_qoe",
+      "target": "CELL_000",
+      "relation": "MANAGES"
+    },
+    {
+      "source": "agent_knowledge",
+      "target": "CELL_000",
+      "relation": "MANAGES"
+    },
+    {
+      "source": "agent_intent",
+      "target": "CELL_000",
+      "relation": "MANAGES"
+    },
+    {
+      "source": "twin_ran",
+      "target": "CELL_000",
+      "relation": "MONITORS"
+    },
+    {
+      "source": "T001",
+      "target": "CELL_000",
+      "relation": "THREATENS"
+    },
+    {
+      "source": "T002",
+      "target": "CELL_000",
+      "relation": "THREATENS"
+    },
+    {
+      "source": "T003",
+      "target": "CELL_000",
+      "relation": "THREATENS"
+    },
+    {
+      "source": "T004",
+      "target": "CELL_000",
+      "relation": "THREATENS"
+    },
+    {
+      "source": "T005",
+      "target": "CELL_000",
+      "relation": "THREATENS"
+    },
+    {
+      "source": "T006",
+      "target": "CELL_000",
+      "relation": "THREATENS"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0000_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0001_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0002_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0003_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0004_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_001",
+      "target": "KPI_UE_0005_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0006_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0007_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_004",
+      "target": "KPI_UE_0008_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0009_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0010_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0011_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0012_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0013_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0014_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0015_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_001",
+      "target": "KPI_UE_0016_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0017_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0018_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0019_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_004",
+      "target": "KPI_UE_0020_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0021_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0022_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_001",
+      "target": "KPI_UE_0023_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0024_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_004",
+      "target": "KPI_UE_0025_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0026_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0027_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0028_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_004",
+      "target": "KPI_UE_0029_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0030_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_001",
+      "target": "KPI_UE_0031_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0032_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0033_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_004",
+      "target": "KPI_UE_0034_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0035_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0036_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0037_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_004",
+      "target": "KPI_UE_0038_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0039_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0040_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0041_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_001",
+      "target": "KPI_UE_0042_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_001",
+      "target": "KPI_UE_0043_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0044_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0045_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0046_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0047_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0048_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0049_0",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0000_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_001",
+      "target": "KPI_UE_0001_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0002_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0003_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0004_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0005_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0006_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_004",
+      "target": "KPI_UE_0007_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_001",
+      "target": "KPI_UE_0008_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0009_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_004",
+      "target": "KPI_UE_0010_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0011_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0012_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0013_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0014_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0015_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0016_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0017_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0018_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_004",
+      "target": "KPI_UE_0019_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0020_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0021_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0022_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0023_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0024_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0025_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0026_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0027_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0028_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0029_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_004",
+      "target": "KPI_UE_0030_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_001",
+      "target": "KPI_UE_0031_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0032_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0033_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_005",
+      "target": "KPI_UE_0034_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_001",
+      "target": "KPI_UE_0035_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0036_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0037_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0038_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_001",
+      "target": "KPI_UE_0039_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0040_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0041_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0042_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_000",
+      "target": "KPI_UE_0043_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0044_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_004",
+      "target": "KPI_UE_0045_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_003",
+      "target": "KPI_UE_0046_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_002",
+      "target": "KPI_UE_0047_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_004",
+      "target": "KPI_UE_0048_1",
+      "relation": "CONSUMES"
+    },
+    {
+      "source": "CELL_006",
+      "target": "KPI_UE_0049_1",
+      "relation": "CONSUMES"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "source": "Nokia System Insights MCP search_specs",
+    "fetched": "2026-07-14",
+    "queries": ["mobility robustness handover", "autonomous RAN AI scheduling", "CQI SINR PRB scheduling"]
+  },
+  "cfam_features": [
+    {
+      "feature_id": "OSS_FC_017307",
+      "title": "5G Mobility Robustness Optimization for Nokia SA",
+      "req_ids": ["OSS_FC_017307-3", "OSS_FC_017307-25", "OSS_FC_017307-53"],
+      "description": "Measurement-based centralized SON to minimize Late/Early/Wrong cell HOs and Ping-pong HOs in 5G/NR SA by tuning idle and connected mode mobility parameters.",
+      "project_mapping": ["mobility_agent", "son_benchmark"],
+      "kpis": ["handover_success_rate", "ping_pong_reduction", "rlf_reduction"]
+    },
+    {
+      "feature_id": "SR003080",
+      "title": "Power saving with TX path switching for Energy Efficiency",
+      "req_ids": ["SR003080-917"],
+      "description": "DL SINR estimation based on wideband CQI for interference-aware power control and energy saving.",
+      "project_mapping": ["energy_agent", "resource_agent"],
+      "kpis": ["energy_per_bit", "power_consumption"]
+    },
+    {
+      "feature_id": "RP001677",
+      "title": "Handover Performance Measurements",
+      "req_ids": ["RP001677-21448"],
+      "description": "PM counters for Late Handovers and UE Mobility Robustness (M8021C43).",
+      "project_mapping": ["mobility_agent", "kpi_monitoring"],
+      "kpis": ["late_handover_count", "mobility_robustness"]
+    },
+    {
+      "feature_id": "SR001534",
+      "title": "SRAN FM combined service - Autonomous Recovery",
+      "req_ids": ["FTM-4194", "FTM-4195", "FTM-4199", "FTM-4200"],
+      "description": "BTS autonomous recovery reset criteria: DSP, FSP, Radio, RAT, BTS, Site reset for self-healing.",
+      "project_mapping": ["self_healing_agent", "security_agent", "closed_loop"],
+      "kpis": ["self_healing_rate", "recovery_time"]
+    },
+    {
+      "feature_id": "RP001727",
+      "title": "BTS Fault Management Improvements",
+      "req_ids": ["FTM-1917", "FTM-1922", "FTM-1923"],
+      "description": "Autonomous recovery reset time window and recovery list processing.",
+      "project_mapping": ["security_agent", "digital_twin"],
+      "kpis": ["fault_recovery_time", "service_restoration"]
+    }
+  ],
+  "insights_ask_cache": {
+    "note": "System Insights ask tool 3GPP query returned limited results; CFAM search_specs used as primary source",
+    "session_id": "c3c7e356-e90a-4310-bbb2-93120301d438"
+  }
+}

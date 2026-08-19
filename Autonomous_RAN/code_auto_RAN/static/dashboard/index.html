@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autonomous Intelligent RAN Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f1419; color: #e7e9ea; }
+    header { background: linear-gradient(135deg, #1a2332, #0d47a1); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    header h1 { font-size: 1.2rem; }
+    .badges { display: flex; gap: 0.5rem; }
+    .badge { padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.7rem; font-weight: 700; }
+    .badge.live { background: #00c853; color: #000; }
+    .badge.ai { background: #7c4dff; color: #fff; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr 360px; gap: 1rem; padding: 1rem; }
+    .panel { background: #1a2332; border-radius: 12px; padding: 1rem; border: 1px solid #2a3544; }
+    .panel h2 { font-size: 0.85rem; color: #8b98a5; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+    .kpi-card { background: #243447; border-radius: 8px; padding: 0.7rem; text-align: center; }
+    .kpi-card .val { font-size: 1.2rem; font-weight: 700; color: #1da1f2; }
+    .kpi-card .lbl { font-size: 0.65rem; color: #8b98a5; margin-top: 0.2rem; }
+    .kpi-card .delta { font-size: 0.7rem; margin-top: 0.2rem; }
+    .delta.up { color: #00c853; } .delta.down { color: #ff5252; }
+    .target-row { margin: 0.4rem 0; font-size: 0.75rem; }
+    .target-bar { height: 6px; background: #2a3544; border-radius: 3px; margin-top: 0.2rem; overflow: hidden; }
+    .target-fill { height: 100%; background: linear-gradient(90deg, #1da1f2, #00c853); border-radius: 3px; }
+    .target-fill.achieved { background: #00c853; }
+    .btn { background: #1da1f2; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-size: 0.8rem; margin: 0.15rem; }
+    .btn:hover { background: #0d8bd9; }
+    .btn.green { background: #00c853; } .btn.orange { background: #ff9800; }
+    .chat-box { display: flex; flex-direction: column; height: calc(100vh - 80px); }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 0.5rem; }
+    .chat-msg { margin: 0.4rem 0; padding: 0.5rem; border-radius: 8px; font-size: 0.8rem; line-height: 1.4; white-space: pre-wrap; word-break: break-word; }
+    .chat-msg.bot { background: #243447; margin-right: 0.5rem; white-space: normal; }
+    .chat-msg.bot table { width: 100%; border-collapse: collapse; font-size: 0.7rem; margin: 0.4rem 0; }
+    .chat-msg.bot th, .chat-msg.bot td { border: 1px solid #2a3544; padding: 0.25rem 0.4rem; text-align: left; }
+    .chat-msg.bot th { background: #1a2332; color: #1da1f2; }
+    .chat-msg.bot strong { color: #e7e9ea; }
+    .chat-msg.user { background: #1da1f2; margin-left: 1.5rem; white-space: pre-wrap; }
+    .chat-input { display: flex; gap: 0.5rem; padding: 0.5rem; }
+    .chat-input input { flex: 1; background: #243447; border: 1px solid #2a3544; color: #e7e9ea; padding: 0.5rem; border-radius: 8px; }
+    .changes-table { width: 100%; font-size: 0.7rem; border-collapse: collapse; }
+    .changes-table th, .changes-table td { padding: 0.35rem; border-bottom: 1px solid #2a3544; text-align: left; }
+    .chart-container { position: relative; height: 180px; }
+    .full-width { grid-column: 1 / -1; }
+    .agent-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.4rem; max-height: 200px; overflow-y: auto; }
+    .agent-chip { background: #243447; padding: 0.4rem; border-radius: 6px; font-size: 0.65rem; border-left: 3px solid #1da1f2; }
+    .agent-chip.trained { border-left-color: #00c853; }
+    .agent-chip.llm { border-left-color: #7c4dff; }
+    .slice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .slice-card { background: #243447; padding: 0.6rem; border-radius: 8px; font-size: 0.75rem; }
+    .twin-stat { display: flex; justify-content: space-between; font-size: 0.75rem; padding: 0.3rem 0; border-bottom: 1px solid #2a3544; }
+    .kb-item { font-size: 0.7rem; color: #8b98a5; padding: 0.2rem 0; }
+    .e2e-card { background: #243447; border-radius: 8px; padding: 0.6rem; margin: 0.4rem 0; font-size: 0.75rem; }
+    .e2e-metric { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin: 0.5rem 0; }
+    .phase-ok { color: #00c853; } .phase-live { color: #1da1f2; }
+    .doc-link { color: #1da1f2; font-size: 0.7rem; display: block; margin: 0.2rem 0; }
+    .cmp-banner { background:#243447;border-radius:8px;padding:0.5rem 0.8rem;margin-bottom:0.6rem;font-size:0.75rem;display:flex;justify-content:space-between;gap:0.5rem;flex-wrap:wrap; }
+    .cmp-before { color:#ff9800; } .cmp-after { color:#00c853; }
+    .plot-gallery { display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.5rem;max-height:320px;overflow-y:auto; }
+    .plot-thumb { background:#243447;border-radius:8px;padding:0.3rem;text-align:center;cursor:pointer; }
+    .plot-thumb img { width:100%;height:100px;object-fit:contain;border-radius:4px;background:#0f1419; }
+    .plot-thumb span { font-size:0.6rem;color:#8b98a5;display:block;margin-top:0.2rem; }
+    .plot-preview-full { background:#0f1419;border-radius:8px;padding:0.5rem;border:1px solid #2a3544;margin-top:0.5rem; }
+    .plot-preview-full img { width:100%;height:auto;max-height:none;object-fit:contain;display:block;border-radius:4px; }
+    .plot-preview-full .caption { font-size:0.65rem;color:#8b98a5;margin-top:0.3rem;text-align:center; }
+    .plot-preview-grid { display:grid;grid-template-columns:1fr;gap:0.8rem;margin-top:0.5rem; }
+    @media (min-width:900px) { .plot-preview-grid.two-col { grid-template-columns:1fr 1fr; } }
+    .chart-container.tall { height:220px; }
+    .twin-viz-wrap { display:grid; grid-template-columns:1fr 280px; gap:0.8rem; align-items:start; }
+    .twin-canvas-box { position:relative; background:#0f1419; border-radius:8px; border:1px solid #2a3544; overflow:hidden; }
+    #twinCanvas { width:100%; height:340px; display:block; cursor:crosshair; }
+    .twin-legend { display:flex; gap:0.6rem; flex-wrap:wrap; font-size:0.65rem; margin-top:0.4rem; }
+    .twin-legend span { display:flex; align-items:center; gap:0.25rem; }
+    .twin-legend i { width:10px; height:10px; border-radius:50%; display:inline-block; }
+    .twin-meta { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.5rem; font-size:0.7rem; }
+    .twin-meta .pill { background:#243447; padding:0.2rem 0.5rem; border-radius:10px; }
+    .twin-cell-bars { max-height:120px; overflow-y:auto; font-size:0.65rem; }
+    .twin-cell-row { display:flex; align-items:center; gap:0.4rem; margin:0.2rem 0; }
+    .twin-cell-row .bar { flex:1; height:6px; background:#2a3544; border-radius:3px; overflow:hidden; }
+    .twin-cell-row .fill { height:100%; background:linear-gradient(90deg,#00c853,#ff9800,#ff5252); }
+    #twinTooltip { position:absolute; pointer-events:none; background:#1a2332; border:1px solid #2a3544;
+      padding:0.3rem 0.5rem; border-radius:6px; font-size:0.65rem; display:none; z-index:5; max-width:200px; }
+    .chart-container.twin-hist { height:140px; margin-top:0.5rem; }
+    .agent-perf-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.8rem; margin:0.6rem 0; }
+    .chart-container.agent-perf-chart { height:200px; }
+    .agent-perf-table { width:100%; font-size:0.68rem; border-collapse:collapse; margin-top:0.5rem; }
+    .agent-perf-table th, .agent-perf-table td { padding:0.35rem 0.4rem; border-bottom:1px solid #2a3544; text-align:left; }
+    .agent-perf-table th { color:#1da1f2; background:#243447; position:sticky; top:0; }
+    .agent-perf-wrap { max-height:280px; overflow-y:auto; border-radius:8px; border:1px solid #2a3544; }
+    .perf-improved { color:#00c853; } .perf-review { color:#ff9800; }
+    .plot-categories { display:flex; flex-direction:column; gap:1rem; }
+    .plot-category { background:#243447; border-radius:8px; padding:0.6rem; }
+    .plot-category h3 { font-size:0.75rem; color:#1da1f2; margin-bottom:0.5rem; }
+    .plot-gallery.expanded { max-height:none; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); }
+    .plot-gallery.expanded .plot-thumb img { height:auto;min-height:140px;max-height:220px;object-fit:contain; }
+    .agent-perf-summary { display:flex; gap:0.5rem; flex-wrap:wrap; font-size:0.7rem; margin-bottom:0.5rem; }
+    .agent-perf-summary .pill { background:#243447; padding:0.2rem 0.5rem; border-radius:10px; }
+    .viz-tabs { display:flex; gap:0.3rem; flex-wrap:wrap; margin-bottom:0.6rem; }
+    .viz-tab { background:#243447; border:1px solid #2a3544; color:#8b98a5; padding:0.25rem 0.6rem; border-radius:12px; font-size:0.65rem; cursor:pointer; }
+    .viz-tab.active { background:#1da1f2; color:#fff; border-color:#1da1f2; }
+    .status-healthy { color:#00c853; } .status-warning { color:#ff9800; } .status-degraded { color:#ff5252; }
+    .constraint-ok { border-left:3px solid #00c853; } .constraint-fail { border-left:3px solid #ff5252; }
+    .constraint-card { background:#243447;border-radius:6px;padding:0.4rem 0.6rem;margin:0.25rem 0;font-size:0.68rem; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Autonomous Intelligent RAN — AI-Native Digital Twin</h1>
+  <div class="badges">
+    <span class="badge live" id="statusBadge">LIVE</span>
+    <span class="badge ai">25 AI AGENTS</span>
+    <span class="badge ai" id="utilityBadge">U=—</span>
+    <a href="/dashboard" class="badge" style="background:#243447;color:#1da1f2;text-decoration:none">Hub</a>
+    <a href="/dashboard/ccfk" class="badge" style="background:#005aff;color:#fff;text-decoration:none">CCFK</a>
+  </div>
+</header>
+
+<div class="grid">
+  <div class="panel">
+    <h2>Target KPIs vs Goals (3GPP / Nokia)</h2>
+    <div id="targetKPIs"></div>
+    <div style="margin-top:0.8rem">
+      <button class="btn" onclick="runAgents()">Run All AI Agents</button>
+      <button class="btn green" onclick="resetBaseline()">Reset Baseline</button>
+      <button class="btn orange" onclick="runClosedLoop()">Closed Loop x10</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Benchmark — Industry vs Autonomous RAN</h2>
+    <div id="cmpBanner" class="cmp-banner"></div>
+    <div class="kpi-grid" id="kpiGrid"></div>
+    <h2 style="margin-top:0.8rem">Slice KPIs (Autonomous RAN)</h2>
+    <div class="slice-grid" id="sliceGrid"></div>
+  </div>
+
+  <div class="panel chat-box">
+    <h2>RAN Chatbot (Nokia LLM)</h2>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg bot">Autonomous Intelligent RAN ready. Ask for <strong>KPI table</strong>, <strong>model validation accuracy</strong>, <strong>benchmark comparison</strong>, or say "show full report in table".</div>
+    </div>
+    <div class="chat-input">
+      <input id="chatInput" placeholder="e.g. Show target KPI progress" onkeydown="if(event.key==='Enter')sendChat()">
+      <button class="btn" onclick="sendChat()">Send</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>AI Agent Status (All AI-Driven)</h2>
+    <div class="agent-grid" id="agentGrid"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Runtime Improvement (Industry → Autonomous)</h2>
+    <div class="chart-container tall"><canvas id="runtimeChart"></canvas></div>
+    <h2 style="margin-top:0.8rem">Scheduler Benchmark</h2>
+    <div class="chart-container"><canvas id="benchmarkChart"></canvas></div>
+  </div>
+
+  <div class="panel full-width">
+    <h2>Agent Performance vs Industry Baseline</h2>
+    <div class="agent-perf-summary" id="agentPerfSummary"></div>
+    <div class="agent-perf-grid">
+      <div class="chart-container agent-perf-chart"><canvas id="agentImproveChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="agentBaselineChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="agentIndexChart"></canvas></div>
+    </div>
+    <div class="agent-perf-wrap">
+      <table class="agent-perf-table">
+        <thead><tr>
+          <th>Agent</th><th>RAN Function</th><th>Primary KPI</th>
+          <th>Industry Baseline</th><th>Autonomous RAN</th><th>Improvement</th>
+          <th>Validation</th><th>Model Metric</th><th>Confidence</th><th>Perf. Index</th>
+        </tr></thead>
+        <tbody id="agentPerfBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel full-width">
+    <h2>Resource Allocation Statistics</h2>
+    <div class="agent-perf-summary" id="resourceSummary"></div>
+    <div class="agent-perf-grid" style="grid-template-columns:1fr 1fr">
+      <div class="chart-container agent-perf-chart"><canvas id="resourcePrbChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="resourceSliceChart"></canvas></div>
+    </div>
+    <div class="agent-perf-wrap" style="max-height:200px;margin-top:0.5rem">
+      <table class="agent-perf-table">
+        <thead><tr><th>Cell</th><th>PRB Used</th><th>PRB %</th><th>Bandwidth</th><th>MIMO</th><th>Power</th><th>UEs</th><th>Load</th></tr></thead>
+        <tbody id="resourceTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel full-width">
+    <h2>Traffic Agent — Prediction, Load Balancing & Congestion Control</h2>
+    <div class="agent-perf-summary" id="trafficSummary"></div>
+    <div class="agent-perf-grid">
+      <div class="chart-container agent-perf-chart"><canvas id="trafficCongestionChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="trafficPeakChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="trafficThroughputChart"></canvas></div>
+    </div>
+    <div class="agent-perf-wrap" style="max-height:160px;margin-top:0.5rem">
+      <table class="agent-perf-table">
+        <thead><tr><th>Metric</th><th>Industry Baseline</th><th>Autonomous RAN</th><th>Live Twin</th><th>Improvement</th><th>Detail</th></tr></thead>
+        <tbody id="trafficBody"></tbody>
+      </table>
+    </div>
+    <div class="plot-preview-full" onclick="window.open('/plots/traffic_agent_impact.png','_blank')" style="cursor:pointer;margin-top:0.8rem">
+      <img src="/plots/traffic_agent_impact.png" alt="traffic agent" loading="lazy" onerror="this.style.display='none'">
+      <div class="caption">traffic_agent_impact.png — congestion, peak throughput, diurnal profile, load vs demand</div>
+    </div>
+  </div>
+
+  <div class="panel full-width">
+    <h2>Coordination Agent — Conflict Resolution & Multi-Agent Harmonization</h2>
+    <div class="agent-perf-summary" id="coordinationSummary"></div>
+    <div class="agent-perf-grid">
+      <div class="chart-container agent-perf-chart"><canvas id="coordConflictsChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="coordResolutionChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="coordLatencyChart"></canvas></div>
+    </div>
+    <div class="agent-perf-wrap" style="max-height:160px;margin-top:0.5rem">
+      <table class="agent-perf-table">
+        <thead><tr><th>Metric</th><th>Industry Baseline</th><th>Autonomous RAN</th><th>Live</th><th>Improvement</th><th>Detail</th></tr></thead>
+        <tbody id="coordinationBody"></tbody>
+      </table>
+    </div>
+    <div class="plot-preview-full" onclick="window.open('/plots/coordination_conflicts.png','_blank')" style="cursor:pointer;margin-top:0.8rem">
+      <img src="/plots/coordination_conflicts.png" alt="coordination agent" loading="lazy" onerror="this.style.display='none'">
+      <div class="caption">coordination_conflicts.png — conflicts, resolution rate, agent-pair heatmap, latency</div>
+    </div>
+  </div>
+
+  <div class="panel full-width">
+    <h2>Super Agent — Per-Agent Monitoring & Agent Optimizer</h2>
+    <div class="agent-perf-summary" id="monitoringSummary"></div>
+    <div class="agent-perf-grid">
+      <div class="chart-container agent-perf-chart"><canvas id="agentHealthChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="degradationChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="optimizerActionChart"></canvas></div>
+    </div>
+    <div class="agent-perf-wrap" style="max-height:220px;margin-top:0.5rem">
+      <table class="agent-perf-table">
+        <thead><tr><th>Agent</th><th>Status</th><th>Perf. Index</th><th>Improvement</th><th>Confidence</th><th>Degradation</th><th>Action</th></tr></thead>
+        <tbody id="monitoringBody"></tbody>
+      </table>
+    </div>
+    <div class="plot-preview-grid" style="margin-top:0.8rem">
+      <div class="plot-preview-full" onclick="window.open('/plots/agent_optimizer_monitoring.png','_blank')" style="cursor:pointer">
+        <img src="/plots/agent_optimizer_monitoring.png" alt="Agent Optimizer Monitoring" loading="lazy" onerror="this.style.display='none'">
+        <div class="caption">agent_optimizer_monitoring.png — click to open full size</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel full-width">
+    <h2>RAN Operational Constraints — Full Compliance View</h2>
+    <div class="agent-perf-summary" id="constraintsSummary"></div>
+    <div class="agent-perf-grid">
+      <div class="chart-container agent-perf-chart"><canvas id="constraintMarginChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="constraintCategoryChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="constraintComplianceChart"></canvas></div>
+    </div>
+    <div id="constraintsDetail" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.4rem;margin-top:0.5rem"></div>
+    <div class="plot-preview-full" onclick="window.open('/plots/ran_constraints_dashboard.png','_blank')" style="cursor:pointer;margin-top:0.8rem">
+      <img src="/plots/ran_constraints_dashboard.png" alt="RAN Constraints Dashboard" loading="lazy" onerror="this.style.display='none'">
+      <div class="caption">ran_constraints_dashboard.png — QoS, Power, Energy, Security, Mobility, Resource constraints</div>
+    </div>
+  </div>
+
+  <div class="panel full-width">
+    <h2>Carbon Emission Reduction — Green RAN Impact</h2>
+    <div class="agent-perf-summary" id="carbonSummary"></div>
+    <div class="agent-perf-grid">
+      <div class="chart-container agent-perf-chart"><canvas id="carbonCompareChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="carbonAgentChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="carbonRenewableChart"></canvas></div>
+    </div>
+    <div class="plot-preview-grid">
+      <div class="plot-preview-full" onclick="window.open('/plots/carbon_emission_reduction.png','_blank')" style="cursor:pointer">
+        <img src="/plots/carbon_emission_reduction.png" alt="carbon emission reduction" loading="lazy" onerror="this.style.display='none'">
+        <div class="caption">carbon_emission_reduction.png — full visualization</div>
+      </div>
+      <div class="plot-preview-full" onclick="window.open('/plots/resource_allocation_stats.png','_blank')" style="cursor:pointer">
+        <img src="/plots/resource_allocation_stats.png" alt="resource allocation" loading="lazy" onerror="this.style.display='none'">
+        <div class="caption">resource_allocation_stats.png — full visualization</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel full-width">
+    <h2>Green & Edge Agents — Sleep, Renewable, Edge Inference, Green Slicing</h2>
+    <div class="agent-perf-summary" id="greenAgentsSummary"></div>
+    <div class="agent-perf-grid">
+      <div class="chart-container agent-perf-chart"><canvas id="greenAgentImpactChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="greenAgentMetricChart"></canvas></div>
+      <div class="chart-container agent-perf-chart"><canvas id="greenCombinedChart"></canvas></div>
+    </div>
+    <div class="agent-perf-wrap" style="max-height:180px;margin-top:0.5rem">
+      <table class="agent-perf-table">
+        <thead><tr><th>Agent</th><th>Metric</th><th>Industry Baseline</th><th>Autonomous RAN</th><th>Improvement</th><th>Detail</th></tr></thead>
+        <tbody id="greenAgentsBody"></tbody>
+      </table>
+    </div>
+    <div class="plot-preview-grid two-col">
+      <div class="plot-preview-full" onclick="window.open('/plots/green_edge_agents_impact.png','_blank')" style="cursor:pointer">
+        <img src="/plots/green_edge_agents_impact.png" alt="green edge agents" loading="lazy" onerror="this.style.display='none'">
+        <div class="caption">green_edge_agents_impact.png — RAN Sleep, Renewable, Edge Inference, Green Slicing</div>
+      </div>
+      <div class="plot-preview-full" onclick="window.open('/plots/carbon_emission_reduction.png','_blank')" style="cursor:pointer">
+        <img src="/plots/carbon_emission_reduction.png" alt="carbon" loading="lazy">
+        <div class="caption">carbon_emission_reduction.png — Carbon agent impact</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel full-width">
+    <h2>Digital Twin — Live Network Visualization</h2>
+    <div class="twin-meta" id="twinMeta"></div>
+    <div class="twin-viz-wrap">
+      <div class="twin-canvas-box">
+        <canvas id="twinCanvas"></canvas>
+        <div id="twinTooltip"></div>
+      </div>
+      <div>
+        <h2 style="font-size:0.75rem;margin-bottom:0.4rem">Cell Load & Power</h2>
+        <div class="twin-cell-bars" id="twinCellBars"></div>
+        <h2 style="font-size:0.75rem;margin:0.5rem 0 0.4rem">Twin Time Series</h2>
+        <div class="chart-container twin-hist"><canvas id="twinHistoryChart"></canvas></div>
+        <div class="twin-legend">
+          <span><i style="background:#1da1f2"></i>eMBB</span>
+          <span><i style="background:#ff5252"></i>URLLC</span>
+          <span><i style="background:#00c853"></i>mMTC</span>
+          <span><i style="background:#7c4dff;border-radius:2px"></i>gNodeB</span>
+        </div>
+        <div style="margin-top:0.5rem">
+          <button class="btn" onclick="stepTwin()">Step Twin</button>
+          <button class="btn green" onclick="refreshTwinViz()">Refresh Map</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>KPI Trend & Industry vs Autonomous Bar Chart</h2>
+    <div class="chart-container"><canvas id="kpiChart"></canvas></div>
+    <div class="chart-container" style="margin-top:0.5rem"><canvas id="compareChart"></canvas></div>
+  </div>
+
+  <div class="panel">
+    <h2>Digital Twin & Super Agent</h2>
+    <div id="twinStats"></div>
+    <h2 style="margin-top:0.8rem">Nokia Knowledge Base (MCP)</h2>
+    <div id="kbSummary"></div>
+  </div>
+
+  <div class="panel full-width">
+    <h2>Autonomous RAN — Complete Visualization Library</h2>
+    <div class="viz-tabs" id="vizTabs"></div>
+    <div class="plot-categories" id="plotCategories"></div>
+  </div>
+
+  <div class="panel full-width">
+    <h2>End-to-End Implementation Results</h2>
+    <div class="e2e-metric" id="e2eMetrics"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:0.5rem">
+      <div><h2 style="font-size:0.75rem">Pipeline Phases</h2><div id="e2ePhases"></div></div>
+      <div><h2 style="font-size:0.75rem">Benchmark vs Baselines</h2><div id="e2eBenchmark"></div></div>
+      <div><h2 style="font-size:0.75rem">CSV Datasets & Documentation</h2><div id="e2eDatasets"></div>
+        <div id="e2eDocs" style="margin-top:0.5rem"></div></div>
+    </div>
+  </div>
+
+  <div class="panel full-width">
+    <h2>Parameter Changes Log</h2>
+    <table class="changes-table">
+      <thead><tr><th>Time</th><th>Agent</th><th>Target</th><th>Before</th><th>After</th></tr></thead>
+      <tbody id="changesBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const API = '';
+let kpiChart, compareChart, runtimeChart, benchmarkChart, twinHistoryChart;
+let agentImproveChart, agentBaselineChart, agentIndexChart;
+let resourcePrbChart, resourceSliceChart, carbonCompareChart, carbonAgentChart, carbonRenewableChart;
+let greenAgentImpactChart, greenAgentMetricChart, greenCombinedChart;
+let agentHealthChart, degradationChart, optimizerActionChart;
+let constraintMarginChart, constraintCategoryChart, constraintComplianceChart;
+let trafficCongestionChart, trafficPeakChart, trafficThroughputChart;
+let coordConflictsChart, coordResolutionChart, coordLatencyChart;
+let twinVizData = null, twinHover = null;
+let plotCategoryData = [], activeVizTab = 'all';
+let beforeLabel = 'Industry Baseline', afterLabel = 'Autonomous Intelligent RAN';
+
+async function api(path, opts={}) {
+  const r = await fetch(API + path, {headers:{'Content-Type':'application/json'}, ...opts});
+  return r.json();
+}
+
+function renderTargetKPIs(targets) {
+  document.getElementById('targetKPIs').innerHTML = targets.map(t => {
+    const pct = Math.min(100, t.progress_pct);
+    return `<div class="target-row">
+      <div style="display:flex;justify-content:space-between">
+        <span>${t.label}</span>
+        <span>${t.current_value}${t.unit==='percent'?'%':''} / ${t.target_value}${t.unit==='percent'?'%':''}</span>
+      </div>
+      <div class="target-bar"><div class="target-fill ${t.achieved?'achieved':''}" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+function fmtVal(key, v) {
+  if (typeof v !== 'number') return v;
+  if (key.includes('rate') || key.includes('compliance') || key === 'security_score' || key === 'automation_level')
+    return (v * (v <= 1 ? 100 : 1)).toFixed(key === 'security_score' ? 1 : 0) + (v <= 1 ? '%' : '');
+  if (key === 'qoe_score') return v.toFixed(2);
+  return v;
+}
+
+function renderKPI(comparison) {
+  beforeLabel = comparison.before_label || beforeLabel;
+  afterLabel = comparison.after_label || afterLabel;
+  document.getElementById('cmpBanner').innerHTML =
+    `<span class="cmp-before">BEFORE: ${beforeLabel}</span>
+     <span class="cmp-after">AFTER: ${afterLabel}</span>`;
+  const b = comparison.before, a = comparison.after, d = comparison.delta_pct;
+  const metrics = [
+    ['Throughput (Mbps)', 'avg_throughput_mbps', false], ['Latency (ms)', 'avg_latency_ms', true],
+    ['CQI', 'avg_cqi', false], ['SINR (dB)', 'avg_sinr_db', false],
+    ['Power (W)', 'total_power_w', true], ['QoS SLA', 'qos_sla_compliance', false],
+    ['CSI Accuracy', 'csi_accuracy', false], ['BF Gain (dB)', 'beamforming_gain_db', false],
+    ['Energy Efficiency', 'energy_efficiency', false], ['Fairness', 'fairness_index', false],
+    ['HO Success', 'handover_success_rate', false], ['Security Det.', 'security_score', false],
+    ['QoE Score', 'qoe_score', false], ['Slice Efficiency', 'slice_efficiency', false],
+    ['Automation', 'automation_level', false],
+  ];
+  document.getElementById('kpiGrid').innerHTML = metrics.map(([lbl,key,invert]) => {
+    const pct = d[key] || 0;
+    const good = invert ? pct < 0 : pct > 0;
+    const bVal = fmtVal(key, b[key]), aVal = fmtVal(key, a[key]);
+    return `<div class="kpi-card"><div class="val">${aVal}</div><div class="lbl">${lbl}</div>
+      <div style="font-size:0.65rem;color:#8b98a5">${bVal} → ${aVal}</div>
+      <div class="delta ${good?'up':'down'}">${pct>0?'+':''}${pct}%</div></div>`;
+  }).join('');
+  document.getElementById('utilityBadge').textContent = 'U=' + (a.global_utility || '—');
+}
+
+function renderAgents(agents) {
+  document.getElementById('agentGrid').innerHTML = agents.map(a => {
+    const cls = a.ai_type === 'llm' ? 'llm' : (a.is_trained ? 'trained' : '');
+    return `<div class="agent-chip ${cls}">
+      <strong>${a.name}</strong><br>
+      ${a.ai_type.toUpperCase()} | ${a.model_loaded?'Model OK':'—'}
+    </div>`;
+  }).join('');
+}
+
+function renderSlices(slices) {
+  document.getElementById('sliceGrid').innerHTML = Object.entries(slices).map(([name, d]) =>
+    `<div class="slice-card"><strong>${name}</strong><br>
+    TP: ${d.avg_throughput_mbps} Mbps<br>Lat: ${d.avg_latency_ms} ms<br>UEs: ${d.ue_count}</div>`
+  ).join('');
+}
+
+function renderTwin(twin, superAgent) {
+  document.getElementById('twinStats').innerHTML = `
+    <div class="twin-stat"><span>Cells</span><span>${Object.keys(twin.cells||{}).length}</span></div>
+    <div class="twin-stat"><span>UEs</span><span>${Object.keys(twin.ues||{}).length}</span></div>
+    <div class="twin-stat"><span>Fidelity</span><span>${twin.fidelity||'—'}</span></div>
+    <div class="twin-stat"><span>Avg Throughput</span><span>${twin.avg_throughput?.toFixed(1)||'—'} Mbps</span></div>
+    <div class="twin-stat"><span>Super Agent Validations</span><span>${superAgent.validations||0}</span></div>
+    <div class="twin-stat"><span>Monitoring Cycles</span><span>${superAgent.monitoring_cycles||0}</span></div>
+    <div class="twin-stat"><span>Optimizations Triggered</span><span>${superAgent.optimizations_triggered||0}</span></div>
+    <div class="twin-stat"><span>Autonomy Level</span><span>${((superAgent.autonomy_level||0)*100).toFixed(0)}%</span></div>`;
+}
+
+function renderKB(kb) {
+  const items = Object.entries(kb.knowledge_base||{}).map(([f,d]) =>
+    `<div class="kb-item">${d.exists?'✓':'✗'} ${f} ${d.entries?'('+d.entries+' keys)':''}</div>`
+  ).join('');
+  document.getElementById('kbSummary').innerHTML = items +
+    `<div class="kb-item" style="margin-top:0.5rem">MCP: ${(kb.mcp_sources||[]).join(', ')}</div>`;
+}
+
+function renderE2E(e2e) {
+  const d = e2e.api_demo || {};
+  document.getElementById('e2eMetrics').innerHTML = [
+    ['API Throughput', `${d.throughput_before_mbps} → ${d.throughput_after_mbps} Mbps`, `+${d.throughput_improvement_pct}%`],
+    ['API Latency', `${d.latency_before_ms} → ${d.latency_after_ms} ms`, `-${d.latency_reduction_pct}%`],
+    ['API Power', `${d.power_before_w} → ${d.power_after_w} W`, `-${d.power_reduction_pct}%`],
+    ['Agents / Updates', `${d.agents_invoked} agents`, `${d.parameter_updates} param updates`],
+  ].map(([lbl, val, delta]) => `<div class="kpi-card"><div class="val" style="font-size:0.95rem">${val}</div>
+    <div class="lbl">${lbl}</div><div class="delta up">${delta}</div></div>`).join('');
+
+  document.getElementById('e2ePhases').innerHTML = (e2e.pipeline_phases||[]).map(p =>
+    `<div class="e2e-card"><span class="${p.status==='live'?'phase-live':'phase-ok'}">●</span>
+    <strong>Phase ${p.id}:</strong> ${p.name}<br><span style="color:#8b98a5">${p.output}</span></div>`
+  ).join('');
+
+  const b = e2e.benchmark || {};
+  document.getElementById('e2eBenchmark').innerHTML = `
+    <div class="e2e-card">Multi-Agent: <strong>${b.multi_agent_throughput_mbps} Mbps</strong>, ${b.multi_agent_latency_ms} ms lat</div>
+    <div class="e2e-card">vs Proportional Fair: <strong>+${b.throughput_gain_vs_pf_pct}%</strong> throughput</div>
+    <div class="e2e-card">Security detection: <strong>${b.security_detection_pct}%</strong></div>
+    ${(b.results||[]).map(r => `<div class="kb-item">${r.scheduler}: ${r.avg_throughput_mbps} Mbps, ${r.avg_latency_ms} ms</div>`).join('')}`;
+
+  document.getElementById('e2eDatasets').innerHTML = (e2e.datasets||[]).map(ds =>
+    `<div class="kb-item">📄 ${ds.file} — ${ds.rows} rows × ${ds.columns} cols</div>`
+  ).join('');
+
+  const docs = e2e.documentation || {};
+  document.getElementById('e2eDocs').innerHTML = `
+    <a class="doc-link" href="/docs/implementation" target="_blank">📘 Implementation Guide (Markdown)</a>
+    <span class="doc-link">📄 DOCX: docs/AUTONOMOUS_RAN_IMPLEMENTATION.docx</span>
+    <span class="doc-link">📕 PDF: docs/AUTONOMOUS_RAN_IMPLEMENTATION.pdf</span>
+    <span class="doc-link">🔗 Dashboard: ${e2e.dashboard_url}</span>`;
+}
+
+async function refreshDashboard() {
+  const [cmp, targets, agents, slices, twin, superAgent, kb, changes, e2e, plots, twinViz, agentPerf, resourceAlloc, carbon, greenAgents, monitoring, constraints, traffic, coordination] = await Promise.all([
+    api('/api/kpi/comparison'), api('/api/kpi/targets'), api('/api/agents/status'),
+    api('/api/kpi/slices'), api('/api/twin/state'), api('/api/super-agent/status'),
+    api('/api/knowledge/summary'), api('/api/ran/parameters/changes?limit=10'),
+    api('/api/e2e/summary'), api('/api/plots/gallery'), api('/api/twin/visualization'),
+    api('/api/agents/performance'), api('/api/resource/allocation'), api('/api/carbon/stats'),
+    api('/api/green-agents/stats'), api('/api/super-agent/monitoring'), api('/api/constraints/status'),
+    api('/api/traffic/stats'), api('/api/coordination/stats'),
+  ]);
+  renderTargetKPIs(targets.targets);
+  renderKPI(cmp);
+  renderAgents(agents.agents);
+  renderSlices(slices.slices);
+  renderTwin(twin, superAgent);
+  renderTwinVisualization(twinViz);
+  renderAgentPerformance(agentPerf);
+  renderResourceAllocation(resourceAlloc);
+  renderTrafficStats(traffic);
+  renderCoordinationStats(coordination);
+  renderCarbonStats(carbon);
+  renderGreenAgents(greenAgents);
+  renderAgentMonitoring(monitoring);
+  renderConstraints(constraints);
+  renderKB(kb);
+  renderE2E(e2e);
+  renderPlotCategories(plots);
+  updateCharts(cmp);
+  updateTwinHistoryChart();
+  document.getElementById('changesBody').innerHTML = changes.changes.reverse().map(c =>
+    `<tr><td>${c.timestamp?.slice(11,19)||''}</td><td>${c.agent||c.source}</td><td>${c.target}</td>
+    <td>${JSON.stringify(c.before).slice(0,35)}</td><td>${JSON.stringify(c.after).slice(0,35)}</td></tr>`
+  ).join('');
+}
+
+function renderPlotCategories(gallery) {
+  plotCategoryData = gallery.categories || [];
+  const total = gallery.total || gallery.count || 0;
+  const tabs = [{id:'all', label:`All (${total})`}, ...plotCategoryData.map(c => ({id:c.id, label:`${c.label} (${c.count})`}))];
+  document.getElementById('vizTabs').innerHTML = tabs.map(t =>
+    `<span class="viz-tab ${activeVizTab===t.id?'active':''}" onclick="filterVizTab('${t.id}')">${t.label}</span>`
+  ).join('');
+  const cats = activeVizTab === 'all' ? plotCategoryData : plotCategoryData.filter(c => c.id === activeVizTab);
+  document.getElementById('plotCategories').innerHTML = cats.length ? cats.map(cat =>
+    `<div class="plot-category" data-cat="${cat.id}">
+      <h3>${cat.label} (${cat.count})</h3>
+      <div class="plot-gallery expanded">${cat.plots.map(p =>
+        `<div class="plot-thumb" onclick="window.open('${p.url}','_blank')">
+          <img src="${p.url}" alt="${p.name}" loading="lazy" onerror="this.parentElement.style.display='none'">
+          <span>${p.name}</span></div>`
+      ).join('')}</div></div>`
+  ).join('') : '<div class="kb-item">Run: python scripts/generate_visualizations.py</div>';
+}
+
+function filterVizTab(id) {
+  activeVizTab = id;
+  renderPlotCategories({categories: plotCategoryData, total: plotCategoryData.reduce((s,c)=>s+c.count,0)});
+}
+
+function renderAgentPerformance(data) {
+  const s = data.summary || {};
+  const agents = data.agents || [];
+  document.getElementById('agentPerfSummary').innerHTML = [
+    ['Agents', s.total_agents], ['Improved vs Baseline', s.improved_count],
+    ['Validated', s.validated_count], ['Avg Improvement', s.avg_improvement_pct + '%'],
+    ['Avg Confidence', (s.avg_confidence * 100).toFixed(0) + '%'], ['Avg Perf. Index', s.avg_performance_index],
+  ].map(([k,v]) => `<span class="pill"><strong>${k}:</strong> ${v}</span>`).join('');
+
+  document.getElementById('agentPerfBody').innerHTML = agents.map(a =>
+    `<tr>
+      <td><strong>${a.agent_label}</strong></td>
+      <td>${a.role}</td><td>${a.primary_kpi}</td>
+      <td>${a.baseline_value}</td><td>${a.autonomous_value}</td>
+      <td class="${a.improvement_pct>0?'perf-improved':'perf-review'}">${a.improvement_pct>0?'+':''}${a.improvement_pct}%</td>
+      <td>${a.validation_status}</td>
+      <td>${a.validation_metric}: ${a.validation_score}</td>
+      <td>${a.confidence ? (a.confidence*100).toFixed(0)+'%' : '—'}</td>
+      <td><strong>${a.performance_index}</strong></td>
+    </tr>`
+  ).join('');
+
+  const labels = agents.map(a => a.agent_label.split(' ')[0]);
+  const improvements = agents.map(a => a.improvement_pct);
+  const baselineNorm = agents.map(() => 50);
+  const autoNorm = agents.map(a => {
+    const b = Math.max(a.baseline_raw, 0.01), au = Math.max(a.autonomous_raw, 0.01);
+    if (['total_power_w', 'avg_latency_ms'].includes(a.kpi_key)) return Math.min(100, (b / au) * 50);
+    return Math.min(100, (au / b) * 50);
+  });
+  const indices = agents.map(a => a.performance_index);
+  const confs = agents.map(a => (a.confidence || 0) * 100);
+
+  const chartOpts = {responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:'#e7e9ea',font:{size:8}}}},
+    scales:{x:{ticks:{color:'#8b98a5',font:{size:7}, maxRotation:60}}, y:{ticks:{color:'#8b98a5',font:{size:8}}}}};
+
+  if (agentImproveChart) agentImproveChart.destroy();
+  agentImproveChart = new Chart(document.getElementById('agentImproveChart'), {
+    type:'bar', data:{labels, datasets:[{label:'Improvement % vs Baseline', data:improvements,
+      backgroundColor: improvements.map(v => v>0?'#00c853':'#ff9800')}]},
+    options:{...chartOpts, indexAxis:'y', plugins:{...chartOpts.plugins,
+      title:{display:true,text:'Per-Agent KPI Improvement',color:'#8b98a5',font:{size:10}}}}
+  });
+
+  if (agentBaselineChart) agentBaselineChart.destroy();
+  agentBaselineChart = new Chart(document.getElementById('agentBaselineChart'), {
+    type:'bar', data:{labels, datasets:[
+      {label:'Industry Baseline (ref.)', data:baselineNorm, backgroundColor:'#ff9800'},
+      {label:'Autonomous RAN (norm.)', data:autoNorm, backgroundColor:'#00c853'},
+    ]}, options:{...chartOpts, plugins:{...chartOpts.plugins,
+      title:{display:true,text:'Baseline vs Autonomous (normalized)',color:'#8b98a5',font:{size:10}}}}
+  });
+
+  if (agentIndexChart) agentIndexChart.destroy();
+  agentIndexChart = new Chart(document.getElementById('agentIndexChart'), {
+    type:'bar', data:{labels, datasets:[
+      {label:'Performance Index', data:indices, backgroundColor:'#1da1f2'},
+      {label:'Confidence %', data:confs, backgroundColor:'#7c4dff'},
+    ]}, options:{...chartOpts, plugins:{...chartOpts.plugins,
+      title:{display:true,text:'Agent Performance Index & Confidence',color:'#8b98a5',font:{size:10}}}}
+  });
+}
+
+function renderPlots(gallery) {
+  renderPlotCategories(gallery);
+}
+
+function updateCharts(cmp) {
+  const labels = ['TP','Lat','CQI','SINR','Power','QoS','CSI','BF'];
+  const keys = ['avg_throughput_mbps','avg_latency_ms','avg_cqi','avg_sinr_db',
+    'total_power_w','qos_sla_compliance','csi_accuracy','beamforming_gain_db'];
+  const before = keys.map(k => cmp.before[k]);
+  const after = keys.map(k => cmp.after[k]);
+  if (compareChart) compareChart.destroy();
+  compareChart = new Chart(document.getElementById('compareChart'), {
+    type:'bar', data:{labels, datasets:[
+      {label: cmp.before_label || 'Industry Baseline', data:before, backgroundColor:'#ff9800'},
+      {label: cmp.after_label || 'Autonomous RAN', data:after, backgroundColor:'#00c853'}
+    ]}, options:{responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:'#e7e9ea', font:{size:10}}}, title:{display:true,text:'Industry vs Autonomous KPI',color:'#8b98a5',font:{size:11}}},
+      scales:{x:{ticks:{color:'#8b98a5', font:{size:9}}}, y:{ticks:{color:'#8b98a5', font:{size:9}}}}}}
+  );
+}
+
+async function initRuntimeChart() {
+  const rt = await api('/api/kpi/runtime-improvement');
+  if (runtimeChart) runtimeChart.destroy();
+  runtimeChart = new Chart(document.getElementById('runtimeChart'), {
+    type:'line', data:{
+      labels: rt.labels,
+      datasets:[
+        {label:'Throughput (Mbps)', data:rt.series.avg_throughput_mbps, borderColor:'#1da1f2', tension:0.3},
+        {label:'Latency (ms)', data:rt.series.avg_latency_ms, borderColor:'#ff5252', tension:0.3, yAxisID:'y1'},
+        {label:'Security', data:rt.series.security_score, borderColor:'#7c4dff', tension:0.3},
+      ]
+    }, options:{responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:'#e7e9ea',font:{size:9}}}},
+      scales:{x:{ticks:{color:'#8b98a5',maxRotation:45,font:{size:8}}}, y:{ticks:{color:'#8b98a5'}},
+        y1:{position:'right', ticks:{color:'#8b98a5'}}}}
+  });
+}
+
+async function initBenchmarkChart() {
+  const bench = await api('/api/kpi/benchmark');
+  const rows = bench.schedulers || [];
+  const labels = rows.map(r => r.scheduler.replace(/_/g,' '));
+  if (benchmarkChart) benchmarkChart.destroy();
+  benchmarkChart = new Chart(document.getElementById('benchmarkChart'), {
+    type:'bar', data:{labels, datasets:[
+      {label:'Throughput Mbps', data:rows.map(r=>r.throughput_mbps),
+        backgroundColor: rows.map(r=>r.is_autonomous?'#00c853':r.is_industry?'#ff9800':'#546e7a')},
+    ]}, options:{responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:'#e7e9ea',font:{size:9}}}},
+      scales:{x:{ticks:{color:'#8b98a5',font:{size:8}}}, y:{ticks:{color:'#8b98a5'}}}}
+  });
+}
+
+async function initKPIChart() {
+  const hist = await api('/api/kpi/history');
+  const labels = hist.history.map((h,i) => h.label || i);
+  const tp = hist.history.map(h => h.kpi.avg_throughput_mbps);
+  const lat = hist.history.map(h => h.kpi.avg_latency_ms);
+  kpiChart = new Chart(document.getElementById('kpiChart'), {
+    type:'line', data:{labels, datasets:[
+      {label:'Throughput', data:tp, borderColor:'#1da1f2', tension:0.3},
+      {label:'Latency', data:lat, borderColor:'#ff5252', tension:0.3, yAxisID:'y1'}
+    ]}, options:{responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:'#e7e9ea', font:{size:10}}}},
+      scales:{x:{ticks:{color:'#8b98a5'}}, y:{ticks:{color:'#8b98a5'}},
+        y1:{position:'right', ticks:{color:'#8b98a5'}}}}}
+  );
+}
+
+async function runAgents() {
+  addChat('user', 'Running all 17 AI agents...');
+  const r = await api('/api/agents/run', {method:'POST',
+    body:JSON.stringify({intent:'Optimize throughput, URLLC latency, slice SLA, energy and security'})});
+  addChat('bot', `AI Agents: ${r.agents_invoked.length} approved\nTP: ${r.kpi_before.avg_throughput_mbps} -> ${r.kpi_after.avg_throughput_mbps} Mbps\nUtility: ${r.super_agent_decision?.global_utility}`);
+  await refreshDashboard();
+}
+
+async function resetBaseline() {
+  await api('/api/kpi/baseline/reset', {method:'POST'});
+  addChat('bot', 'Baseline KPI reset.');
+  await refreshDashboard();
+}
+
+async function runClosedLoop() {
+  const r = await api('/api/closed-loop/run', {method:'POST', body:JSON.stringify({iterations:10})});
+  addChat('bot', `Closed-loop: TP ${r.kpi_before.avg_throughput_mbps} -> ${r.kpi_after.avg_throughput_mbps} Mbps`);
+  await refreshDashboard();
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function renderMarkdownTable(rows) {
+  if (rows.length < 2) return escapeHtml(rows.join('\n'));
+  const parse = r => r.trim().replace(/^\|/,'').replace(/\|$/,'').split('|').map(c => c.trim());
+  const hdr = parse(rows[0]);
+  const body = rows.slice(2).map(parse);
+  let html = '<table><thead><tr>' + hdr.map(h => `<th>${escapeHtml(h)}</th>`).join('') + '</tr></thead><tbody>';
+  body.forEach(cells => { html += '<tr>' + cells.map(c => `<td>${escapeHtml(c)}</td>`).join('') + '</tr>'; });
+  return html + '</tbody></table>';
+}
+
+function formatBotReply(text) {
+  const lines = text.split('\n');
+  let html = '', tableBuf = [], inTable = false;
+  const flush = () => { if (tableBuf.length) { html += renderMarkdownTable(tableBuf); tableBuf = []; inTable = false; } };
+  for (const line of lines) {
+    const t = line.trim();
+    if (t.startsWith('|') && t.includes('|', 1)) {
+      inTable = true; tableBuf.push(line);
+    } else {
+      flush();
+      if (!t) { html += '<br>'; continue; }
+      let seg = escapeHtml(line).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      html += seg + '<br>';
+    }
+  }
+  flush();
+  return html;
+}
+
+function addChat(role, text) {
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + role;
+  if (role === 'bot') div.innerHTML = formatBotReply(text);
+  else div.textContent = text;
+  document.getElementById('chatMessages').appendChild(div);
+  div.scrollIntoView();
+}
+
+async function sendChat() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  addChat('user', msg);
+  input.value = '';
+  const r = await api('/api/chat', {method:'POST', body:JSON.stringify({message:msg})});
+  addChat('bot', r.reply);
+  if (r.kpi_snapshot) await refreshDashboard();
+}
+
+function loadColor(load) {
+  const r = Math.round(255 * Math.min(1, load * 1.4));
+  const g = Math.round(200 * (1 - load * 0.8));
+  return `rgba(${r},${g},80,0.35)`;
+}
+
+function renderTwinVisualization(viz) {
+  twinVizData = viz;
+  document.getElementById('twinMeta').innerHTML = [
+    ['Fidelity', (viz.fidelity * 100).toFixed(1) + '%'],
+    ['UEs', viz.num_ues],
+    ['Cells', viz.num_cells],
+    ['Avg TP', viz.avg_throughput.toFixed(1) + ' Mbps'],
+    ['Avg Lat', viz.avg_latency.toFixed(2) + ' ms'],
+    ['Power', viz.total_power_w.toFixed(0) + ' W'],
+    ['CSI', (viz.csi_accuracy * 100).toFixed(0) + '%'],
+    ['BF Gain', viz.beamforming_gain_db + ' dB'],
+  ].map(([k,v]) => `<span class="pill"><strong>${k}:</strong> ${v}</span>`).join('');
+
+  document.getElementById('twinCellBars').innerHTML = (viz.cells || []).map(c =>
+    `<div class="twin-cell-row" title="${c.cell_id}: ${c.ue_count} UEs, ${c.power_w}W">
+      <span style="width:52px">${c.cell_id.replace('CELL_','C')}</span>
+      <div class="bar"><div class="fill" style="width:${(c.load*100).toFixed(0)}%"></div></div>
+      <span style="width:32px;text-align:right">${(c.load*100).toFixed(0)}%</span>
+    </div>`
+  ).join('');
+
+  drawTwinCanvas(viz);
+}
+
+function drawTwinCanvas(viz) {
+  const canvas = document.getElementById('twinCanvas');
+  const box = canvas.parentElement;
+  const dpr = window.devicePixelRatio || 1;
+  const w = box.clientWidth, h = 340;
+  canvas.width = w * dpr; canvas.height = h * dpr;
+  canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = '#0f1419';
+  ctx.fillRect(0, 0, w, h);
+
+  const bw = viz.bounds?.width || 1000, bh = viz.bounds?.height || 1000;
+  const pad = 30;
+  const sx = (w - pad * 2) / bw, sy = (h - pad * 2) / bh;
+  const scale = Math.min(sx, sy);
+  const ox = (w - bw * scale) / 2, oy = (h - bh * scale) / 2;
+  const tx = x => ox + x * scale, ty = y => oy + y * scale;
+  const colors = viz.slice_colors || {eMBB:'#1da1f2', URLLC:'#ff5252', mMTC:'#00c853'};
+  const cellMap = Object.fromEntries((viz.cells||[]).map(c => [c.cell_id, c]));
+
+  // grid
+  ctx.strokeStyle = '#1a2332'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const gx = tx(i * 250), gy = ty(i * 250);
+    ctx.beginPath(); ctx.moveTo(gx, ty(0)); ctx.lineTo(gx, ty(1000)); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(tx(0), gy); ctx.lineTo(tx(1000), gy); ctx.stroke();
+  }
+
+  // UE → cell links
+  ctx.strokeStyle = 'rgba(42,53,68,0.5)'; ctx.lineWidth = 0.5;
+  (viz.ues||[]).forEach(u => {
+    const c = cellMap[u.cell_id];
+    if (!c) return;
+    ctx.beginPath(); ctx.moveTo(tx(u.x), ty(u.y)); ctx.lineTo(tx(c.x), ty(c.y)); ctx.stroke();
+  });
+
+  // cell coverage
+  (viz.cells||[]).forEach(c => {
+    const r = c.radius * scale;
+    ctx.beginPath(); ctx.arc(tx(c.x), ty(c.y), r, 0, Math.PI * 2);
+    ctx.fillStyle = c.sleep ? 'rgba(84,110,122,0.2)' : loadColor(c.load);
+    ctx.fill();
+    ctx.strokeStyle = c.sleep ? '#546e7a' : '#7c4dff'; ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.fillStyle = '#e7e9ea'; ctx.font = 'bold 9px Segoe UI';
+    ctx.textAlign = 'center';
+    ctx.fillText(c.cell_id.replace('CELL_',''), tx(c.x), ty(c.y) + 3);
+  });
+
+  // UEs
+  twinHover = { items: [], tx, ty, scale };
+  (viz.ues||[]).forEach(u => {
+    const col = colors[u.slice] || '#8b98a5';
+    const px = tx(u.x), py = ty(u.y);
+    const rad = 3 + Math.min(4, u.throughput / 25);
+    ctx.beginPath(); ctx.arc(px, py, rad, 0, Math.PI * 2);
+    ctx.fillStyle = col; ctx.fill();
+    ctx.strokeStyle = '#0f1419'; ctx.lineWidth = 0.5; ctx.stroke();
+    twinHover.items.push({type:'ue', x:px, y:py, r:rad+4, data:u});
+  });
+  (viz.cells||[]).forEach(c => {
+    twinHover.items.push({type:'cell', x:tx(c.x), y:ty(c.y), r:c.radius*scale+6, data:c});
+  });
+}
+
+function setupTwinCanvasEvents() {
+  const canvas = document.getElementById('twinCanvas');
+  const tip = document.getElementById('twinTooltip');
+  canvas.addEventListener('mousemove', e => {
+    if (!twinHover) return;
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const hit = twinHover.items.find(it => (mx-it.x)**2 + (my-it.y)**2 <= it.r**2);
+    if (!hit) { tip.style.display = 'none'; return; }
+    tip.style.display = 'block';
+    tip.style.left = (e.clientX - rect.left + 12) + 'px';
+    tip.style.top = (e.clientY - rect.top + 12) + 'px';
+    const d = hit.data;
+    tip.innerHTML = hit.type === 'ue'
+      ? `<strong>${d.ue_id}</strong><br>${d.slice} | ${d.cell_id}<br>TP ${d.throughput} Mbps, ${d.latency} ms<br>CQI ${d.cqi}, SINR ${d.sinr} dB`
+      : `<strong>${d.cell_id}</strong><br>Load ${(d.load*100).toFixed(0)}% | ${d.ue_count} UEs<br>Power ${d.power_w}W${d.sleep?' (sleep)':''}`;
+  });
+  canvas.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+  window.addEventListener('resize', () => { if (twinVizData) drawTwinCanvas(twinVizData); });
+}
+
+async function updateTwinHistoryChart() {
+  const hist = await api('/api/twin/history?limit=30');
+  const rows = hist.history || [];
+  if (!rows.length) return;
+  const labels = rows.map((_, i) => 't' + i);
+  const tp = rows.map(h => h.avg_throughput);
+  const lat = rows.map(h => h.avg_latency);
+  const pwr = rows.map(h => h.total_power_w);
+  if (twinHistoryChart) twinHistoryChart.destroy();
+  twinHistoryChart = new Chart(document.getElementById('twinHistoryChart'), {
+    type:'line', data:{labels, datasets:[
+      {label:'TP Mbps', data:tp, borderColor:'#1da1f2', tension:0.3, pointRadius:0},
+      {label:'Lat ms', data:lat, borderColor:'#ff5252', tension:0.3, yAxisID:'y1', pointRadius:0},
+      {label:'Power W', data:pwr, borderColor:'#00c853', tension:0.3, pointRadius:0},
+    ]}, options:{responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:'#8b98a5',font:{size:8}}}},
+      scales:{x:{display:false}, y:{ticks:{color:'#8b98a5',font:{size:8}}},
+        y1:{position:'right', ticks:{color:'#8b98a5',font:{size:8}}}}}
+  });
+}
+
+async function stepTwin() {
+  await api('/api/twin/step', {method:'POST'});
+  await refreshTwinViz();
+  await updateTwinHistoryChart();
+}
+
+function renderAgentMonitoring(data) {
+  const mon = data.monitoring || {};
+  const agents = mon.agents || [];
+  const opts = data.optimization_actions || [];
+  const rec = data.monitoring_record || {};
+  document.getElementById('monitoringSummary').innerHTML = [
+    ['Monitored', mon.monitored_count], ['Healthy', mon.healthy_count],
+    ['Warnings', mon.warning_count], ['Degraded', mon.degraded_count],
+    ['Optimizations', opts.length], ['Cycles', rec.optimization_triggered ? 'Active' : 'Idle'],
+  ].map(([k,v]) => `<span class="pill"><strong>${k}:</strong> ${v}</span>`).join('');
+
+  const actionMap = {};
+  opts.forEach(o => { actionMap[o.params?.target_agent] = o.params?.optimization_action || '—'; });
+
+  document.getElementById('monitoringBody').innerHTML = agents.map(a => {
+    const cls = a.status === 'healthy' ? 'status-healthy' : (a.status === 'warning' ? 'status-warning' : 'status-degraded');
+    const act = actionMap[a.agent] || (a.status === 'healthy' ? '—' : 'monitor');
+    return `<tr><td><strong>${a.agent_label}</strong></td>
+      <td class="${cls}">${a.status.toUpperCase()}</td>
+      <td>${a.performance_index}</td><td>${a.improvement_pct>0?'+':''}${a.improvement_pct}%</td>
+      <td>${((a.confidence||0)*100).toFixed(0)}%</td><td>${a.degradation_score}</td>
+      <td>${act}</td></tr>`;
+  }).join('');
+
+  const chartOpts = {responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:'#e7e9ea',font:{size:8}}}},
+    scales:{x:{ticks:{color:'#8b98a5',font:{size:7}}}, y:{ticks:{color:'#8b98a5',font:{size:8}}}}};
+
+  const topAgents = agents.slice(0, 10);
+  const healthColors = topAgents.map(a => a.status==='healthy'?'#00c853':a.status==='warning'?'#ff9800':'#ff5252');
+  if (agentHealthChart) agentHealthChart.destroy();
+  agentHealthChart = new Chart(document.getElementById('agentHealthChart'), {
+    type:'bar', data:{labels:topAgents.map(a=>a.agent.replace('_','\n')), datasets:[
+      {label:'Perf. Index', data:topAgents.map(a=>a.performance_index), backgroundColor:healthColors}
+    ]}, options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Agent Performance Index',color:'#8b98a5',font:{size:10}}}}
+  });
+
+  if (degradationChart) degradationChart.destroy();
+  degradationChart = new Chart(document.getElementById('degradationChart'), {
+    type:'bar', data:{labels:topAgents.map(a=>a.agent.slice(0,8)), datasets:[
+      {label:'Degradation Score', data:topAgents.map(a=>a.degradation_score), backgroundColor:'#ff5252'},
+      {label:'Improvement %', data:topAgents.map(a=>Math.max(0,a.improvement_pct)), backgroundColor:'#00c853'},
+    ]}, options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Degradation vs Improvement',color:'#8b98a5',font:{size:10}}}}
+  });
+
+  const actionCounts = {};
+  opts.forEach(o => { const a = o.params?.optimization_action || 'other'; actionCounts[a] = (actionCounts[a]||0)+1; });
+  const actLabels = Object.keys(actionCounts).length ? Object.keys(actionCounts) : ['retrain_model','tune_hyperparams','monitor_only'];
+  const actVals = Object.keys(actionCounts).length ? Object.values(actionCounts) : [0,0,1];
+  if (optimizerActionChart) optimizerActionChart.destroy();
+  optimizerActionChart = new Chart(document.getElementById('optimizerActionChart'), {
+    type:'doughnut', data:{labels:actLabels, datasets:[{data:actVals, backgroundColor:['#1da1f2','#7c4dff','#00c853','#ff9800','#ff5252']}]},
+    options:{responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:'#e7e9ea',font:{size:8}}}, title:{display:true,text:'Agent Optimizer Actions',color:'#8b98a5',font:{size:10}}}}
+  });
+}
+
+function renderConstraints(data) {
+  const items = data.constraints || [];
+  document.getElementById('constraintsSummary').innerHTML = [
+    ['Total', data.total_constraints], ['Satisfied', data.satisfied_count],
+    ['Violated', data.violated_count], ['Compliance', data.compliance_pct + '%'],
+  ].map(([k,v]) => `<span class="pill"><strong>${k}:</strong> ${v}</span>`).join('');
+
+  document.getElementById('constraintsDetail').innerHTML = items.map(c =>
+    `<div class="constraint-card ${c.satisfied?'constraint-ok':'constraint-fail'}">
+      <strong>${c.name}</strong> <span style="color:#8b98a5">[${c.category}]</span><br>
+      Current: <strong>${c.current_value}</strong> ${c.unit} ${c.operator} ${c.limit}<br>
+      Margin: ${c.margin_pct}% — ${c.satisfied ? '✓ Satisfied' : '✗ Violated'}<br>
+      <span style="color:#8b98a5;font-size:0.6rem">${c.description||''}</span>
+    </div>`
+  ).join('');
+
+  const chartOpts = {responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:'#e7e9ea',font:{size:8}}}},
+    scales:{x:{ticks:{color:'#8b98a5',font:{size:6},maxRotation:45}}, y:{ticks:{color:'#8b98a5',font:{size:8}}}}};
+
+  const labels = items.map(c => c.name.slice(0,18));
+  const margins = items.map(c => c.satisfied ? c.margin_pct : -Math.abs(c.margin_pct));
+  const marginColors = items.map(c => c.satisfied ? '#00c853' : '#ff5252');
+  if (constraintMarginChart) constraintMarginChart.destroy();
+  constraintMarginChart = new Chart(document.getElementById('constraintMarginChart'), {
+    type:'bar', data:{labels, datasets:[{label:'Margin %', data:margins.map(Math.abs), backgroundColor:marginColors}]},
+    options:{...chartOpts, indexAxis:'y', plugins:{...chartOpts.plugins, title:{display:true,text:'Constraint Margins (full)',color:'#8b98a5',font:{size:10}}}}
+  });
+
+  const byCat = data.by_category || {};
+  const catLabels = Object.keys(byCat);
+  const catOk = catLabels.map(c => byCat[c].satisfied);
+  const catFail = catLabels.map(c => byCat[c].count - byCat[c].satisfied);
+  if (constraintCategoryChart) constraintCategoryChart.destroy();
+  constraintCategoryChart = new Chart(document.getElementById('constraintCategoryChart'), {
+    type:'bar', data:{labels:catLabels, datasets:[
+      {label:'Satisfied', data:catOk, backgroundColor:'#00c853'},
+      {label:'Violated', data:catFail, backgroundColor:'#ff5252'},
+    ]}, options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Constraints by Category',color:'#8b98a5',font:{size:10}}}}
+  });
+
+  if (constraintComplianceChart) constraintComplianceChart.destroy();
+  constraintComplianceChart = new Chart(document.getElementById('constraintComplianceChart'), {
+    type:'doughnut', data:{labels:['Satisfied','Violated'],
+      datasets:[{data:[data.satisfied_count, data.violated_count], backgroundColor:['#00c853','#ff5252']}]},
+    options:{responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:'#e7e9ea',font:{size:9}}}, title:{display:true,text:`Compliance ${data.compliance_pct}%`,color:'#8b98a5',font:{size:10}}}}
+  });
+}
+
+function renderTrafficStats(data) {
+  const s = data.summary || {};
+  const m = data.metrics || {};
+  document.getElementById('trafficSummary').innerHTML = [
+    ['Congestion ↓', s.congestion_reduction_pct + '%'], ['Peak Gain', '+' + s.peak_throughput_gain_pct + '%'],
+    ['Agent Contribution', s.traffic_agent_contribution_pct + '%'], ['Reroute', s.reroute_active ? 'Active' : 'Idle'],
+  ].map(([k,v]) => `<span class="pill"><strong>${k}:</strong> ${v}</span>`).join('');
+
+  const rows = [
+    ['Congestion %', m.congestion_pct], ['Peak Traffic (Mbps)', m.peak_traffic_mbps], ['Avg Throughput', m.avg_throughput_mbps],
+  ];
+  document.getElementById('trafficBody').innerHTML = rows.map(([label, d]) =>
+    d ? `<tr><td><strong>${label}</strong></td><td>${d.industry}</td><td>${d.autonomous}</td>
+    <td>${d.live != null ? d.live : '—'}</td><td class="perf-improved">+${d.improvement_pct}%</td><td>${d.detail || ''}</td></tr>` : ''
+  ).join('');
+
+  const chartOpts = {responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:'#e7e9ea',font:{size:8}}}},
+    scales:{x:{ticks:{color:'#8b98a5',font:{size:8}}}, y:{ticks:{color:'#8b98a5',font:{size:8}}}}};
+  if (trafficCongestionChart) trafficCongestionChart.destroy();
+  trafficCongestionChart = new Chart(document.getElementById('trafficCongestionChart'), {
+    type:'bar', data:{labels:['Industry','Autonomous','Live'],
+      datasets:[{label:'Congestion %', data:[m.congestion_pct?.industry, m.congestion_pct?.autonomous, m.congestion_pct?.live],
+        backgroundColor:['#ff9800','#00c853','#1da1f2']}]},
+    options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Congestion Reduction',color:'#8b98a5',font:{size:10}}}}
+  });
+  if (trafficPeakChart) trafficPeakChart.destroy();
+  trafficPeakChart = new Chart(document.getElementById('trafficPeakChart'), {
+    type:'bar', data:{labels:['Industry','Autonomous','Live'],
+      datasets:[{label:'Peak Mbps', data:[m.peak_traffic_mbps?.industry, m.peak_traffic_mbps?.autonomous, m.peak_traffic_mbps?.live],
+        backgroundColor:['#ff9800','#1da1f2','#7c4dff']}]},
+    options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Peak Traffic Capacity',color:'#8b98a5',font:{size:10}}}}
+  });
+  if (trafficThroughputChart) trafficThroughputChart.destroy();
+  trafficThroughputChart = new Chart(document.getElementById('trafficThroughputChart'), {
+    type:'bar', data:{labels:['Throughput Gain','Congestion ↓','Peak Boost'],
+      datasets:[{label:'Improvement %', data:[m.avg_throughput_mbps?.improvement_pct, m.congestion_pct?.improvement_pct, m.peak_traffic_mbps?.improvement_pct],
+        backgroundColor:['#1da1f2','#00c853','#7c4dff']}]},
+    options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Traffic Agent Impact',color:'#8b98a5',font:{size:10}}}}
+  });
+}
+
+function renderCoordinationStats(data) {
+  const s = data.summary || {};
+  const m = data.metrics || {};
+  document.getElementById('coordinationSummary').innerHTML = [
+    ['Conflicts ↓', s.conflicts_reduced_pct + '%'], ['Resolution Gain', '+' + s.resolution_gain_pct + '%'],
+    ['Latency ↓', s.latency_reduction_pct + '%'], ['Agents Coordinated', s.agents_coordinated],
+    ['Contribution', s.coordination_agent_contribution_pct + '%'],
+  ].map(([k,v]) => `<span class="pill"><strong>${k}:</strong> ${v}</span>`).join('');
+
+  const rows = [
+    ['Conflicts / Cycle', m.conflicts_per_cycle], ['Resolution Rate %', m.resolution_rate_pct],
+    ['Coordination Latency (ms)', m.coordination_latency_ms], ['Automation Level', m.automation_level],
+  ];
+  document.getElementById('coordinationBody').innerHTML = rows.map(([label, d]) =>
+    d ? `<tr><td><strong>${label}</strong></td><td>${d.industry}</td><td>${d.autonomous}</td>
+    <td>${d.live != null ? d.live : '—'}</td><td class="perf-improved">+${d.improvement_pct}%</td><td>${d.detail || ''}</td></tr>` : ''
+  ).join('');
+
+  const chartOpts = {responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:'#e7e9ea',font:{size:8}}}},
+    scales:{x:{ticks:{color:'#8b98a5',font:{size:8}}}, y:{ticks:{color:'#8b98a5',font:{size:8}}}}};
+  if (coordConflictsChart) coordConflictsChart.destroy();
+  coordConflictsChart = new Chart(document.getElementById('coordConflictsChart'), {
+    type:'bar', data:{labels:['Industry','Autonomous','Live'],
+      datasets:[{label:'Conflicts', data:[m.conflicts_per_cycle?.industry, m.conflicts_per_cycle?.autonomous, m.conflicts_per_cycle?.live],
+        backgroundColor:['#ff9800','#1da1f2','#7c4dff']}]},
+    options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Conflicts per Cycle',color:'#8b98a5',font:{size:10}}}}
+  });
+  if (coordResolutionChart) coordResolutionChart.destroy();
+  coordResolutionChart = new Chart(document.getElementById('coordResolutionChart'), {
+    type:'bar', data:{labels:['Industry','Autonomous','Live'],
+      datasets:[{label:'Resolution %', data:[m.resolution_rate_pct?.industry, m.resolution_rate_pct?.autonomous, m.resolution_rate_pct?.live],
+        backgroundColor:['#ff5252','#00c853','#1da1f2']}]},
+    options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Conflict Resolution Rate',color:'#8b98a5',font:{size:10}}}}
+  });
+  if (coordLatencyChart) coordLatencyChart.destroy();
+  coordLatencyChart = new Chart(document.getElementById('coordLatencyChart'), {
+    type:'bar', data:{labels:['Conflicts ↓','Resolution ↑','Latency ↓','Automation ↑'],
+      datasets:[{label:'Improvement %', data:[s.conflicts_reduced_pct, s.resolution_gain_pct, s.latency_reduction_pct, m.automation_level?.improvement_pct],
+        backgroundColor:['#7c4dff','#00c853','#1da1f2','#ff9800']}]},
+    options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Coordination Agent Impact',color:'#8b98a5',font:{size:10}}}}
+  });
+}
+
+function renderGreenAgents(data) {
+  const s = data.summary || {};
+  const agents = data.agents || [];
+  document.getElementById('greenAgentsSummary').innerHTML = [
+    ['Green Agents', s.total_green_agents], ['Power Reduction', s.combined_power_reduction_pct + '%'],
+    ['Carbon Reduction', s.combined_carbon_reduction_pct + '%'], ['Renewable Gain', '+' + s.renewable_pct_gain + '%'],
+  ].map(([k,v]) => `<span class="pill"><strong>${k}:</strong> ${v}</span>`).join('');
+
+  document.getElementById('greenAgentsBody').innerHTML = agents.map(a =>
+    `<tr><td><strong>${a.label}</strong></td><td>${a.metric}</td><td>${a.baseline}</td><td>${a.autonomous}</td>
+    <td class="perf-improved">+${a.improvement_pct}%</td><td>${a.detail}</td></tr>`
+  ).join('');
+
+  const labels = agents.map(a => a.label.split(' ')[0]);
+  const imps = agents.map(a => a.improvement_pct);
+  const chartOpts = {responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:'#e7e9ea',font:{size:8}}}},
+    scales:{x:{ticks:{color:'#8b98a5',font:{size:7}}}, y:{ticks:{color:'#8b98a5',font:{size:8}}}}};
+  if (greenAgentImpactChart) greenAgentImpactChart.destroy();
+  greenAgentImpactChart = new Chart(document.getElementById('greenAgentImpactChart'), {
+    type:'bar', data:{labels, datasets:[{label:'Improvement %', data:imps, backgroundColor:['#00c853','#1da1f2','#7c4dff','#ff9800']}]},
+    options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Per-Agent Improvement vs Baseline',color:'#8b98a5',font:{size:10}}}}
+  });
+  if (greenAgentMetricChart) greenAgentMetricChart.destroy();
+  greenAgentMetricChart = new Chart(document.getElementById('greenAgentMetricChart'), {
+    type:'radar', data:{labels:['Power','Renewable','Latency','Slice Eff'],
+      datasets:[
+        {label:'Industry (norm)', data:[50,12,50,72], borderColor:'#ff9800', backgroundColor:'rgba(255,152,0,0.1)'},
+        {label:'Autonomous', data:[35,58,28,95], borderColor:'#00c853', backgroundColor:'rgba(0,200,83,0.1)'},
+      ]}, options:{responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:'#e7e9ea',font:{size:8}}}, title:{display:true,text:'Green Agent KPI Radar',color:'#8b98a5',font:{size:10}}},
+      scales:{r:{ticks:{color:'#8b98a5',backdropColor:'transparent'}}}}
+  });
+  if (greenCombinedChart) greenCombinedChart.destroy();
+  greenCombinedChart = new Chart(document.getElementById('greenCombinedChart'), {
+    type:'bar', data:{labels:['RAN Sleep','Renewable','Edge Inf.','Green Slice','Carbon','Energy'],
+      datasets:[{label:'Contribution %', data:[12.5,18,11.5,8.5,23,16], backgroundColor:'#00c853'}]},
+    options:{...chartOpts, indexAxis:'y', plugins:{...chartOpts.plugins, title:{display:true,text:'Combined Green Stack Impact',color:'#8b98a5',font:{size:10}}}}
+  });
+}
+
+function renderResourceAllocation(data) {
+  const s = data.summary || {};
+  document.getElementById('resourceSummary').innerHTML = [
+    ['Avg PRB Util', s.avg_prb_utilization_pct + '%'], ['Allocated PRB', s.allocated_prb + '/' + s.total_prb],
+    ['Avg Bandwidth', s.avg_bandwidth_mhz + ' MHz'], ['Avg MIMO', s.avg_mimo_streams + ' streams'],
+    ['CA Cells', s.carrier_aggregation_cells],
+  ].map(([k,v]) => `<span class="pill"><strong>${k}:</strong> ${v}</span>`).join('');
+
+  document.getElementById('resourceTableBody').innerHTML = (data.cells || []).map(c =>
+    `<tr><td>${c.cell_id}</td><td>${c.prb_allocated}/${c.prb_total}</td><td>${c.prb_utilization_pct}%</td>
+    <td>${c.bandwidth_mhz} MHz</td><td>${c.mimo_streams}</td><td>${c.power_w}W</td><td>${c.ue_count}</td><td>${c.load_pct}%</td></tr>`
+  ).join('');
+
+  const cells = data.cells || [];
+  const labels = cells.map(c => c.cell_id.replace('CELL_','C'));
+  const chartOpts = {responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:'#e7e9ea',font:{size:8}}}},
+    scales:{x:{ticks:{color:'#8b98a5',font:{size:7}}}, y:{ticks:{color:'#8b98a5',font:{size:8}}}}};
+  if (resourcePrbChart) resourcePrbChart.destroy();
+  resourcePrbChart = new Chart(document.getElementById('resourcePrbChart'), {
+    type:'bar', data:{labels, datasets:[
+      {label:'PRB %', data:cells.map(c=>c.prb_utilization_pct), backgroundColor:'#1da1f2'},
+      {label:'Load %', data:cells.map(c=>c.load_pct), backgroundColor:'#7c4dff'},
+    ]}, options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'PRB & Load per Cell',color:'#8b98a5',font:{size:10}}}}
+  });
+  const slices = data.slice_allocation || [];
+  if (resourceSliceChart) resourceSliceChart.destroy();
+  resourceSliceChart = new Chart(document.getElementById('resourceSliceChart'), {
+    type:'doughnut', data:{labels:slices.map(s=>s.slice), datasets:[{
+      data:slices.map(s=>s.prb_share_pct),
+      backgroundColor:['#1da1f2','#ff5252','#00c853'],
+    }]}, options:{responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:'#e7e9ea',font:{size:9}}}, title:{display:true,text:'PRB Share by Slice',color:'#8b98a5',font:{size:10}}}}
+  });
+}
+
+function renderCarbonStats(data) {
+  const ind = data.industry || {}, auto = data.autonomous || {}, contrib = data.agent_contribution || {};
+  document.getElementById('carbonSummary').innerHTML = [
+    ['Industry CO₂', ind.carbon_kg_co2_per_h + ' kg/h'], ['Autonomous CO₂', auto.carbon_kg_co2_per_h + ' kg/h'],
+    ['Reduction', auto.carbon_reduction_pct + '%'], ['Carbon Agent', '+' + contrib.carbon_agent_reduction_pct + '%'],
+    ['Annual Savings', data.annual_savings_tco2 + ' tCO₂/yr'], ['Renewable', auto.renewable_pct + '%'],
+  ].map(([k,v]) => `<span class="pill"><strong>${k}:</strong> ${v}</span>`).join('');
+
+  const chartOpts = {responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:'#e7e9ea',font:{size:8}}}},
+    scales:{x:{ticks:{color:'#8b98a5'}}, y:{ticks:{color:'#8b98a5'}}}};
+  if (carbonCompareChart) carbonCompareChart.destroy();
+  carbonCompareChart = new Chart(document.getElementById('carbonCompareChart'), {
+    type:'bar', data:{labels:['Carbon (kg/h)','Power (W)','Intensity (g/kWh)'],
+      datasets:[
+        {label:'Industry', data:[ind.carbon_kg_co2_per_h, ind.power_w, ind.carbon_intensity_gco2_kwh], backgroundColor:'#ff9800'},
+        {label:'Autonomous', data:[auto.carbon_kg_co2_per_h, auto.power_w, auto.carbon_intensity_gco2_kwh], backgroundColor:'#00c853'},
+      ]}, options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Carbon: Industry vs Autonomous',color:'#8b98a5',font:{size:10}}}}
+  });
+  if (carbonAgentChart) carbonAgentChart.destroy();
+  carbonAgentChart = new Chart(document.getElementById('carbonAgentChart'), {
+    type:'bar', data:{labels:['Carbon Agent','Energy Agent','Combined'],
+      datasets:[{label:'Contribution %', data:[contrib.carbon_agent_reduction_pct, contrib.energy_agent_power_reduction_pct, contrib.combined_green_gain_pct],
+        backgroundColor:['#00c853','#1da1f2','#7c4dff']}]},
+    options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Green Agent Impact',color:'#8b98a5',font:{size:10}}}}
+  });
+  if (carbonRenewableChart) carbonRenewableChart.destroy();
+  carbonRenewableChart = new Chart(document.getElementById('carbonRenewableChart'), {
+    type:'bar', data:{labels:['Industry','Autonomous','Live Twin'],
+      datasets:[{label:'Renewable %', data:[ind.renewable_pct, auto.renewable_pct, data.live_twin?.renewable_pct || 0], backgroundColor:['#ff9800','#00c853','#1da1f2']}]},
+    options:{...chartOpts, plugins:{...chartOpts.plugins, title:{display:true,text:'Renewable Energy Routing',color:'#8b98a5',font:{size:10}}}}
+  });
+}
+
+async function refreshTwinViz() {
+  const viz = await api('/api/twin/visualization');
+  renderTwinVisualization(viz);
+}
+
+refreshDashboard();
+initKPIChart();
+initRuntimeChart();
+initBenchmarkChart();
+setupTwinCanvasEvents();
+setInterval(refreshDashboard, 15000);
+</script>
+</body>
+</html>

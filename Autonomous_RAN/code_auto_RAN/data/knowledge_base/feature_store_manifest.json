@@ -1,0 +1,29 @@
+{
+  "feature_groups": {
+    "scheduling": ["cqi", "sinr_db", "buffer_occupancy", "latency_ms", "mcs", "prb_allocated"],
+    "resource": ["cell_utilization", "traffic_demand_mbps", "power_consumption_w", "renewable_pct"],
+    "mobility": ["velocity_mps", "direction_deg", "rsrp_dbm", "handover_pending"],
+    "security": ["packet_rate_pps", "auth_failures", "spectrum_anomaly_score", "flow_entropy"],
+    "energy": ["power_consumption_w", "cell_utilization", "sleep_state", "renewable_pct"],
+    "qos": ["latency_ms", "throughput_mbps", "packet_loss", "prb_allocated"],
+    "slice": ["prb_utilization", "active_ues", "sla_compliance", "throughput_mbps", "latency_p99_ms"],
+    "qoe": ["throughput_mbps", "latency_ms", "packet_loss", "slice"],
+    "channel_estimation": ["sinr_db", "cqi", "velocity_mps", "rsrp_dbm"],
+    "beamforming": ["sinr_db", "cqi", "rsrp_dbm", "cell_utilization"],
+    "csi": ["cqi", "sinr_db", "rsrp_dbm", "mcs"],
+    "air_interface": ["sinr_db", "cqi", "rsrp_dbm", "velocity_mps", "mcs", "prb_allocated"],
+    "digital_twin": ["avg_throughput_mbps", "avg_latency_ms", "total_power_w", "cell_utilization"],
+    "spectrum": ["spectrum_anomaly_score", "cell_utilization", "interference_db", "sinr_db"],
+    "self_healing": ["packet_rate_pps", "auth_failures", "spectrum_anomaly_score", "flow_entropy"]
+  },
+  "datasets": {
+    "ran_kpi": "ran_kpi_dataset.csv",
+    "mobility": "mobility_traces.csv",
+    "security": "security_events.csv",
+    "energy": "energy_metrics.csv",
+    "slice": "slice_utilization.csv",
+    "handover": "handover_events.csv"
+  },
+  "mcp_sources": ["system-insights", "sharepoint", "confluence", "pronto-prod"],
+  "ai_driven_agents": 17
+}

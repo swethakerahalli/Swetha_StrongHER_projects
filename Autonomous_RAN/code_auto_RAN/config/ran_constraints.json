@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {"id": "qos_latency", "name": "QoS Latency SLA", "category": "qos", "kpi_key": "avg_latency_ms", "limit": 5.0, "operator": "<=", "unit": "ms", "severity": "high", "description": "URLLC/eMBB end-to-end latency must stay within SLA"},
+    {"id": "qos_throughput", "name": "Minimum Throughput", "category": "qos", "kpi_key": "avg_throughput_mbps", "limit": 15.0, "operator": ">=", "unit": "Mbps", "severity": "high", "description": "Network throughput floor for service quality"},
+    {"id": "qos_sla", "name": "QoS SLA Compliance", "category": "qos", "kpi_key": "qos_sla_compliance", "limit": 0.95, "operator": ">=", "unit": "ratio", "severity": "high", "description": "Slice SLA compliance threshold"},
+    {"id": "power_budget", "name": "Power Budget", "category": "power", "kpi_key": "total_power_w", "limit": 2000, "operator": "<=", "unit": "W", "severity": "high", "description": "Total RAN power consumption cap"},
+    {"id": "carbon_cap", "name": "Carbon Emission Cap", "category": "energy", "kpi_key": "carbon_kg_co2_per_h", "limit": 0.5, "operator": "<=", "unit": "kg/h", "severity": "high", "description": "Hourly CO₂ emission limit"},
+    {"id": "renewable_min", "name": "Renewable Energy Floor", "category": "energy", "kpi_key": "renewable_pct", "limit": 40, "operator": ">=", "unit": "%", "severity": "medium", "description": "Minimum renewable energy routing share"},
+    {"id": "carbon_intensity", "name": "Carbon Intensity", "category": "energy", "kpi_key": "carbon_intensity_gco2_kwh", "limit": 300, "operator": "<=", "unit": "g/kWh", "severity": "medium", "description": "Grid carbon intensity ceiling"},
+    {"id": "interference_sinr", "name": "SINR Floor", "category": "interference", "kpi_key": "avg_sinr_db", "limit": 8.0, "operator": ">=", "unit": "dB", "severity": "medium", "description": "Minimum average SINR across cells"},
+    {"id": "security_score", "name": "Security Detection", "category": "security", "kpi_key": "security_score", "limit": 0.90, "operator": ">=", "unit": "ratio", "severity": "high", "description": "Threat detection confidence minimum"},
+    {"id": "handover_success", "name": "Handover Success", "category": "mobility", "kpi_key": "handover_success_rate", "limit": 0.96, "operator": ">=", "unit": "ratio", "severity": "medium", "description": "Mobility handover success rate"},
+    {"id": "slice_efficiency", "name": "Slice Efficiency", "category": "resource", "kpi_key": "slice_efficiency", "limit": 0.85, "operator": ">=", "unit": "ratio", "severity": "medium", "description": "Network slice resource efficiency"},
+    {"id": "prb_utilization", "name": "PRB Utilization Cap", "category": "resource", "kpi_key": "prb_utilization_pct", "limit": 90, "operator": "<=", "unit": "%", "severity": "medium", "description": "Maximum PRB utilization to avoid congestion"},
+    {"id": "reliability_latency", "name": "Reliability (Latency P99)", "category": "reliability", "kpi_key": "avg_latency_ms", "limit": 10.0, "operator": "<=", "unit": "ms", "severity": "medium", "description": "P99 latency bound for URLLC reliability"},
+    {"id": "energy_efficiency", "name": "Energy Efficiency", "category": "energy", "kpi_key": "energy_efficiency", "limit": 0.02, "operator": ">=", "unit": "Mbps/W", "severity": "low", "description": "Throughput per watt efficiency floor"}
+  ]
+}

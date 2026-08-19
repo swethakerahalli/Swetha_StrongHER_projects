@@ -1,0 +1,36 @@
+{
+  "project": {
+    "name": "Multi-Agentic AI-Native Autonomous RAN",
+    "version": "1.0.0",
+    "author": "Swetha Kerahalli",
+    "organization": "Nokia MI RRD AS Algo Innov",
+    "standards_alignment": ["3GPP Rel-18", "3GPP Rel-19", "3GPP Rel-20", "O-RAN Alliance", "ITU IMT-2030"]
+  },
+  "simulation": {
+    "num_cells": 7,
+    "num_ues": 50,
+    "num_prbs": 100,
+    "simulation_steps": 500,
+    "time_slot_ms": 1.0,
+    "carrier_frequency_ghz": 3.5,
+    "bandwidth_mhz": 100,
+    "random_seed": 42
+  },
+  "network_slices": {
+    "eMBB": {"priority": 2, "latency_budget_ms": 10, "throughput_mbps": 100},
+    "URLLC": {"priority": 5, "latency_budget_ms": 1, "throughput_mbps": 10},
+    "mMTC": {"priority": 1, "latency_budget_ms": 100, "throughput_mbps": 1}
+  },
+  "closed_loop": {
+    "phases": ["observe", "analyze", "predict", "plan", "act", "learn"],
+    "cycle_interval_ms": 10,
+    "max_iterations": 100
+  },
+  "paths": {
+    "datasets": "data/datasets",
+    "knowledge_base": "data/knowledge_base",
+    "models": "outputs/models",
+    "reports": "outputs/reports",
+    "plots": "outputs/plots"
+  }
+}

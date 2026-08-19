@@ -1,0 +1,16 @@
+{
+  "xapp_descriptor": {
+    "name": "resource_xapp",
+    "version": "1.0.0",
+    "description": "Spectrum and power resource allocation xApp",
+    "agent": "resource_agent",
+    "interfaces": {
+      "e2_subscription": ["E2SM-KPM", "E2SM-RC"],
+      "control_actions": ["power_control", "spectrum_allocation", "MIMO_config"]
+    },
+    "ai_model": {
+      "type": "RandomForestRegressor",
+      "outputs": ["power_dbm", "bandwidth_mhz", "mimo_streams", "carrier_aggregation"]
+    }
+  }
+}

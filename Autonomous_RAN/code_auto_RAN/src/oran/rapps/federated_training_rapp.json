@@ -1,0 +1,16 @@
+{
+  "rapp_descriptor": {
+    "name": "federated_training_rapp",
+    "version": "1.0.0",
+    "description": "Distributed federated model training rApp",
+    "function": "distributed_model_training",
+    "framework": "fedavg",
+    "config": {
+      "num_clients": 5,
+      "rounds": 10,
+      "local_epochs": 3,
+      "privacy": "model_weights_only"
+    },
+    "supported_agents": ["scheduler", "security", "mobility", "energy"]
+  }
+}

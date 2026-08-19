@@ -1,0 +1,2 @@
+throughput_before_mbps,throughput_after_mbps,throughput_improvement_pct,latency_before_ms,latency_after_ms,latency_reduction_pct,power_before_w,power_after_w,power_reduction_pct,agents_invoked,parameter_updates
+10.0,19.07,90.7,5.0,3.49,30.2,2800.0,1680.0,40.0,12,18

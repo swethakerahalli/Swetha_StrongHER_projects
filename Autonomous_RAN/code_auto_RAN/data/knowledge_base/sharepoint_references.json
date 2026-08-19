@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "source": "SharePoint Microsoft Search API",
+    "fetched": "2026-07-14",
+    "query": "Autonomous RAN AI-Native 6G multi-agent"
+  },
+  "project_documents": [
+    {
+      "name": "Swetha_Autonomous_RAN_Proj_01.pptx",
+      "author": "Swetha Kerahalli",
+      "type": "project_presentation",
+      "relevance": "Primary project deliverables, KPIs, agent design, O-RAN integration roadmap"
+    },
+    {
+      "name": "Multi Agentic AI-Native Autonomous RAN and Air Interface for 6G Networks.docx",
+      "author": "Unnimaya PP",
+      "type": "architecture_document",
+      "relevance": "End-to-end architecture, implementation framework"
+    },
+    {
+      "name": "Multi-agent_green_telecom_carbon_aware_RAN.pdf",
+      "author": "Swetha Kerahalli, Harsimran Kaur Kalra, Unnimaya PP",
+      "type": "whitepaper",
+      "relevance": "Energy agent, carbon-aware RAN, federated learning"
+    },
+    {
+      "name": "Nokia Autonomous Networks Executive deck.pptx",
+      "type": "nokia_reference",
+      "relevance": "Autonomous Networks L4/L5 vision, intent-based orchestration"
+    },
+    {
+      "name": "Cloud RAN AI RAN and Open RAN Competitive Landscape 2Q 2026",
+      "type": "market_intelligence",
+      "relevance": "O-RAN RIC, AI-RAN competitive positioning"
+    }
+  ],
+  "key_themes_from_sharepoint": [
+    "Multi-agent collaborative AI for RAN optimization",
+    "O-RAN Near-RT RIC xApps and Non-RT RIC rApps",
+    "Digital twin for policy validation",
+    "Carbon-aware and energy-efficient networking",
+    "Closed-loop Observe-Analyze-Predict-Plan-Act-Learn",
+    "3GPP Rel-18/19/20 and O-RAN Alliance alignment"
+  ]
+}

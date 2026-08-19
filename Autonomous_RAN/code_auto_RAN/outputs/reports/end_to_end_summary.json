@@ -1,0 +1,187 @@
+{
+  "project": "Multi-Agentic AI-Native Autonomous RAN",
+  "phases_completed": 8,
+  "llm": {
+    "ollama": false,
+    "intent": {
+      "operator_intent": "Reduce energy consumption by 20% while maintaining URLLC latency below 5ms",
+      "primary_agent": "scheduler",
+      "policies": [
+        {
+          "intent": "reduce_energy",
+          "agent": "energy"
+        },
+        {
+          "intent": "low_latency",
+          "agent": "scheduler"
+        }
+      ],
+      "llm_reasoning": "Based on Nokia CFAM/3GPP knowledge base:\n{\n\"metadata\": {\n\"source\": \"Nokia System Insights MCP search_specs\",\n\"fetched\": \"2026-07-14\",\n\"queries\": [\n\"mobility robustness handover\",\n\"autonomous RAN AI scheduling\",\n\"CQI SINR PRB scheduling\"\n]\n},\n\"cfam_features\": [\n{\n\"feature_id\": \"OSS_FC_017307\",\n\"title\": \"5G Mobility Robustness Optimization for Nokia SA\",\n\"req_ids\": [\n\"OSS_FC_017307-3\",\n\"OSS_FC_017307-25\",\n\"OSS_FC_017307-53\"\n],\n\"description\": \"Measurement-based centralized SON to minimize Late/Early/Wrong cell HOs and Ping-pong HOs in 5G/NR SA by tuning idle and connected mode mobility parameters.\",\n\"project_mapping\": [\n\"mobility_agent\",\n\"son_benchmark\"\n],\n\"kpis\": [\n\"handover_success_rate\",\n\"ping_pong_reduction\",\n\"rlf_reduction\"\n]\n},\n{\n\"feature_id\": \"SR003080\",\n\"title\": \"Power saving with TX path switching for Energy Efficiency\",\n\"req_ids\": [\n\"SR003080-917\"\n],\n\"description\": \"DL SINR estimation based on wideband CQI for interference-aware power control and energy saving.\",\n\"project_mapping\": [\n\"energy_agent\",\n\"resource_agent\"\n],\n\"kpis\": [\n\"energy_per_bit\",\n\"power_consumption\"\n]\n},\n{\n\"feature_id\": \"RP001677\",\n\"title\": \"Handover Performance Measurements\",\n\"req_ids\": [\n\"RP001677-21448\"\n],\n\"description\": \"PM counters for Late Handovers and UE Mobility Robustness (M8021C43).\",\n\"project_mapping\": [\n\"mobility_agent\",\n\"kpi_monitoring\"\n],\n\"kpis\": [\n\"late_handover_count\",\n\"mobility_robustness\"\n]\n},\n{\n\"feature_id\": \"SR001534\",\n\"title\": \"SRAN FM combined service - Autonomous Recovery\",\n\"req_ids\": [\n\"FTM-4194\",\n\"FTM-4195\",\n\"FTM-4199\",\n\"FTM-4200\"\n],\n\"description\": \"BTS autonomous recovery reset criteria: DSP, FSP, Radio, RAT, BTS, Site reset for self-healing.\",\n\"project_mapping\": [\n\"security_agent\",\n\"closed_loop\"\n],\n\"kpis\": [\n\"self_healing_rate\",\n\"recovery_time\"\n]\n},\n{\n\"feature_id\": \"RP001727\",\n\"title\": \"BTS Fault Management Improvements\",\n\"req_ids\": [\n\"FTM-1917\",\n\"FTM-1922\",\n\"FTM-1923\"\n],\n\"description\": \"Autonomous recovery reset time window and recovery list processing.\",\n\"project_mapping\": [\n\"security_agent\",\n\"digital_t\n{\n\"metadata\": {\n\"source\": \"3GPP specifications and project alignment (Autonomous_RAN_01.docx)\",\n\"generated\": \"2026-07-14\",\n\"note\": \"Curated from 3GPP Release 18/19/20 AI-RAN studies; system-insights unavailable at generation time\"\n},\n\"specifications\": [\n{\n\"ts_number\": \"TS 38.300\",\n\"title\": \"NR; Overall description; Stage 2\",\n\"relevance\": \"NR RAN architecture, gNB, CU/DU split, RRM framework\",\n\"project_mapping\": [\n\"scheduler_agent\",\n\"resource_agent\",\n\"mobility_agent\"\n]\n},\n{\n\"ts_number\": \"TS 38.331\",\n\"title\": \"NR; Radio Resource Control (RRC) protocol specification\",\n\"relevance\": \"Handover procedures, cell reselection, measurement reporting\",\n\"project_mapping\": [\n\"mobility_agent\"\n]\n},\n{\n\"ts_number\": \"TS 38.214\",\n\"title\": \"NR; Physical layer procedures for data\",\n\"relevance\": \"MCS selection, PRB allocation, link adaptation\",\n\"project_mapping\": [\n\"scheduler_agent\",\n\"air_interface_agent\"\n]\n},\n{\n\"ts_number\": \"TS 38.215\",\n\"title\": \"NR; Physical layer measurements\",\n\"relevance\": \"RSRP, RSRQ, \n\nQuery: Parse this network operator intent into agent policies: 'Reduce energy consumption by 20% while maintaining URLLC latency below 5ms'. Return JSON with primary_agent, policies, kpi_targets.\n\nRelevant features: Mobility Robustness Optimization (OSS_FC_017307), Energy Efficiency (SR003080), Autonomous Recovery (SR001534). Apply multi-agent coordination per O-RAN closed-loop architecture.",
+      "llm_provider": "nokia_cached"
+    }
+  },
+  "datasets": {
+    "ran_kpi": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Autonomous_RAN\\code_auto_RAN\\data\\datasets\\ran_kpi_dataset.csv",
+    "mobility": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Autonomous_RAN\\code_auto_RAN\\data\\datasets\\mobility_traces.csv",
+    "security": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Autonomous_RAN\\code_auto_RAN\\data\\datasets\\security_events.csv",
+    "energy": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Autonomous_RAN\\code_auto_RAN\\data\\datasets\\energy_metrics.csv",
+    "slice_utilization": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Autonomous_RAN\\code_auto_RAN\\data\\datasets\\slice_utilization.csv",
+    "handover_events": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Autonomous_RAN\\code_auto_RAN\\data\\datasets\\handover_events.csv",
+    "metadata": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Autonomous_RAN\\code_auto_RAN\\data\\datasets\\dataset_metadata.json"
+  },
+  "knowledge_base": {
+    "knowledge_graph": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Autonomous_RAN\\code_auto_RAN\\data\\knowledge_base\\knowledge_graph.json",
+    "feature_store": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Autonomous_RAN\\code_auto_RAN\\data\\knowledge_base\\feature_store_manifest.json",
+    "external_index": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Autonomous_RAN\\code_auto_RAN\\data\\knowledge_base\\external_sources_index.json"
+  },
+  "phy_simulation": {
+    "csi_history_len": 5
+  },
+  "closed_loop": {
+    "iterations": 15,
+    "final_throughput": 12.774462030904932,
+    "final_latency": 3.5831841263922355,
+    "final_power": 1680.0,
+    "twin_fidelity": 0.978,
+    "cycles_completed": 15
+  },
+  "oran_deployment": {
+    "xapps_deployed": [
+      {
+        "xapp": "scheduler_xapp",
+        "agent_id": "scheduler_agent",
+        "status": "deployed",
+        "control_actions": [
+          "PRB_allocation",
+          "MCS_selection",
+          "QoS_prioritization"
+        ]
+      },
+      {
+        "xapp": "resource_xapp",
+        "agent_id": "resource_agent",
+        "status": "deployed",
+        "control_actions": [
+          "power_control",
+          "spectrum_allocation",
+          "MIMO_config"
+        ]
+      },
+      {
+        "xapp": "mobility_xapp",
+        "agent_id": "mobility_agent",
+        "status": "deployed",
+        "control_actions": [
+          "handover_trigger",
+          "cell_reselection",
+          "beam_management"
+        ]
+      },
+      {
+        "xapp": "security_xapp",
+        "agent_id": "security_agent",
+        "status": "deployed",
+        "control_actions": [
+          "traffic_quarantine",
+          "slice_protection",
+          "anomaly_response"
+        ]
+      }
+    ],
+    "rapps": [
+      {
+        "name": "analytics_rapp",
+        "function": "KPI_analytics_and_reporting",
+        "data_sources": [
+          "near_rt_ric",
+          "SMO",
+          "digital_twin"
+        ]
+      },
+      {
+        "name": "policy_management_rapp",
+        "function": "intent_to_policy_translation",
+        "interfaces": [
+          "A1_policy",
+          "O1_configuration"
+        ]
+      },
+      {
+        "name": "federated_training_rapp",
+        "function": "distributed_model_training",
+        "framework": "fedavg"
+      },
+      {
+        "name": "ai_model_management_rapp",
+        "function": "MLOps_model_lifecycle"
+      }
+    ]
+  },
+  "benchmark": {
+    "report": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Autonomous_RAN\\code_auto_RAN\\outputs\\reports\\benchmark_report.json",
+    "results": [
+      {
+        "scheduler": "round_robin",
+        "avg_throughput_mbps": 263.31,
+        "avg_latency_ms": 4.92,
+        "fairness_index": 1.0,
+        "energy_w": 400.0,
+        "handover_success_rate": 1.0,
+        "security_detection_rate": 0.037,
+        "qoe_score": 4.94,
+        "steps": 80
+      },
+      {
+        "scheduler": "proportional_fair",
+        "avg_throughput_mbps": 235.81,
+        "avg_latency_ms": 6.68,
+        "fairness_index": 0.882,
+        "energy_w": 400.0,
+        "handover_success_rate": 1.0,
+        "security_detection_rate": 0.087,
+        "qoe_score": 4.92,
+        "steps": 80
+      },
+      {
+        "scheduler": "max_throughput",
+        "avg_throughput_mbps": 612.82,
+        "avg_latency_ms": 5.5,
+        "fairness_index": 0.044,
+        "energy_w": 400.0,
+        "handover_success_rate": 1.0,
+        "security_detection_rate": 0.05,
+        "qoe_score": 4.94,
+        "steps": 80
+      },
+      {
+        "scheduler": "son_static",
+        "avg_throughput_mbps": 294.71,
+        "avg_latency_ms": 5.07,
+        "fairness_index": 0.736,
+        "energy_w": 400.0,
+        "handover_success_rate": 1.0,
+        "security_detection_rate": 0.05,
+        "qoe_score": 4.95,
+        "steps": 80
+      },
+      {
+        "scheduler": "multi_agent_autonomous",
+        "avg_throughput_mbps": 406.21,
+        "avg_latency_ms": 1.83,
+        "fairness_index": 1.0,
+        "energy_w": 360.0,
+        "handover_success_rate": 0.0,
+        "security_detection_rate": 1.0,
+        "qoe_score": 4.98,
+        "steps": 80
+      }
+    ]
+  },
+  "external_sources": [
+    "3gpp",
+    "oran",
+    "nokia_cfam",
+    "sharepoint",
+    "confluence"
+  ]
+}

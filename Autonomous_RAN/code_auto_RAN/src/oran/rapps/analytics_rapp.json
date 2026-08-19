@@ -1,0 +1,11 @@
+{
+  "rapp_descriptor": {
+    "name": "analytics_rapp",
+    "version": "1.0.0",
+    "description": "KPI analytics and reporting rApp for Non-RT RIC",
+    "function": "KPI_analytics_and_reporting",
+    "data_sources": ["near_rt_ric", "SMO", "digital_twin"],
+    "kpi_metrics": ["throughput", "latency", "prb_utilization", "handover_success", "energy", "security_score"],
+    "output": "benchmark_report.json"
+  }
+}

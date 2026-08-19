@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "source": "3GPP specifications and project alignment (Autonomous_RAN_01.docx)",
+    "generated": "2026-07-14",
+    "note": "Curated from 3GPP Release 18/19/20 AI-RAN studies; system-insights unavailable at generation time"
+  },
+  "specifications": [
+    {
+      "ts_number": "TS 38.300",
+      "title": "NR; Overall description; Stage 2",
+      "relevance": "NR RAN architecture, gNB, CU/DU split, RRM framework",
+      "project_mapping": ["scheduler_agent", "resource_agent", "mobility_agent"]
+    },
+    {
+      "ts_number": "TS 38.331",
+      "title": "NR; Radio Resource Control (RRC) protocol specification",
+      "relevance": "Handover procedures, cell reselection, measurement reporting",
+      "project_mapping": ["mobility_agent"]
+    },
+    {
+      "ts_number": "TS 38.214",
+      "title": "NR; Physical layer procedures for data",
+      "relevance": "MCS selection, PRB allocation, link adaptation",
+      "project_mapping": ["scheduler_agent", "air_interface_agent"]
+    },
+    {
+      "ts_number": "TS 38.215",
+      "title": "NR; Physical layer measurements",
+      "relevance": "RSRP, RSRQ, SINR, CQI measurement framework",
+      "project_mapping": ["scheduler_agent", "mobility_agent", "dataset_generation"]
+    },
+    {
+      "ts_number": "TS 38.321",
+      "title": "NR; Medium Access Control (MAC) protocol specification",
+      "relevance": "Scheduling, HARQ, logical channel prioritization",
+      "project_mapping": ["scheduler_agent"]
+    },
+    {
+      "ts_number": "TS 28.104",
+      "title": "Management and orchestration; Network Digital Twin (NDT)",
+      "relevance": "Digital twin architecture, twin fidelity, synchronization",
+      "project_mapping": ["digital_twin", "knowledge_graph"]
+    },
+    {
+      "ts_number": "TS 28.552",
+      "title": "Management and orchestration; 5G performance measurements",
+      "relevance": "KPI definitions for throughput, latency, PRB utilization",
+      "project_mapping": ["kpi_monitoring", "benchmarking"]
+    },
+    {
+      "ts_number": "TS 28.554",
+      "title": "Management and orchestration; 5G end to end Key Performance Indicators (KPIs)",
+      "relevance": "End-to-end KPI framework, SLA metrics",
+      "project_mapping": ["qoe_agent", "slice_agent"]
+    },
+    {
+      "ts_number": "TS 28.105",
+      "title": "Management and orchestration; Artificial Intelligence / Machine Learning (AI/ML) management",
+      "relevance": "AI/ML model lifecycle, training data management",
+      "project_mapping": ["federated_learning", "mlops"]
+    },
+    {
+      "ts_number": "TS 28.809",
+      "title": "Study on AI/ML for NG-RAN",
+      "relevance": "AI-assisted CSI feedback, beam management, link adaptation (Rel-18)",
+      "project_mapping": ["air_interface_agent", "scheduler_agent"]
+    },
+    {
+      "ts_number": "TS 28.810",
+      "title": "Study on AI/ML for NG-RAN Phase 2",
+      "relevance": "AI-native RAN use cases, training framework (Rel-19)",
+      "project_mapping": ["multi_agent_framework", "federated_learning"]
+    },
+    {
+      "ts_number": "TS 33.501",
+      "title": "Security architecture and procedures for 5G System",
+      "relevance": "Zero trust, authentication, network security",
+      "project_mapping": ["security_agent"]
+    },
+    {
+      "ts_number": "TS 23.501",
+      "title": "System architecture for the 5G System (5GS)",
+      "relevance": "Network slicing, QoS framework, service-based architecture",
+      "project_mapping": ["slice_agent", "qoe_agent"]
+    },
+    {
+      "ts_number": "TR 38.843",
+      "title": "Study on network-controlled repeaters",
+      "relevance": "RIS configuration, beam management",
+      "project_mapping": ["air_interface_agent", "resource_agent"]
+    },
+    {
+      "ts_number": "TR 38.901",
+      "title": "Study on channel model for frequencies from 0.5 to 100 GHz",
+      "relevance": "Channel simulation, path loss, mobility models",
+      "project_mapping": ["digital_twin", "simulation"]
+    }
+  ],
+  "kpi_definitions": {
+    "cqi": {"range": [0, 15], "description": "Channel Quality Indicator per 3GPP TS 38.214"},
+    "sinr_db": {"typical_range": [-10, 30], "description": "Signal-to-Interference-plus-Noise Ratio"},
+    "rsrp_dbm": {"typical_range": [-140, -44], "description": "Reference Signal Received Power per TS 38.215"},
+    "rsrq_db": {"typical_range": [-20, -3], "description": "Reference Signal Received Quality"},
+    "prb_utilization": {"range": [0, 1], "description": "Fraction of PRBs allocated"},
+    "throughput_mbps": {"description": "User or cell throughput"},
+    "latency_ms": {"urllc_target": 1, "embb_target": 10, "mmtc_target": 100},
+    "handover_success_rate": {"target_pct": 98}
+  },
+  "ai_ran_use_cases_rel19": [
+    "AI-assisted CSI feedback compression",
+    "AI-based beam management",
+    "AI link adaptation",
+    "Load balancing with AI",
+    "Energy saving with AI",
+    "Mobility optimization with AI"
+  ]
+}

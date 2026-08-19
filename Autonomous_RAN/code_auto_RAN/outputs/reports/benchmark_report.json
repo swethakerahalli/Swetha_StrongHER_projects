@@ -1,0 +1,118 @@
+{
+  "benchmarks": [
+    {
+      "scheduler": "round_robin",
+      "avg_throughput_mbps": 263.31,
+      "avg_latency_ms": 4.92,
+      "fairness_index": 1.0,
+      "energy_w": 400.0,
+      "handover_success_rate": 1.0,
+      "security_detection_rate": 0.037,
+      "qoe_score": 4.94,
+      "steps": 80
+    },
+    {
+      "scheduler": "proportional_fair",
+      "avg_throughput_mbps": 235.81,
+      "avg_latency_ms": 6.68,
+      "fairness_index": 0.882,
+      "energy_w": 400.0,
+      "handover_success_rate": 1.0,
+      "security_detection_rate": 0.087,
+      "qoe_score": 4.92,
+      "steps": 80
+    },
+    {
+      "scheduler": "max_throughput",
+      "avg_throughput_mbps": 612.82,
+      "avg_latency_ms": 5.5,
+      "fairness_index": 0.044,
+      "energy_w": 400.0,
+      "handover_success_rate": 1.0,
+      "security_detection_rate": 0.05,
+      "qoe_score": 4.94,
+      "steps": 80
+    },
+    {
+      "scheduler": "son_static",
+      "avg_throughput_mbps": 294.71,
+      "avg_latency_ms": 5.07,
+      "fairness_index": 0.736,
+      "energy_w": 400.0,
+      "handover_success_rate": 1.0,
+      "security_detection_rate": 0.05,
+      "qoe_score": 4.95,
+      "steps": 80
+    },
+    {
+      "scheduler": "multi_agent_autonomous",
+      "avg_throughput_mbps": 406.21,
+      "avg_latency_ms": 1.83,
+      "fairness_index": 1.0,
+      "energy_w": 360.0,
+      "handover_success_rate": 0.0,
+      "security_detection_rate": 1.0,
+      "qoe_score": 4.98,
+      "steps": 80
+    }
+  ],
+  "target_kpis": {
+    "throughput_improvement_pct": {
+      "baseline": "existing_ran",
+      "target_min": 20,
+      "target_max": 30,
+      "unit": "percent"
+    },
+    "latency_reduction_pct": {
+      "baseline": "existing_ran",
+      "target_min": 20,
+      "target_max": 40,
+      "unit": "percent"
+    },
+    "energy_reduction_pct": {
+      "baseline": "existing_ran",
+      "target_min": 25,
+      "target_max": 40,
+      "unit": "percent"
+    },
+    "security_detection_accuracy_pct": {
+      "baseline": "conventional_ids",
+      "target": 95,
+      "unit": "percent"
+    },
+    "handover_success_rate_pct": {
+      "baseline": "current_networks",
+      "target": 98,
+      "unit": "percent"
+    },
+    "qoe_improvement_pct": {
+      "baseline": "baseline_qoe",
+      "target_min": 20,
+      "target_max": 30,
+      "unit": "percent"
+    },
+    "slice_efficiency_pct": {
+      "baseline": "baseline",
+      "target_min": 20,
+      "target_max": 25,
+      "unit": "percent"
+    },
+    "automation_level_pct": {
+      "baseline": "semi_automated",
+      "target": 90,
+      "unit": "percent"
+    },
+    "opex_reduction_pct": {
+      "baseline": "existing_network",
+      "target_min": 20,
+      "target_max": 40,
+      "unit": "percent"
+    }
+  },
+  "improvement_vs_pf": {
+    "throughput_pct": 72.3,
+    "latency_pct": 72.6,
+    "energy_pct": 10.0,
+    "qoe_pct": 1.2
+  }
+}

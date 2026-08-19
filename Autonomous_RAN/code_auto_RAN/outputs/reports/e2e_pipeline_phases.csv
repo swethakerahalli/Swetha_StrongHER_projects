@@ -1,0 +1,9 @@
+id,name,status,output
+1,Dataset Generation,complete,6 CSV files in data/datasets/
+2,Knowledge Base (3GPP/O-RAN/Nokia MCP),complete,knowledge_base/*.json
+3,AI Agent Training (17 agents),complete,Super Agent approved 17 agents
+4,Digital Twin Simulation,complete,Fidelity 0.978
+5,API Invocation & RAN Parameter Control,complete,"TP +90.7%, Power -40.0%"
+6,Benchmark vs Baselines,complete,multi_agent_autonomous vs RR/PF/SON
+7,Visualizations,complete,outputs/plots/ (global + per-agent)
+8,Dashboard & Closed Loop,live,http://localhost:8080/dashboard

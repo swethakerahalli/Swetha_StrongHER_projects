@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "source": "Nokia System Insights MCP",
+    "fetched": "2026-07-14",
+    "tools_used": ["ask", "search_specs"],
+    "session_id": "2f99f112-423b-449a-b06f-7b9c55d97167"
+  },
+  "autonomous_ran_kpis": {
+    "3gpp_ts_28100": ["autonomy_levels_L0_L5", "intent_handling", "awareness", "analysis", "decision", "execution"],
+    "throughput_kpis": ["DRB.UEThpDl", "DRB.UEThpUl", "aveDLRANUEthptTarget"],
+    "coverage_kpis": ["weakRSRPRatio", "lowSINRRatio"],
+    "energy_kpis": ["RAN_Energy_Efficiency_bit_per_Joule", "RanEnergyConsumptionTarget"],
+    "slice_kpis": {
+      "eMBB": ["Downstream_Throughput_per_S-NSSAI", "RAN_UE_Throughput_per_Slice"],
+      "URLLC": ["E2E_Delay", "E2E_Reliability_PSR_pct"],
+      "mMTC": ["Mean_Active_Ues_per_Slice"]
+    },
+    "beam_management_kpis": ["Top-1_Beam_Accuracy", "Top-K_Beam_Accuracy", "RS_Overhead_Reduction_pct", "bMRO_HO_per_Beam"],
+    "oran_closed_loop": {
+      "non_rt_ric": "A1_policies_slow_loop_gt_1s",
+      "near_rt_ric": "E2SM-KPM_input_E2SM-RC_output_10ms_to_1s",
+      "real_time": "O-CU_O-DU_L1_L2_lt_10ms"
+    }
+  },
+  "project_agent_mapping": {
+    "scheduler": ["DRB.UEThpDl", "RRU.PrbUsedDl"],
+    "mobility": ["HO.Att", "HO.Succ", "bMRO"],
+    "energy": ["RanEnergyConsumptionTarget", "EE_target"],
+    "slice": ["S-NSSAI", "slice_throughput", "URLLC_reliability"],
+    "beamforming": ["Top-1_Beam_Accuracy", "beamIndex", "digitalTilt"],
+    "air_interface": ["TR_38.843_AI_ML_NR_PHY", "MCS_efficiency"],
+    "digital_twin": ["TS_28.104_NDT", "policy_validation"],
+    "security": ["anomaly_detection", "traffic_quarantine"],
+    "self_healing": ["SR001534_autonomous_recovery"]
+  },
+  "references_count": 23,
+  "summary": "3GPP Rel-18/19 autonomous RAN KPIs aligned with O-RAN closed-loop architecture for multi-agent Intelligent RAN."
+}

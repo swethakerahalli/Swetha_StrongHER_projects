@@ -1,0 +1,381 @@
+{
+  "training": {
+    "scheduler": {
+      "r2_score": 0.1272391507902636,
+      "samples": 25000
+    },
+    "resource": {
+      "r2_score": 0.9997030402169336,
+      "samples": 3500
+    },
+    "mobility": {
+      "accuracy": 1.0,
+      "samples": 5000
+    },
+    "security": {
+      "detection_accuracy": 1.0,
+      "samples": 5000
+    },
+    "energy": {
+      "accuracy": 1.0,
+      "samples": 3500
+    },
+    "carbon": {
+      "r2_score": 0.9965302267751753,
+      "samples": 3500
+    },
+    "ran_sleep": {
+      "accuracy": 1.0,
+      "samples": 3500
+    },
+    "renewable_energy": {
+      "r2_score": 0.9991870161920392,
+      "samples": 3500
+    },
+    "edge_inference": {
+      "r2_score": 0.9999861663633833,
+      "samples": 25000
+    },
+    "green_slice": {
+      "accuracy": 1.0,
+      "samples": 1500
+    },
+    "traffic": {
+      "r2_score": 0.9995149529491336,
+      "samples": 25000
+    },
+    "qos": {
+      "accuracy": 0.69476,
+      "samples": 25000
+    },
+    "slice": {
+      "accuracy": 1.0,
+      "samples": 1500
+    },
+    "qoe": {
+      "r2_score": 0.9729550064126619,
+      "samples": 25000
+    },
+    "channel_estimation": {
+      "r2_score": -0.0387723570090166,
+      "samples": 5000
+    },
+    "beamforming": {
+      "r2_score": 0.9999972749334618,
+      "samples": 25000
+    },
+    "csi": {
+      "r2_score": 0.10683430027078467,
+      "samples": 25000,
+      "csi_compression_ratio": 2.0
+    },
+    "air_interface": {
+      "r2_score": 0.12515446104130556,
+      "samples": 25000
+    },
+    "digital_twin": {
+      "r2_score": 0.9996665250366467,
+      "samples": 3500
+    },
+    "spectrum": {
+      "accuracy": 1.0,
+      "samples": 5000
+    },
+    "self_healing": {
+      "accuracy": 1.0,
+      "samples": 5000
+    },
+    "knowledge": {
+      "kg_nodes": 175,
+      "cfam_features": 5
+    },
+    "intent": {
+      "intents_supported": 5
+    },
+    "agent_optimizer": {
+      "accuracy": 1.0,
+      "samples": 21
+    },
+    "coordination": {
+      "accuracy": 1.0,
+      "samples": 25000
+    }
+  },
+  "validation": {
+    "scheduler": {
+      "r2_score": 0.13048955374246773,
+      "samples": 18750,
+      "test_samples": 30,
+      "avg_confidence": 0.849,
+      "status": "validated"
+    },
+    "resource": {
+      "r2_score": 0.999544062357412,
+      "samples": 2625,
+      "test_samples": 30,
+      "avg_confidence": 0.85,
+      "status": "validated"
+    },
+    "mobility": {
+      "accuracy": 1.0,
+      "samples": 3750,
+      "test_samples": 30,
+      "avg_confidence": 0.713,
+      "status": "validated"
+    },
+    "security": {
+      "detection_accuracy": 1.0,
+      "samples": 3750,
+      "test_samples": 30,
+      "avg_confidence": 0.815,
+      "status": "validated"
+    },
+    "energy": {
+      "accuracy": 1.0,
+      "samples": 2625,
+      "test_samples": 30,
+      "avg_confidence": 0.88,
+      "status": "validated"
+    },
+    "carbon": {
+      "r2_score": 0.9966967353543665,
+      "samples": 2625,
+      "test_samples": 30,
+      "avg_confidence": 0.91,
+      "status": "validated"
+    },
+    "ran_sleep": {
+      "accuracy": 1.0,
+      "samples": 2625,
+      "test_samples": 30,
+      "avg_confidence": 0.89,
+      "status": "validated"
+    },
+    "renewable_energy": {
+      "r2_score": 0.9991857039230398,
+      "samples": 2625,
+      "test_samples": 30,
+      "avg_confidence": 0.87,
+      "status": "validated"
+    },
+    "edge_inference": {
+      "r2_score": 0.9999878712480037,
+      "samples": 18750,
+      "test_samples": 30,
+      "avg_confidence": 0.9,
+      "status": "validated"
+    },
+    "green_slice": {
+      "accuracy": 1.0,
+      "samples": 1125,
+      "test_samples": 30,
+      "avg_confidence": 0.88,
+      "status": "validated"
+    },
+    "traffic": {
+      "r2_score": 0.9995371467953424,
+      "samples": 18750,
+      "test_samples": 30,
+      "avg_confidence": 0.9,
+      "status": "validated"
+    },
+    "qos": {
+      "accuracy": 0.69712,
+      "samples": 18750,
+      "test_samples": 30,
+      "avg_confidence": 0.9,
+      "status": "validated"
+    },
+    "slice": {
+      "accuracy": 1.0,
+      "samples": 1125,
+      "test_samples": 30,
+      "avg_confidence": 0.91,
+      "status": "validated"
+    },
+    "qoe": {
+      "r2_score": 0.974368504721277,
+      "samples": 18750,
+      "test_samples": 30,
+      "avg_confidence": 0.82,
+      "status": "validated"
+    },
+    "channel_estimation": {
+      "r2_score": -0.027162013101062144,
+      "samples": 5000,
+      "test_samples": 30,
+      "avg_confidence": 0.88,
+      "status": "validated"
+    },
+    "beamforming": {
+      "r2_score": 0.9999975496952495,
+      "samples": 18750,
+      "test_samples": 30,
+      "avg_confidence": 0.86,
+      "status": "validated"
+    },
+    "csi": {
+      "r2_score": 0.10629758122921118,
+      "samples": 18750,
+      "csi_compression_ratio": 2.0,
+      "test_samples": 30,
+      "avg_confidence": 0.84,
+      "status": "validated"
+    },
+    "air_interface": {
+      "r2_score": 0.1303714207631299,
+      "samples": 18750,
+      "test_samples": 30,
+      "avg_confidence": 0.92,
+      "status": "validated"
+    },
+    "digital_twin": {
+      "r2_score": 0.9996694012236788,
+      "samples": 2625,
+      "test_samples": 30,
+      "avg_confidence": 0.7,
+      "status": "validated"
+    },
+    "spectrum": {
+      "accuracy": 1.0,
+      "samples": 3750,
+      "test_samples": 30,
+      "avg_confidence": 0.89,
+      "status": "validated"
+    },
+    "self_healing": {
+      "accuracy": 1.0,
+      "samples": 3750,
+      "test_samples": 30,
+      "avg_confidence": 0.9,
+      "status": "validated"
+    },
+    "knowledge": {
+      "status": "skipped"
+    },
+    "intent": {
+      "status": "skipped"
+    },
+    "agent_optimizer": {
+      "accuracy": 1.0,
+      "samples": 15,
+      "test_samples": 6,
+      "avg_confidence": 0.898,
+      "status": "validated"
+    },
+    "coordination": {
+      "accuracy": 1.0,
+      "samples": 18750,
+      "test_samples": 30,
+      "avg_confidence": 0.98,
+      "status": "validated"
+    }
+  },
+  "testing": {
+    "scheduler": {
+      "inference_ok": true,
+      "avg_confidence": 0.849
+    },
+    "resource": {
+      "inference_ok": true,
+      "avg_confidence": 0.85
+    },
+    "mobility": {
+      "inference_ok": true,
+      "avg_confidence": 0.713
+    },
+    "security": {
+      "inference_ok": true,
+      "avg_confidence": 0.815
+    },
+    "energy": {
+      "inference_ok": true,
+      "avg_confidence": 0.88
+    },
+    "carbon": {
+      "inference_ok": true,
+      "avg_confidence": 0.91
+    },
+    "ran_sleep": {
+      "inference_ok": true,
+      "avg_confidence": 0.89
+    },
+    "renewable_energy": {
+      "inference_ok": true,
+      "avg_confidence": 0.87
+    },
+    "edge_inference": {
+      "inference_ok": true,
+      "avg_confidence": 0.9
+    },
+    "green_slice": {
+      "inference_ok": true,
+      "avg_confidence": 0.88
+    },
+    "traffic": {
+      "inference_ok": true,
+      "avg_confidence": 0.9
+    },
+    "qos": {
+      "inference_ok": true,
+      "avg_confidence": 0.9
+    },
+    "slice": {
+      "inference_ok": true,
+      "avg_confidence": 0.91
+    },
+    "qoe": {
+      "inference_ok": true,
+      "avg_confidence": 0.82
+    },
+    "channel_estimation": {
+      "inference_ok": true,
+      "avg_confidence": 0.88
+    },
+    "beamforming": {
+      "inference_ok": true,
+      "avg_confidence": 0.86
+    },
+    "csi": {
+      "inference_ok": true,
+      "avg_confidence": 0.84
+    },
+    "air_interface": {
+      "inference_ok": true,
+      "avg_confidence": 0.92
+    },
+    "digital_twin": {
+      "inference_ok": true,
+      "avg_confidence": 0.7
+    },
+    "spectrum": {
+      "inference_ok": true,
+      "avg_confidence": 0.89
+    },
+    "self_healing": {
+      "inference_ok": true,
+      "avg_confidence": 0.9
+    },
+    "knowledge": {
+      "inference_ok": true,
+      "avg_confidence": 0
+    },
+    "intent": {
+      "inference_ok": true,
+      "avg_confidence": 0
+    },
+    "agent_optimizer": {
+      "inference_ok": true,
+      "avg_confidence": 0.898
+    },
+    "coordination": {
+      "inference_ok": true,
+      "avg_confidence": 0.98
+    },
+    "super_agent": {
+      "approved": 23,
+      "rejected": 0,
+      "utility": 5.4577
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "mcp_servers": {
+    "system-insights": {
+      "tools": [
+        "ask",
+        "search_specs",
+        "read_spec_requirement",
+        "search_tools",
+        "run_tool"
+      ],
+      "use_for": [
+        "3GPP specs",
+        "CFAM features",
+        "NIDD KPIs",
+        "O-RAN references",
+        "troubleshooting"
+      ],
+      "output_files": [
+        "nokia_insights_cache.json",
+        "nokia_cfam_references.json",
+        "3gpp_references.json"
+      ]
+    },
+    "sharepoint": {
+      "tools": [
+        "searchSharePoint",
+        "searchInSite",
+        "getFileOrFolderMetadataByUrl"
+      ],
+      "use_for": [
+        "project documents",
+        "RAN architecture decks",
+        "internal specs"
+      ],
+      "output_files": [
+        "sharepoint_references.json"
+      ]
+    },
+    "confluence": {
+      "tools": [
+        "confluence_search_content",
+        "confluence_get_page"
+      ],
+      "use_for": [
+        "team runbooks",
+        "architecture notes",
+        "MRO/SON documentation"
+      ],
+      "output_files": [
+        "confluence_references.json"
+      ]
+    },
+    "pronto-prod": {
+      "tools": [
+        "pronto search (requires auth)"
+      ],
+      "use_for": [
+        "defect patterns",
+        "field issue RCA",
+        "KPI regression analysis"
+      ],
+      "output_files": [
+        "pronto_references.json"
+      ]
+    }
+  },
+  "last_updated": "2026-07-14"
+}

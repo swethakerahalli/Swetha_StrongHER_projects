@@ -1,0 +1,778 @@
+--- SLIDE ---
+Multi Agentic AI-Native Autonomous RAN and Air Interface for 6G Networks
+Swetha Kerahalli,
+System Architect,
+MI RRD AS Algo Innov
+Bengaluru
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Month 3: Multi-Agent Integration and Digital Twin Development
+Week
+Activity
+Detailed Tasks
+Deliverables
+Week 1
+Digital Twin Development
+Build RAN Twin, User Twin, Security Twin
+Digital Twin Platform
+Week 1
+Knowledge Graph Development
+Build telecom ontology and graph relationships
+Knowledge Graph
+Week 2
+Multi-Agent Framework
+Develop collaboration framework among agents
+Multi-Agent Controller
+Week 2
+Agent Communication
+Implement agent-to-agent communication
+Collaboration Engine
+Week 3
+Federated Learning
+Develop distributed training framework
+Federated Learning Framework
+Week 3
+Knowledge Integration
+Integrate Knowledge Graph with AI Agents
+Knowledge-Aware Agents
+Week 4
+Integrated Training
+Train all agents collaboratively
+Integrated Multi-Agent Model
+Week 4
+Validation
+Validate in Digital Twin Environment
+Validation Report
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Month 3 Deliverables
+Deliverable
+Description
+Digital Twin
+Virtual Telecom Network
+Knowledge Graph
+Telecom Intelligence Layer
+Multi-Agent Framework
+Collaborative AI System
+Federated Learning
+Distributed Learning Platform
+Integrated AI Platform
+Complete Multi-Agent Solution
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Month 4: O-RAN Integration, Evaluation and Final Demonstration
+Week
+Activity
+Detailed Tasks
+Deliverables
+Week 1
+O-RAN Integration
+Integrate agents into Near-RT RIC and Non-RT RIC
+xApps and 
+rApps
+Week 1
+SMO Integration
+Integrate with Service Management and Orchestration
+SMO Framework
+Week 2
+Closed-Loop Automation
+Implement Observe-Analyze-Predict-Plan-Act-Learn
+Autonomous Loop
+Week 2
+KPI Monitoring
+Setup monitoring and observability framework
+Monitoring Dashboard
+Week 3
+Benchmarking
+Compare with PF, RR, SON, Static Allocation
+Benchmark Report
+Week 3
+Performance Testing
+Stress Testing and Scalability Validation
+Performance Report
+Week 4
+Final Demonstration
+End-to-End Autonomous Network Demo
+Demo Platform
+Week 4
+Documentation & Publication
+Prepare paper, patent, whitepaper
+Final Report
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Month 4 Deliverables
+Deliverable
+Description
+O-RAN xApps
+Scheduler, Resource, Mobility, Security xApps
+O-RAN rApps
+AI Model Management, Analytics
+Autonomous Platform
+Closed-Loop AI-Native RAN
+Benchmarking Report
+KPI Comparison Results
+Final Demonstration
+End-to-End Working System
+Research Publications
+Paper, Patent, Whitepaper
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+End-to-End Workflow Table
+Phase
+Input
+Processing
+Output
+Requirements Definition
+Use Cases, KPIs
+Analysis
+Requirements Document
+Data Collection
+RAN/Core/Security Data
+Collection
+Raw Dataset
+Data Engineering
+Raw Dataset
+Cleaning, Labeling
+Feature Store
+Knowledge Graph
+Feature Data
+Ontology Creation
+Telecom KG
+Digital Twin
+Network Data
+Virtual Modeling
+Twin Environment
+Scheduler Agent
+CQI, SINR
+RL Training
+Scheduling Policy
+Resource Agent
+Spectrum Data
+RL Optimization
+Resource Policy
+Mobility Agent
+Mobility Data
+Prediction Models
+Handover Policy
+Security Agent
+Threat Data
+Threat Intelligence
+Security Policy
+Energy Agent
+Energy Data
+Optimization
+Energy Policy
+Multi-Agent Learning
+Agent Outputs
+Collaboration
+Global Policy
+Federated Learning
+Local Models
+Aggregation
+Global Model
+O-RAN Integration
+Policies
+xApps/rApps
+O-RAN Deployment
+Closed-Loop Operation
+Network KPIs
+Observe→Learn
+Autonomous Optimization
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Final Deliverables Summary
+Category
+Deliverables
+Architecture
+AI-Native Autonomous RAN Architecture
+AI Models
+Scheduler, Resource, Mobility, Security, Energy Agents
+Intelligence Layer
+Knowledge Graph + Federated Learning
+Digital Twin
+Complete Telecom Digital Twin
+O-RAN Components
+Near-RT RIC xApps, Non-RT RIC rApps
+Security
+Autonomous Security Intelligence Framework
+Evaluation
+KPI and Benchmarking Reports
+Publications
+IEEE Paper, Whitepaper, Patent
+Final Outcome
+AI-Native Autonomous 6G RAN Prototype
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Target KPIs
+KPI
+Baseline
+Target
+Throughput
+Existing RAN
++20% to +30%
+Latency
+Existing RAN
+-20% to -40%
+Energy Consumption
+Existing RAN
+-25% to -40%
+Security Detection Accuracy
+Conventional IDS
+>95%
+Handover Success Rate
+Current Networks
+>98%
+QoE Improvement
+Baseline QoE
++20% to +30%
+Slice Efficiency
+Baseline
++20% to +25%
+Automation Level
+Semi-Automated
+>90%
+OPEX Reduction
+Existing Network
+20% to 40%
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Recommended Tool Selection for the Project
+Module
+Recommended Tool
+Scheduler Agent
+PyTorch + RLlib
+Resource Allocation Agent
+PyTorch + RLlib
+Mobility Agent
+PyTorch + Transformers
+Security Agent
+PyTorch Geometric + Suricata or any security algorithms
+Digital Twin
+NVIDIA Omniverse / NS-3
+Knowledge Graph
+Neo4j
+Federated Learning
+Flower
+Multi-Agent Framework
+PettingZoo
+ + RLlib or Agentic Platforms like AWS or relative
+O-RAN Integration
+O-RAN SC Near-RT RIC
+KPI Monitoring
+Prometheus + Grafana
+MLOps
+Kubeflow + MLflow
+Air Interface
+Sionna + MATLAB 5G Toolbox
+End-to-End Simulation
+NS-3 + OAI + O-RAN SC
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Agenda
+Introduction
+Details
+Final Deliverables
+Problem Statement
+Proposed Solution
+
+--- SLIDE ---
+Final Deliverables
+Software Deliverables
+AI-Native Air Interface Framework 
+Scheduler Agent 
+Resource Allocation Agent 
+Mobility Agent 
+Security Agent 
+Energy Agent 
+Digital Twin Platform 
+Knowledge Graph Engine 
+Federated Learning Framework 
+Multi-Agent Coordination Engine 
+O-RAN xApps 
+O-RAN 
+rApps
+Documentation
+Complete Architecture Design
+Dataset Repository
+Performance Evaluation Report
+Benchmarking Report
+Technical Whitepaper (If required)
+IEEE Conference Paper (If required)
+Apply a document ID (if applicable).
+Outputs
+Trained AI models
+Synthetic dataset
+Threat detection framework
+Quantum-safe module
+Simulation plots
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Key References
+3rd Generation Partnership Project Release 19 and emerging Release 20 AI/ML studies for RAN automation.
+O-RAN Alliance AI-enabled RIC, xApps, 
+rApps
+, and SMO specifications.
+International Telecommunication Union IMT-2030 (6G) Framework and Usage Scenarios.
+Next G Alliance Roadmap to 6G and AI-Native Network Vision.
+European Telecommunications Standards Institute ENI (Experiential Networked Intelligence) specifications.
+Reinforcement Learning: An Introduction.
+Multi-Agent Reinforcement Learning.
+Wireless Communications research papers on AI-native air interfaces, semantic communications, GNN-based RAN optimization, and digital-twin-driven autonomous networking published in IEEE Communications Magazine, IEEE JSAC, IEEE TWC, IEEE Network, IEEE Communications Surveys & Tutorials, and ACM 
+MobiCom
+.
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Implementation
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Member
+Role
+Architecture Ownership
+Workflow Ownership
+Final Deliverables
+Swetha, Harsimran, Unnimaya
+AI-Native Air Interface and Scheduler Agent Lead
+AI-Native Air Interface, Scheduler Agent
+Steps 2,3,5,6
+Scheduler Agent, AI PHY/MAC Models
+Swetha, Harsimran, Unnimaya
+Resource Allocation, Mobility and QoE Lead
+Resource Agent, Mobility Agent, QoE Agent
+Steps 2,3,5,6
+Resource Allocation Agent, Mobility Agent
+Swetha, Mohit, Ayushi
+Security Intelligence and Federated Learning Lead
+Security Agent, Security Plane
+Steps 2,3,5,6,10,11
+Security Intelligence Platform
+Swetha, Karthik, Ayushi
+Digital Twin, Knowledge Graph and Data Platform Lead
+Digital Twin, Knowledge Graph, Data Platform
+Steps 3,4,9,10
+Digital Twin Framework
+Swetha, Mohit, Karthik
+O-RAN Integration, Multi-Agent Orchestration and System Lead
+Near-RT RIC, Non-RT RIC, SMO, Multi-Agent Orchestration
+Steps 1,7,8,12
+End-to-End Integrated Platform
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Category
+Detailed Responsibilities
+Primary Ownership
+AI-Native Air Interface, PHY/MAC Intelligence, Scheduler Agent
+3GPP Relevance
+AI-assisted CSI Feedback, AI Beam Management, AI Link Adaptation, AI-Native Air Interface (Rel-18/19/20)
+Data Collection
+Collect CQI, SINR, RSRP, RSRQ, CSI, MCS, PRB Utilization, Throughput Metrics
+Data Engineering
+Create scheduling features, radio quality indicators, traffic priority features, beam-level features
+AI-Native Air Interface
+Develop AI-based Channel Estimation, Neural Receivers, Semantic Communications, AI Link Adaptation
+Scheduler Agent Development
+Develop PRB allocation engine, traffic prioritization engine, QoS-aware scheduler
+AI Models
+PPO, DQN, Transformer-based Scheduling, CNN-based PHY Intelligence
+Digital Twin Support
+Validate scheduler decisions inside Digital Twin
+O-RAN Integration
+Deploy Scheduler xApp in Near-RT RIC
+KPI Evaluation
+Throughput, Latency, Spectral Efficiency, PRB Utilization, Fairness Index
+Deliverables
+AI-Native PHY Framework, Scheduler Agent, Scheduling Dashboard, KPI Report
+Category
+Detailed Responsibilities
+Primary Ownership
+Resource Agent, Mobility Agent, QoE Agent
+3GPP Relevance
+RRM, Handover Optimization, Mobility Robustness Optimization, AI-assisted Mobility
+Data Collection
+Collect Mobility Traces, Cell Load, Spectrum Usage, UE Position Data, Handover Events
+Data Engineering
+Mobility Feature Extraction, Resource Utilization Features, QoE Feature Engineering
+Resource Agent Development
+Spectrum Allocation, Power Control, Carrier Aggregation Optimization, MIMO Stream Selection
+Mobility Agent Development
+Handover Prediction, Cell Reselection, Mobility Forecasting
+QoE Agent Development
+User Experience Prediction, Application-Aware Optimization
+AI Models
+MADDPG, PPO, LSTM, Transformer, Graph Neural Networks
+Digital Twin Support
+Simulate mobility and resource allocation scenarios
+O-RAN Integration
+Deploy Resource and Mobility xApps
+KPI Evaluation
+Handover Success Rate, Cell Throughput, Spectrum Efficiency, QoE Improvement
+Deliverables
+Resource Allocation Engine, Mobility Agent, QoE Agent, Mobility Analytics Dashboard
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Category
+Detailed Responsibilities
+Primary Ownership
+Security Agent, Security Intelligence Plane, Federated Learning
+3GPP Relevance
+Network Security, AI Security, Zero Trust, Security Automation
+Data Collection
+Collect IDS Logs, Firewall Logs, Security Events, Attack Traces, Authentication Logs
+Data Engineering
+Threat Feature Extraction, Attack Classification Labels, Security Knowledge Base
+Threat Prediction Module
+Predict cyber attacks before occurrence
+Threat Detection Module
+Detect Jamming, Spoofing, DDoS, Rogue gNB, Pilot Contamination
+Threat Mitigation Module
+Auto Isolation, Slice Protection, Resource Quarantine
+Self-Healing Module
+Automatic Recovery and Service Restoration
+Federated Learning
+Local Training, Global Aggregation, Privacy Preservation
+AI Security
+Model Poisoning Detection, Adversarial Attack Detection
+AI Models
+Autoencoders, Variational Autoencoders, GNN, Transformer, Isolation Forest
+O-RAN Integration
+Deploy Security xApp and Security Analytics rApp
+KPI Evaluation
+Detection Accuracy, False Positives, Recovery Time, Security Score
+Deliverables
+Security Intelligence Platform, Federated Learning Framework, Security Dashboard
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Category
+Detailed Responsibilities
+Primary Ownership
+Digital Twin, Knowledge Graph, Data Platform, AI Repository
+3GPP Relevance
+Network Digital Twin (NDT), Data Analytics, Network Automation
+Data Collection
+Aggregate RAN, Mobility, Security, Energy, QoE Data
+Data Engineering
+Data Cleaning, Feature Store Creation, Metadata Management
+Digital Twin Development
+Create RAN Twin, UE Twin, Mobility Twin, Security Twin, Energy Twin
+Network Modeling
+Create Virtual Representation of Network Components
+Knowledge Graph Development
+Build Telecom Ontology and Network Relationship Graph
+Root Cause Analysis
+Support Explainability and Autonomous Troubleshooting
+AI Repository
+Manage Trained Models, Policies, Configurations
+Streaming Platform
+Manage Kafka/Spark/Flink Pipelines
+Monitoring
+KPI Collection, Event Correlation, Telemetry Processing
+AI Models
+Graph Neural Networks, Graph Analytics, Ontology Reasoning
+O-RAN Support
+Provide Digital Twin and Knowledge Services to RIC
+KPI Evaluation
+Prediction Accuracy, Twin Fidelity, Graph Accuracy
+Deliverables
+Digital Twin Platform, Knowledge Graph Engine, Data Lake, Analytics Dashboard
+Category
+Detailed Responsibilities
+Primary Ownership
+O-RAN Architecture, Multi-Agent Controller, End-to-End Integration
+3GPP Relevance
+O-RAN RIC, Intent-Based Management, Autonomous Networks, AI-RAN
+Requirements Management
+Define KPIs, Use Cases, Network Objectives
+System Architecture
+Own overall end-to-end architecture
+O-RAN Integration
+Near-RT RIC, Non-RT RIC, SMO Integration
+xApp Deployment
+Scheduler xApp, Resource xApp, Mobility xApp, Security xApp
+rApp Deployment
+Analytics rApp, Policy Management rApp, AI Training rApp
+Multi-Agent Framework
+Inter-Agent Communication, Policy Sharing, Coordination Engine
+Closed-Loop Automation
+Observe → Analyze → Predict → Plan → Act → Learn
+Intent Management
+Convert Operator Intent into Policies
+Deployment
+Containerization, Kubernetes Deployment
+Monitoring
+Platform Health Monitoring, Resource Monitoring
+Benchmarking
+Compare against RR, PF, SON, Traditional Security
+KPI Evaluation
+Automation Level, OPEX Reduction, SLA Compliance
+Deliverables
+Multi-Agent Controller, O-RAN Platform, End-to-End Integrated Solution, Final Demonstration
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Problem Statement
+Current 5G and Open RAN deployments still rely heavily on predefined policies, static optimization rules, centralized controllers, and human-assisted operations.
+The limitations include:
+Dynamic traffic patterns exceeding optimization capabilities.
+Massive IoT density creating scheduling complexity.
+THz communication introducing highly dynamic channel conditions.
+Integrated TN-NTN architectures increasing mobility complexity.
+Ultra-low latency applications requiring real-time adaptation.
+Energy consumption becoming a major operational concern.
+Increasing complexity of network slicing and service orchestration.
+Traditional optimization methods become computationally infeasible because many RAN optimization problems belong to NP-hard optimization classes.
+How can multiple autonomous AI agents collaboratively optimize scheduling, resource allocation, mobility, energy efficiency, security, beam management, and air interface adaptation in real-time while ensuring network stability, scalability, explainability, and trustworthiness in 6G environments?
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Proposed Solution
+The proposed framework aims to:
+Develop a Multi-Agent AI-Native RAN architecture where specialized agents autonomously manage scheduling, radio resource allocation, security, mobility, energy consumption, network slicing, and air-interface adaptation.
+The system must learn continuously from network observations, coordinate actions among agents, and optimize both local and global objectives using reinforcement learning, graph neural networks, federated learning, foundation models, and digital twins.
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+End frame
+
+--- SLIDE ---
+Copyright and confidentiality
+ 
+The contents of this document are proprietary 
+and confidential property of Nokia. This document 
+is provided subject to confidentiality obligations of 
+the applicable agreement(s). 
+This document is intended for use by Nokia’s customers and collaborators only for the purpose for which this document is submitted by Nokia. No part of this document may be reproduced or made available to the public or to any third party in any form or means without the prior written permission of Nokia. This document is to be used by properly trained professional personnel. Any use of the contents in this document is limited strictly to the use(s) specifically created in the applicable agreement(s) under which the document is submitted. The user of this document may voluntarily provide suggestions, comments or 
+other feedback to Nokia in respect of the 
+contents of this document ("Feedback"). 
+Such Feedback may be used in Nokia products and related specifications or other documentation. Accordingly, if the user of this document gives 
+Nokia Feedback on the contents of this document, Nokia may freely use, disclose, reproduce, license, distribute and otherwise commercialize the feedback in any Nokia product, technology, service, specification or other documentation. 
+Nokia operates a policy of ongoing development. Nokia reserves the right to make changes and improvements to any of the products and/or services described in this document or withdraw 
+this document at any time without prior notice. 
+The contents of this document are provided 
+"as is". Except as required by applicable law, no warranties of any kind, either express or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose, are made in relation to the accuracy, reliability or contents of this document. NOKIA SHALL NOT BE RESPONSIBLE IN ANY EVENT FOR ERRORS IN THIS DOCUMENT or for any loss of data or income or any special, incidental, consequential, indirect or direct damages howsoever caused, that might arise from the use of this document or any contents of this document. 
+This document and the product(s) it describes
+are protected by copyright according to the
+applicable laws. 
+Nokia is a registered trademark of Nokia Corporation. Other product and company names mentioned herein may be trademarks or trade names of their respective owners.
+Apply a document ID (if applicable).
+
+--- SLIDE ---
+Please delete this slide if document is uncontrolled
+Revision history and metadata
+Document ID: 
+Document Location:
+Document Type:
+Organization:
+Apply a document ID (if applicable).
+Version
+Description of changes
+Date
+Author
+Owner
+Status
+Reviewed by
+Reviewed
+ date
+Approver
+Approval date
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Item
+Description
+Project Title
+Multi-Agentic AI-Native Autonomous RAN and Air Interface with Autonomous Security Intelligence for 6G Networks
+Research Area
+6G Wireless Communications, AI-Native Networks, O-RAN, Multi-Agent AI, Security Intelligence
+Duration
+4 Months
+Standards Alignment
+3GPP Release 18, Release 19, Release 20, O-RAN
+Deployment Target
+Near-RT RIC, Non-RT RIC, SMO, AI-Native Air Interface
+Final Goal
+Autonomous, Self-Healing, Self-Securing, AI-Native 6G RAN
+Project Overview
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Month 1: Research, Architecture Design and Dataset Preparation
+Week
+Activity
+Detailed Tasks
+Deliverables
+Week 1
+Literature Review
+Study 3GPP Rel-18/19 AI-RAN, O-RAN, AI-Native Air Interface, Digital Twin
+Literature Survey Report
+Week 1
+Requirement Analysis
+Define KPIs, Use Cases, Constraints
+Requirement Specification Document
+Week 2
+Architecture Design
+Design AI-Native Air Interface, Multi-Agent Architecture, Security Architecture
+High-Level Architecture
+Week 2
+Agent Identification
+Define Scheduler, Resource, Mobility, Security, Energy, QoE, Slice Agents
+Agent Design Document
+Week 3
+Dataset Planning
+Identify required RAN, Mobility, Security, Energy datasets
+Dataset Requirement Document
+Week 3
+Data Collection
+Collect telecom KPI data and logs
+Raw Dataset Repository
+Week 4
+Technology Stack Finalization
+Select AI, O-RAN, MLOps, Digital Twin Tools
+Technology Stack Document
+Week 4
+Project Review
+Architecture Review and Design Freeze
+Month-1 Review Report
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Month 1 Deliverables
+Deliverable
+Description
+Literature Review
+AI-RAN, O-RAN, 6G Research Survey
+System Architecture
+Complete End-to-End Architecture
+Dataset Design
+Data Sources and Features
+Technology Stack
+Software and Hardware Selection
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Month 2: AI Agent Development
+Week
+Activity
+Detailed Tasks
+Deliverables
+Week 1
+Scheduler Agent Development
+Develop PPO/DQN-based scheduler
+Scheduler Agent V1
+Week 1
+Resource Agent Development
+Develop spectrum and power allocation agent
+Resource Agent V1
+Week 2
+Mobility Agent Development
+Implement mobility prediction and handover optimization
+Mobility Agent V1
+Week 2
+Security Agent Development
+Develop threat detection and prediction modules
+Security Agent V1
+Week 3
+Energy Agent Development
+Implement energy optimization and sleep-mode logic
+Energy Agent V1
+Week 3
+QoE Agent Development
+Develop QoE prediction and optimization framework
+QoE Agent V1
+Week 4
+Initial Training
+Train all agents independently
+Trained AI Models
+Week 4
+Baseline Evaluation
+Evaluate each agent separately
+Baseline Evaluation Report
+
+--- SLIDE ---
+Apply a document ID (if applicable).
+Month 2 Deliverables
+Deliverable
+Description
+Scheduler Agent
+Autonomous Scheduling
+Resource Agent
+Spectrum and Resource Optimization
+Mobility Agent
+Handover Optimization
+Security Agent
+Threat Intelligence
+Energy Agent
+Power Optimization
+QoE Agent
+User Experience Optimization

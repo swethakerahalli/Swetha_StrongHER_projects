@@ -1,0 +1,17 @@
+{
+  "xapp_descriptor": {
+    "name": "security_xapp",
+    "version": "1.0.0",
+    "description": "Autonomous security threat detection and mitigation xApp",
+    "agent": "security_agent",
+    "interfaces": {
+      "e2_subscription": ["E2SM-KPM"],
+      "control_actions": ["traffic_quarantine", "slice_protection", "anomaly_response"]
+    },
+    "threat_types": ["jamming", "spoofing", "ddos", "rogue_gnb", "pilot_contamination"],
+    "ai_model": {
+      "type": "IsolationForest + RandomForestClassifier",
+      "modules": ["threat_prediction", "threat_detection", "threat_mitigation", "self_healing"]
+    }
+  }
+}

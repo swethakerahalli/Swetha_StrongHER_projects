@@ -1,0 +1,16 @@
+{
+  "xapp_descriptor": {
+    "name": "mobility_xapp",
+    "version": "1.0.0",
+    "description": "Handover prediction and mobility optimization xApp",
+    "agent": "mobility_agent",
+    "interfaces": {
+      "e2_subscription": ["E2SM-KPM", "E2SM-RC"],
+      "control_actions": ["handover_trigger", "cell_reselection", "beam_management"]
+    },
+    "ai_model": {
+      "type": "GradientBoostingClassifier",
+      "outputs": ["handover_recommended", "target_cell", "handover_probability"]
+    }
+  }
+}

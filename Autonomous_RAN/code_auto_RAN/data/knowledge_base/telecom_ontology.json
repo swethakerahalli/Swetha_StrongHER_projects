@@ -1,0 +1,37 @@
+{
+  "ontology": {
+    "namespace": "telecom:autonomous_ran",
+    "version": "1.0",
+    "entities": [
+      {"type": "UserEquipment", "attributes": ["ue_id", "slice", "qos_class", "location", "velocity"]},
+      {"type": "gNodeB", "attributes": ["cell_id", "frequency", "tx_power", "load", "sleep_state"]},
+      {"type": "NetworkSlice", "attributes": ["slice_id", "sla", "priority", "isolation_level"]},
+      {"type": "Application", "attributes": ["app_type", "latency_budget", "throughput_req"]},
+      {"type": "Threat", "attributes": ["threat_type", "severity", "source", "target"]},
+      {"type": "Policy", "attributes": ["policy_id", "intent", "agent_source", "validity"]},
+      {"type": "KPI", "attributes": ["metric_name", "value", "timestamp", "threshold"]},
+      {"type": "AIAgent", "attributes": ["agent_id", "type", "model_version", "status"]},
+      {"type": "DigitalTwin", "attributes": ["twin_id", "fidelity", "sync_state"]}
+    ],
+    "relationships": [
+      {"name": "CONNECTED_TO", "from": "UserEquipment", "to": "gNodeB"},
+      {"name": "BELONGS_TO", "from": "UserEquipment", "to": "NetworkSlice"},
+      {"name": "USES", "from": "UserEquipment", "to": "Application"},
+      {"name": "THREATENS", "from": "Threat", "to": "gNodeB"},
+      {"name": "THREATENS", "from": "Threat", "to": "UserEquipment"},
+      {"name": "MANAGES", "from": "AIAgent", "to": "gNodeB"},
+      {"name": "ENFORCES", "from": "Policy", "to": "NetworkSlice"},
+      {"name": "MONITORS", "from": "DigitalTwin", "to": "gNodeB"},
+      {"name": "DEPENDS_ON", "from": "Application", "to": "NetworkSlice"},
+      {"name": "CONSUMES", "from": "gNodeB", "to": "KPI"}
+    ]
+  },
+  "threat_taxonomy": [
+    {"id": "T001", "type": "jamming", "layer": "PHY", "mitigation": "frequency_hopping, beam_nulling"},
+    {"id": "T002", "type": "spoofing", "layer": "RRC", "mitigation": "auth_verification, slice_isolation"},
+    {"id": "T003", "type": "ddos", "layer": "transport", "mitigation": "rate_limiting, traffic_quarantine"},
+    {"id": "T004", "type": "rogue_gnb", "layer": "RAN", "mitigation": "cell_barring, anomaly_detection"},
+    {"id": "T005", "type": "pilot_contamination", "layer": "PHY", "mitigation": "beam_management, interference_coordination"},
+    {"id": "T006", "type": "model_poisoning", "layer": "AI", "mitigation": "federated_validation, model_integrity_check"}
+  ]
+}

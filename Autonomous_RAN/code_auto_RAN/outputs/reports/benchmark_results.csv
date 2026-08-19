@@ -1,0 +1,6 @@
+scheduler,avg_throughput_mbps,avg_latency_ms,fairness_index,energy_w,handover_success_rate,security_detection_rate,qoe_score,steps
+round_robin,263.31,4.92,1.0,400.0,1.0,0.037,4.94,80
+proportional_fair,235.81,6.68,0.882,400.0,1.0,0.087,4.92,80
+max_throughput,612.82,5.5,0.044,400.0,1.0,0.05,4.94,80
+son_static,294.71,5.07,0.736,400.0,1.0,0.05,4.95,80
+multi_agent_autonomous,406.21,1.83,1.0,360.0,0.0,1.0,4.98,80

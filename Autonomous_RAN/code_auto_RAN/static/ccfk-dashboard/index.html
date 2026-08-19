@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autonomous RAN — CCFK Dashboard</title>
+  <link rel="stylesheet" href="/ccfk-theme/themes/FF-DARK/global-variables.css">
+  <link rel="stylesheet" href="/static/ccfk-dashboard/ccfk-ran-theme.css">
+</head>
+<body class="ccfk-ff-dark-css-variables ccfk-ran-app">
+<header class="ccfk-banner">
+  <div class="ccfk-banner-logo">N</div>
+  <div>
+    <h1>Autonomous Intelligent RAN</h1>
+    <p>CCFK Dashboard — 25 AI Agents · Digital Twin</p>
+  </div>
+  <div class="ccfk-banner-actions">
+    <button class="ccfk-btn ccfk-btn-neutral" onclick="location.href='/dashboard'">Dashboard Hub</button>
+    <button class="ccfk-btn ccfk-btn-neutral" onclick="location.href='/dashboard/classic'">Classic View</button>
+    <button class="ccfk-btn" onclick="refresh()">Refresh</button>
+  </div>
+</header>
+
+<div class="ccfk-content">
+  <div class="ccfk-tabs" id="tabs"></div>
+  <div id="panels"></div>
+</div>
+
+<script>
+const TAB_DEFS = [
+  { id: 'overview', label: 'KPI Overview' },
+  { id: 'agents', label: 'Agent Performance' },
+  { id: 'monitoring', label: 'Super Agent' },
+  { id: 'traffic', label: 'Traffic Agent' },
+  { id: 'coordination', label: 'Coordination' },
+  { id: 'green', label: 'Green & Carbon' },
+  { id: 'constraints', label: 'Constraints' },
+  { id: 'plots', label: 'Visualizations' },
+];
+let activeTab = 'overview';
+let cache = {};
+
+async function api(p) { return (await fetch(p)).json(); }
+
+function setTab(id) {
+  activeTab = id;
+  document.querySelectorAll('.ccfk-tab').forEach(t => t.classList.toggle('active', t.dataset.id === id));
+  document.querySelectorAll('.ccfk-panel').forEach(p => p.classList.toggle('active', p.dataset.id === id));
+}
+
+function renderTabs() {
+  document.getElementById('tabs').innerHTML = TAB_DEFS.map(t =>
+    `<button class="ccfk-tab ${t.id===activeTab?'active':''}" data-id="${t.id}" onclick="setTab('${t.id}')">${t.label}</button>`
+  ).join('');
+}
+
+function kpiGrid(cmp) {
+  const b = cmp.before||{}, a = cmp.after||{}, d = cmp.delta_pct||{};
+  const m = [['Throughput','avg_throughput_mbps',0],['Latency','avg_latency_ms',1],['Power','total_power_w',1],
+    ['Security','security_score',0],['Renewable','renewable_pct',0],['Carbon','carbon_kg_co2_per_h',1]];
+  return `<div class="ccfk-pills"><span class="ccfk-pill">${cmp.before_label} → ${cmp.after_label}</span></div>
+    <div class="ccfk-grid">${m.map(([l,k,inv])=>{
+      const pct=d[k]||0; const good=inv?pct<0:pct>0;
+      return `<div class="ccfk-kpi"><div class="val">${a[k]}</div><div class="lbl">${l}</div>
+        <div class="${good?'status-ok':'status-warn'}">${pct>0?'+':''}${pct}%</div></div>`;
+    }).join('')}</div>`;
+}
+
+function agentTable(data) {
+  const rows = (data.agents||[]).map(a=>`<tr>
+    <td><strong>${a.agent_label}</strong></td><td>${a.role}</td>
+    <td>${a.baseline_value}</td><td>${a.autonomous_value}</td>
+    <td class="${a.improvement_pct>0?'status-ok':'status-warn'}">+${a.improvement_pct}%</td>
+    <td>${a.performance_index}</td></tr>`).join('');
+  return `<div class="ccfk-pills">${[['Agents',data.summary?.total_agents],['Improved',data.summary?.improved_count],
+    ['Avg Imp.',(data.summary?.avg_improvement_pct||0)+'%']].map(([k,v])=>`<span class="ccfk-pill"><b>${k}:</b> ${v}</span>`).join('')}
+    </div><div class="ccfk-table-wrap"><table class="ccfk-table"><thead><tr>
+    <th>Agent</th><th>Role</th><th>Baseline</th><th>Autonomous</th><th>Imp.</th><th>Index</th>
+    </tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function monitoringPanel(m, sa) {
+  const mon = m.monitoring||{};
+  const rows = (mon.agents||[]).map(a=>`<tr><td>${a.agent_label}</td>
+    <td class="status-${a.status==='healthy'?'ok':a.status==='warning'?'warn':'bad'}">${a.status}</td>
+    <td>${a.performance_index}</td><td>${a.degradation_score}</td></tr>`).join('');
+  return `<div class="ccfk-pills">${[['Monitored',mon.monitored_count],['Healthy',mon.healthy_count],
+    ['Degraded',mon.degraded_count],['Opt. Cycles',sa?.monitoring_cycles||0]].map(([k,v])=>`<span class="ccfk-pill"><b>${k}:</b> ${v}</span>`).join('')}
+    </div><div class="ccfk-table-wrap"><table class="ccfk-table"><thead><tr>
+    <th>Agent</th><th>Status</th><th>Index</th><th>Degradation</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="ccfk-plot-full"><img src="/plots/agent_optimizer_monitoring.png" alt="monitoring"></div>`;
+}
+
+function trafficPanel(data) {
+  const m = data.metrics || {}, s = data.summary || {};
+  const rows = Object.entries(m).map(([k, d]) =>
+    `<tr><td>${k.replace(/_/g, ' ')}</td><td>${d.industry}</td><td>${d.autonomous}</td>
+    <td class="status-ok">+${d.improvement_pct}%</td><td>${d.detail || ''}</td></tr>`
+  ).join('');
+  return `<div class="ccfk-pills">${[
+    ['Congestion ↓', s.congestion_reduction_pct + '%'], ['Peak Gain', '+' + s.peak_throughput_gain_pct + '%'],
+    ['Contribution', s.traffic_agent_contribution_pct + '%'], ['Reroute', s.reroute_active ? 'Active' : 'Idle'],
+  ].map(([k,v])=>`<span class="ccfk-pill"><b>${k}:</b> ${v}</span>`).join('')}
+    </div><div class="ccfk-table-wrap"><table class="ccfk-table"><thead><tr>
+    <th>Metric</th><th>Industry</th><th>Autonomous</th><th>Improvement</th><th>Detail</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="ccfk-plot-full"><img src="/plots/traffic_agent_impact.png" alt="traffic agent impact"></div>`;
+}
+
+function coordinationPanel(data) {
+  const m = data.metrics || {}, s = data.summary || {};
+  const rows = Object.entries(m).map(([k, d]) =>
+    `<tr><td>${k.replace(/_/g, ' ')}</td><td>${d.industry}</td><td>${d.autonomous}</td>
+    <td class="status-ok">+${d.improvement_pct}%</td><td>${d.detail || ''}</td></tr>`
+  ).join('');
+  return `<div class="ccfk-pills">${[
+    ['Conflicts ↓', s.conflicts_reduced_pct + '%'], ['Resolution', '+' + s.resolution_gain_pct + '%'],
+    ['Agents', s.agents_coordinated], ['Cycles', s.total_cycles || 0],
+  ].map(([k,v])=>`<span class="ccfk-pill"><b>${k}:</b> ${v}</span>`).join('')}
+    </div><div class="ccfk-table-wrap"><table class="ccfk-table"><thead><tr>
+    <th>Metric</th><th>Industry</th><th>Autonomous</th><th>Improvement</th><th>Detail</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="ccfk-plot-full"><img src="/plots/coordination_conflicts.png" alt="coordination"></div>`;
+}
+
+function greenPanel(carbon, green) {
+  const gs = green.summary||{}, ga = green.agents||[];
+  const ind = carbon.industry||{}, auto = carbon.autonomous||{};
+  return `<div class="ccfk-pills">${[['CO₂ Reduction',auto.carbon_reduction_pct+'%'],['Renewable',auto.renewable_pct+'%'],
+    ['Power ↓',gs.combined_power_reduction_pct+'%']].map(([k,v])=>`<span class="ccfk-pill"><b>${k}:</b> ${v}</span>`).join('')}
+    </div><div class="ccfk-plot-full"><img src="/plots/carbon_emission_reduction.png" alt="carbon"></div>
+    <div class="ccfk-table-wrap" style="margin-top:0.5rem"><table class="ccfk-table"><thead><tr>
+    <th>Green Agent</th><th>Baseline</th><th>Autonomous</th><th>Improvement</th></tr></thead><tbody>
+    ${ga.map(a=>`<tr><td>${a.label}</td><td>${a.baseline}</td><td>${a.autonomous}</td><td class="status-ok">+${a.improvement_pct}%</td></tr>`).join('')}
+    </tbody></table></div>
+    <div class="ccfk-plot-full"><img src="/plots/green_edge_agents_impact.png" alt="green"></div>`;
+}
+
+function constraintsPanel(c) {
+  const items = c.constraints||[];
+  return `<div class="ccfk-pills">${[['Compliance',c.compliance_pct+'%'],['Satisfied',c.satisfied_count],
+    ['Violated',c.violated_count]].map(([k,v])=>`<span class="ccfk-pill"><b>${k}:</b> ${v}</span>`).join('')}
+    </div><div class="ccfk-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
+    ${items.map(x=>`<div class="ccfk-kpi" style="text-align:left">
+      <div class="lbl">${x.category}</div><strong>${x.name}</strong><br>
+      ${x.current_value} ${x.unit} ${x.operator} ${x.limit}<br>
+      <span class="${x.satisfied?'status-ok':'status-bad'}">${x.satisfied?'✓ OK':'✗ Violated'} (${x.margin_pct}%)</span>
+    </div>`).join('')}</div>
+    <div class="ccfk-plot-full"><img src="/plots/ran_constraints_dashboard.png" alt="constraints"></div>`;
+}
+
+function plotsPanel(gallery) {
+  const cats = gallery.categories||[];
+  const plots = cats.flatMap(c=>(c.plots||[]).map(p=>({...p,cat:c.label})));
+  return `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.5rem">
+    ${plots.slice(0,24).map(p=>`<div class="ccfk-plot-full" style="cursor:pointer" onclick="window.open('${p.url}','_blank')">
+      <img src="${p.url}" alt="${p.name}" loading="lazy"><div class="lbl" style="text-align:center;margin-top:0.3rem">${p.name}</div></div>`).join('')}
+    </div>`;
+}
+
+function renderPanels() {
+  const c = cache;
+  const html = {
+    overview: kpiGrid(c.comparison||{}),
+    agents: agentTable(c.agentPerf||{}),
+    monitoring: monitoringPanel(c.monitoring||{}, c.superAgent||{}),
+    traffic: trafficPanel(c.traffic||{}),
+    coordination: coordinationPanel(c.coordination||{}),
+    green: greenPanel(c.carbon||{}, c.greenAgents||{}),
+    constraints: constraintsPanel(c.constraints||{}),
+    plots: plotsPanel(c.plots||{}),
+  };
+  document.getElementById('panels').innerHTML = TAB_DEFS.map(t =>
+    `<div class="ccfk-panel ${t.id===activeTab?'active':''}" data-id="${t.id}">${html[t.id]||''}</div>`
+  ).join('');
+}
+
+async function refresh() {
+  const [comparison, agentPerf, monitoring, constraints, traffic, coordination, carbon, greenAgents, plots, superAgent] = await Promise.all([
+    api('/api/kpi/comparison'), api('/api/agents/performance'), api('/api/super-agent/monitoring'),
+    api('/api/constraints/status'), api('/api/traffic/stats'), api('/api/coordination/stats'),
+    api('/api/carbon/stats'), api('/api/green-agents/stats'),
+    api('/api/plots/gallery'), api('/api/super-agent/status'),
+  ]);
+  cache = { comparison, agentPerf, monitoring, constraints, traffic, coordination, carbon, greenAgents, plots, superAgent };
+  renderTabs(); renderPanels();
+}
+
+renderTabs(); refresh();
+setInterval(refresh, 60000);
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* Autonomous RAN — CCFK-inspired theme (uses cloned ccfk FF-DARK variables + fallbacks) */
+:root, .ccfk-ff-dark-css-variables {
+  --ff-color-nokia-blue-600: #005aff;
+  --ff-color-nokia-blue-300-rgb: 77, 141, 255;
+  --ff-color-white: #ffffff;
+  --ff-color-white-rgb: 255, 255, 255;
+  --ff-color-tone-100: #f5f7fa;
+  --ff-color-tone-300: #c5cdd8;
+  --ff-color-tone-400: #9aa5b5;
+  --ff-color-tone-500: #7a8799;
+  --ff-color-tone-600: #5c6778;
+  --ff-color-tone-800: #2a3544;
+  --ff-color-tone-1100: #1a2332;
+  --ff-color-tone-1200: #0f1419;
+  --ff-color-grey-800: #e7e9ea;
+  --ff-color-red-400: #ff5252;
+  --ff-color-transparent: transparent;
+  --opacity-xx-light: 0.08;
+  --opacity-x-light: 0.12;
+  --opacity-heavy: 0.4;
+  --spacing-xsmall: 0.25rem;
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 1.5rem;
+  --g-color-global-brand: var(--ff-color-nokia-blue-600);
+  --g-color-global-primary-text: var(--ff-color-grey-800);
+  --g-color-global-secondary-text: var(--ff-color-tone-400);
+  --g-color-global-positive: #00c853;
+  --g-color-global-negative: var(--ff-color-red-400);
+  --g-color-surface-1: var(--ff-color-tone-1100);
+  --g-color-surface-2: var(--ff-color-tone-800);
+}
+
+.ccfk-ran-app {
+  font-family: 'Segoe UI', 'NokiaPureRegular', system-ui, sans-serif;
+  background: var(--ff-color-tone-1200);
+  color: var(--ff-color-grey-800);
+  min-height: 100vh;
+  margin: 0;
+}
+
+.ccfk-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-medium);
+  padding: var(--spacing-medium) var(--spacing-large);
+  background: var(--g-color-surface-1);
+  border-bottom: 1px solid var(--g-color-surface-2);
+}
+.ccfk-banner-logo {
+  width: 40px; height: 40px; border-radius: 8px;
+  background: var(--g-color-global-brand);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1.2rem;
+}
+.ccfk-banner h1 { font-size: 1.1rem; margin: 0; }
+.ccfk-banner p { font-size: 0.75rem; color: var(--g-color-global-secondary-text); margin: 0.2rem 0 0; }
+.ccfk-banner-actions { margin-left: auto; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+.ccfk-btn {
+  background: var(--g-color-global-brand);
+  color: #fff; border: none; padding: 0.45rem 0.9rem;
+  border-radius: 6px; cursor: pointer; font-size: 0.8rem;
+}
+.ccfk-btn-neutral { background: var(--g-color-surface-2); color: var(--ff-color-grey-800); }
+.ccfk-btn:hover { filter: brightness(1.1); }
+
+.ccfk-hub { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+.ccfk-hub-intro { color: var(--g-color-global-secondary-text); font-size: 0.9rem; }
+.ccfk-hub-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+@media (max-width: 700px) { .ccfk-hub-cards { grid-template-columns: 1fr; } }
+.ccfk-card {
+  display: block; text-decoration: none; color: inherit;
+  background: var(--g-color-surface-1); border: 1px solid var(--g-color-surface-2);
+  border-radius: 12px; padding: 1.2rem; transition: border-color 0.2s;
+}
+.ccfk-card:hover { border-color: var(--g-color-global-brand); }
+.ccfk-card-primary { border-color: var(--g-color-global-brand); }
+.ccfk-card h2 { margin: 0 0 0.5rem; font-size: 1rem; }
+.ccfk-card p { font-size: 0.8rem; color: var(--g-color-global-secondary-text); line-height: 1.4; }
+.ccfk-tag {
+  display: inline-block; margin-top: 0.8rem; font-size: 0.65rem;
+  padding: 0.2rem 0.5rem; border-radius: 10px;
+  background: var(--g-color-surface-2); color: var(--g-color-global-brand);
+}
+.ccfk-hub-meta { font-size: 0.7rem; color: var(--g-color-global-secondary-text); display: flex; gap: 1rem; flex-wrap: wrap; }
+.ccfk-hub-meta a { color: var(--g-color-global-brand); }
+
+.ccfk-content { padding: var(--spacing-medium); }
+.ccfk-tabs { display: flex; gap: 0.25rem; flex-wrap: wrap; border-bottom: 1px solid var(--g-color-surface-2); margin-bottom: var(--spacing-medium); }
+.ccfk-tab {
+  background: transparent; border: none; color: var(--g-color-global-secondary-text);
+  padding: 0.6rem 1rem; cursor: pointer; font-size: 0.8rem;
+  border-bottom: 2px solid transparent;
+}
+.ccfk-tab.active { color: var(--ff-color-grey-800); border-bottom-color: var(--g-color-global-brand); }
+.ccfk-panel { display: none; }
+.ccfk-panel.active { display: block; }
+
+.ccfk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.6rem; }
+.ccfk-kpi {
+  background: var(--g-color-surface-1); border: 1px solid var(--g-color-surface-2);
+  border-radius: 8px; padding: 0.7rem; text-align: center;
+}
+.ccfk-kpi .val { font-size: 1.2rem; font-weight: 700; color: var(--g-color-global-brand); }
+.ccfk-kpi .lbl { font-size: 0.65rem; color: var(--g-color-global-secondary-text); }
+
+.ccfk-table-wrap { overflow: auto; border: 1px solid var(--g-color-surface-2); border-radius: 8px; }
+.ccfk-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
+.ccfk-table th, .ccfk-table td { padding: 0.4rem 0.5rem; border-bottom: 1px solid var(--g-color-surface-2); text-align: left; }
+.ccfk-table th { background: var(--g-color-surface-2); color: var(--g-color-global-brand); }
+
+.ccfk-plot-full {
+  background: var(--ff-color-tone-1200); border: 1px solid var(--g-color-surface-2);
+  border-radius: 8px; padding: 0.5rem; margin-top: 0.5rem;
+}
+.ccfk-plot-full img { width: 100%; height: auto; object-fit: contain; display: block; }
+
+.status-ok { color: var(--g-color-global-positive); }
+.status-warn { color: #ff9800; }
+.status-bad { color: var(--g-color-global-negative); }
+
+.ccfk-pills { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+.ccfk-pill { background: var(--g-color-surface-2); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.7rem; }

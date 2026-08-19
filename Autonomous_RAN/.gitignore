@@ -1,0 +1,25 @@
+# Office lock / temp files
+~$*
+~WRL*
+*.tmp
+
+# Nested Nokia CCFK clone (internal scm.cci.nokia.net) — do not publish
+ccfk/
+ccfk/.git/
+
+# GitHub hard limit is 100 MB
+Swetha_RAN_overview.pptx
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# Secrets
+.env
+*.pem
+credentials.json

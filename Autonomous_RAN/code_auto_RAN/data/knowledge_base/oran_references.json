@@ -1,0 +1,63 @@
+{
+  "metadata": {
+    "source": "O-RAN Alliance specifications and project alignment",
+    "generated": "2026-07-14"
+  },
+  "specifications": [
+    {
+      "spec_id": "O-RAN.WG1.O-RAN-Architecture-Description-v07.00",
+      "title": "O-RAN Architecture Description",
+      "relevance": "Near-RT RIC, Non-RT RIC, SMO, E2/A1/O1 interfaces",
+      "project_mapping": ["oran_integration", "xapps", "rapps"]
+    },
+    {
+      "spec_id": "O-RAN.WG2.A1-Policy-Interface-Specification",
+      "title": "A1 Policy Interface",
+      "relevance": "Policy distribution from Non-RT RIC to Near-RT RIC",
+      "project_mapping": ["policy_management_rapp", "intent_management"]
+    },
+    {
+      "spec_id": "O-RAN.WG3.E2AP-Specification",
+      "title": "E2 Application Protocol",
+      "relevance": "RIC to E2 node communication",
+      "project_mapping": ["xapps", "e2_subscription"]
+    },
+    {
+      "spec_id": "O-RAN.WG3.E2SM-KPM",
+      "title": "E2 Service Model - KPM",
+      "relevance": "Key Performance Measurement reporting",
+      "project_mapping": ["kpi_monitoring", "closed_loop_observe"]
+    },
+    {
+      "spec_id": "O-RAN.WG3.E2SM-RC",
+      "title": "E2 Service Model - RAN Control",
+      "relevance": "RAN control actions (PRB, beam, handover)",
+      "project_mapping": ["scheduler_xapp", "resource_xapp", "mobility_xapp"]
+    },
+    {
+      "spec_id": "O-RAN.WG2.AI-ML-Framework",
+      "title": "O-RAN AI/ML Framework",
+      "relevance": "AI model deployment, training, inference on RIC",
+      "project_mapping": ["federated_training_rapp", "ai_model_management"]
+    },
+    {
+      "spec_id": "O-RAN.WG1.SMO-Framework",
+      "title": "Service Management and Orchestration Framework",
+      "relevance": "Lifecycle, intent, monitoring orchestration",
+      "project_mapping": ["smo_integration", "intent_management"]
+    }
+  ],
+  "closed_loop_phases": [
+    {"phase": "observe", "source": "E2SM-KPM, O1 telemetry, digital twin"},
+    {"phase": "analyze", "source": "analytics_rapp, knowledge_graph"},
+    {"phase": "predict", "source": "AI agents, digital_twin_agent"},
+    {"phase": "plan", "source": "multi_agent_controller, policy_management_rapp"},
+    {"phase": "act", "source": "xApps via E2SM-RC"},
+    {"phase": "learn", "source": "federated_training_rapp, continual_learning"}
+  ],
+  "xapp_deployment_model": {
+    "container_runtime": "kubernetes",
+    "ric_platform": "O-RAN SC Near-RT RIC",
+    "sdk": "ric-sdk-go / python riclib"
+  }
+}

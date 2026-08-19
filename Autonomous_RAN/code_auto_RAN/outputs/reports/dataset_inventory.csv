@@ -1,0 +1,7 @@
+file,rows,columns,path
+energy_metrics.csv,3500,8,data/datasets/energy_metrics.csv
+handover_events.csv,800,12,data/datasets/handover_events.csv
+mobility_traces.csv,5000,10,data/datasets/mobility_traces.csv
+ran_kpi_dataset.csv,25000,14,data/datasets/ran_kpi_dataset.csv
+security_events.csv,5000,11,data/datasets/security_events.csv
+slice_utilization.csv,1500,7,data/datasets/slice_utilization.csv

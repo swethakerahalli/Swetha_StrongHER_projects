@@ -1,0 +1,87 @@
+{
+  "oran_architecture": {
+    "near_rt_ric": {
+      "latency_ms": 10,
+      "e2_interface": true,
+      "xapps": [
+        {
+          "name": "scheduler_xapp",
+          "agent": "scheduler",
+          "subscription": ["E2SM-KPM", "E2SM-RC"],
+          "control_actions": ["PRB_allocation", "MCS_selection", "QoS_prioritization"]
+        },
+        {
+          "name": "resource_xapp",
+          "agent": "resource",
+          "subscription": ["E2SM-KPM", "E2SM-RC"],
+          "control_actions": ["power_control", "spectrum_allocation", "MIMO_config"]
+        },
+        {
+          "name": "mobility_xapp",
+          "agent": "mobility",
+          "subscription": ["E2SM-KPM", "E2SM-RC"],
+          "control_actions": ["handover_trigger", "cell_reselection", "beam_management"]
+        },
+        {
+          "name": "security_xapp",
+          "agent": "security",
+          "subscription": ["E2SM-KPM"],
+          "control_actions": ["traffic_quarantine", "slice_protection", "anomaly_response"]
+        },
+        {
+          "name": "slice_xapp",
+          "agent": "slice",
+          "subscription": ["E2SM-KPM", "E2SM-RC"],
+          "control_actions": ["slice_isolation", "prb_rebalance", "sla_enforcement"]
+        },
+        {"name": "energy_xapp", "agent": "energy", "subscription": ["E2SM-KPM"], "control_actions": ["sleep_mode", "power_control"]},
+        {"name": "qos_xapp", "agent": "qos", "subscription": ["E2SM-KPM", "E2SM-RC"], "control_actions": ["sla_enforcement", "priority_boost"]},
+        {"name": "beamforming_xapp", "agent": "beamforming", "subscription": ["E2SM-KPM"], "control_actions": ["beam_selection", "mimo_config"]},
+        {"name": "csi_xapp", "agent": "csi", "subscription": ["E2SM-KPM"], "control_actions": ["csi_compression", "feedback_optimization"]},
+        {"name": "air_interface_xapp", "agent": "air_interface", "subscription": ["E2SM-KPM", "E2SM-RC"], "control_actions": ["mcs_adaptation", "waveform_selection"]},
+        {"name": "digital_twin_xapp", "agent": "digital_twin", "subscription": ["O1"], "control_actions": ["policy_validation", "what_if_simulation"]},
+        {"name": "spectrum_xapp", "agent": "spectrum", "subscription": ["E2SM-KPM"], "control_actions": ["spectrum_reallocation", "interference_mitigation"]},
+        {"name": "self_healing_xapp", "agent": "self_healing", "subscription": ["E2SM-KPM", "O1"], "control_actions": ["auto_recovery", "traffic_reroute", "cell_isolation"]}
+      ]
+    },
+    "non_rt_ric": {
+      "latency_ms": 1000,
+      "a1_interface": true,
+      "rapps": [
+        {
+          "name": "analytics_rapp",
+          "function": "KPI_analytics_and_reporting",
+          "data_sources": ["near_rt_ric", "SMO", "digital_twin"]
+        },
+        {
+          "name": "policy_management_rapp",
+          "function": "intent_to_policy_translation",
+          "interfaces": ["A1_policy", "O1_configuration"]
+        },
+        {
+          "name": "federated_training_rapp",
+          "function": "distributed_model_training",
+          "framework": "fedavg"
+        },
+        {
+          "name": "ai_model_management_rapp",
+          "function": "MLOps_model_lifecycle"
+        }
+      ]
+    },
+    "smo": {
+      "functions": ["lifecycle_management", "policy_orchestration", "monitoring", "intent_management"],
+      "interfaces": ["O1", "O2", "A1"]
+    }
+  },
+  "e2sm_kpm_metrics": [
+    "DRB.UEThpDl", "DRB.UEThpUl", "RRU.PrbUsedDl", "RRU.PrbUsedUl",
+    "DRB.RlcSduDelayDl", "DRB.PacketLossRateDl", "L1M.RS-SINR.Bin",
+    "HO.Att", "HO.Succ", "EQPT.RxBytes", "EQPT.TxBytes"
+  ],
+  "intent_examples": [
+    {"intent": "reduce_energy_20pct", "policy": "energy_agent_sleep_mode_aggressive"},
+    {"intent": "urllc_latency_1ms", "policy": "scheduler_urllc_priority_max"},
+    {"intent": "maintain_sla_99_99", "policy": "multi_agent_sla_guard"}
+  ]
+}

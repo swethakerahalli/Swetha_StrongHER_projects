@@ -1,0 +1,14 @@
+{
+  "rapp_descriptor": {
+    "name": "policy_management_rapp",
+    "version": "1.0.0",
+    "description": "Intent-to-policy translation rApp",
+    "function": "intent_to_policy_translation",
+    "interfaces": ["A1_policy", "O1_configuration"],
+    "intent_examples": [
+      {"intent": "reduce_energy_20pct", "policy": "energy_agent_sleep_mode_aggressive"},
+      {"intent": "urllc_latency_1ms", "policy": "scheduler_urllc_priority_max"},
+      {"intent": "maintain_sla_99_99", "policy": "multi_agent_sla_guard"}
+    ]
+  }
+}

@@ -1,0 +1,904 @@
+{
+  "agent_run": {
+    "action_id": "1f9c9f3d",
+    "agents_invoked": [
+      "scheduler_agent",
+      "resource_agent",
+      "mobility_agent",
+      "security_agent",
+      "energy_agent",
+      "qos_agent",
+      "qoe_agent",
+      "channel_estimation_agent",
+      "beamforming_agent",
+      "csi_agent",
+      "knowledge_agent",
+      "intent_agent"
+    ],
+    "actions": [
+      {
+        "action_type": "schedule",
+        "parameters": {
+          "prb_assignment": 13,
+          "scheduling_priority": 0.67,
+          "mcs_recommendation": 18,
+          "predicted_throughput_mbps": 33.91
+        }
+      },
+      {
+        "action_type": "resource_allocation",
+        "parameters": {
+          "power_dbm": 34.0,
+          "bandwidth_mhz": 40,
+          "mimo_streams": 2,
+          "carrier_aggregation": false,
+          "spectral_efficiency": 0.1897
+        }
+      },
+      {
+        "action_type": "mobility",
+        "parameters": {
+          "handover_recommended": false,
+          "handover_probability": 0.001,
+          "target_cell": "CELL_000",
+          "mobility_state": "medium"
+        }
+      },
+      {
+        "action_type": "security",
+        "parameters": {
+          "threat_detected": false,
+          "threat_score": 0.1,
+          "anomaly_flag": false,
+          "threat_type": "normal",
+          "mitigation_action": "none"
+        }
+      },
+      {
+        "action_type": "energy",
+        "parameters": {
+          "sleep_mode": false,
+          "power_scale_factor": 0.6,
+          "carbon_aware_mode": false,
+          "estimated_savings_pct": 0
+        }
+      },
+      {
+        "action_type": "qos",
+        "parameters": {
+          "slice": "eMBB",
+          "sla_violation_prob": 0.678,
+          "qos_action": "boost_priority",
+          "priority_boost": 1,
+          "latency_budget_ms": 10,
+          "min_throughput_mbps": 100
+        }
+      },
+      {
+        "action_type": "qoe",
+        "parameters": {
+          "qoe_score": 4.98,
+          "mos_estimate": 4.98,
+          "optimization_action": "optimize_energy"
+        }
+      },
+      {
+        "action_type": "channel_estimation",
+        "parameters": {
+          "estimated_channel_power": 0.0364,
+          "nmse": 0.9998,
+          "estimation_method": "neural_ls",
+          "csi_accuracy": 0.0
+        }
+      },
+      {
+        "action_type": "beamforming",
+        "parameters": {
+          "beamforming_mode": "MRT",
+          "num_beams": 2,
+          "beamforming_gain_db": 3.87,
+          "beam_weights_norm": 1.0
+        }
+      },
+      {
+        "action_type": "csi",
+        "parameters": {
+          "csi_prediction_available": true,
+          "compression_ratio": 2.0,
+          "predicted_csi_power": 0.5528,
+          "feedback_bits_saved_pct": 50.0,
+          "csi_accuracy": 0.667
+        }
+      },
+      {
+        "action_type": "knowledge",
+        "parameters": {
+          "root_cause_analysis": [],
+          "kg_stats": {
+            "nodes": 175,
+            "edges": 215,
+            "node_types": {
+              "CELL_000": "gNodeB",
+              "CELL_001": "gNodeB",
+              "CELL_002": "gNodeB",
+              "CELL_003": "gNodeB",
+              "CELL_004": "gNodeB",
+              "CELL_005": "gNodeB",
+              "CELL_006": "gNodeB",
+              "UE_0000": "UserEquipment",
+              "SLICE_eMBB": "NetworkSlice",
+              "UE_0001": "UserEquipment",
+              "SLICE_URLLC": "NetworkSlice",
+              "UE_0002": "UserEquipment",
+              "SLICE_mMTC": "NetworkSlice",
+              "UE_0003": "UserEquipment",
+              "UE_0004": "UserEquipment",
+              "UE_0005": "UserEquipment",
+              "UE_0006": "UserEquipment",
+              "UE_0007": "UserEquipment",
+              "UE_0008": "UserEquipment",
+              "UE_0009": "UserEquipment",
+              "UE_0010": "UserEquipment",
+              "UE_0011": "UserEquipment",
+              "UE_0012": "UserEquipment",
+              "UE_0013": "UserEquipment",
+              "UE_0014": "UserEquipment",
+              "UE_0015": "UserEquipment",
+              "UE_0016": "UserEquipment",
+              "UE_0017": "UserEquipment",
+              "UE_0018": "UserEquipment",
+              "UE_0019": "UserEquipment",
+              "UE_0020": "UserEquipment",
+              "UE_0021": "UserEquipment",
+              "UE_0022": "UserEquipment",
+              "UE_0023": "UserEquipment",
+              "UE_0024": "UserEquipment",
+              "UE_0025": "UserEquipment",
+              "UE_0026": "UserEquipment",
+              "UE_0027": "UserEquipment",
+              "UE_0028": "UserEquipment",
+              "UE_0029": "UserEquipment",
+              "UE_0030": "UserEquipment",
+              "UE_0031": "UserEquipment",
+              "UE_0032": "UserEquipment",
+              "UE_0033": "UserEquipment",
+              "UE_0034": "UserEquipment",
+              "UE_0035": "UserEquipment",
+              "UE_0036": "UserEquipment",
+              "UE_0037": "UserEquipment",
+              "UE_0038": "UserEquipment",
+              "UE_0039": "UserEquipment",
+              "UE_0040": "UserEquipment",
+              "UE_0041": "UserEquipment",
+              "UE_0042": "UserEquipment",
+              "UE_0043": "UserEquipment",
+              "UE_0044": "UserEquipment",
+              "UE_0045": "UserEquipment",
+              "UE_0046": "UserEquipment",
+              "UE_0047": "UserEquipment",
+              "UE_0048": "UserEquipment",
+              "UE_0049": "UserEquipment",
+              "agent_scheduler": "AIAgent",
+              "agent_resource": "AIAgent",
+              "agent_mobility": "AIAgent",
+              "agent_security": "AIAgent",
+              "agent_energy": "AIAgent",
+              "agent_qoe": "AIAgent",
+              "agent_knowledge": "AIAgent",
+              "agent_intent": "AIAgent",
+              "twin_ran": "DigitalTwin",
+              "T001": "Threat",
+              "T002": "Threat",
+              "T003": "Threat",
+              "T004": "Threat",
+              "T005": "Threat",
+              "T006": "Threat",
+              "KPI_UE_0000_0": "KPI",
+              "KPI_UE_0001_0": "KPI",
+              "KPI_UE_0002_0": "KPI",
+              "KPI_UE_0003_0": "KPI",
+              "KPI_UE_0004_0": "KPI",
+              "KPI_UE_0005_0": "KPI",
+              "KPI_UE_0006_0": "KPI",
+              "KPI_UE_0007_0": "KPI",
+              "KPI_UE_0008_0": "KPI",
+              "KPI_UE_0009_0": "KPI",
+              "KPI_UE_0010_0": "KPI",
+              "KPI_UE_0011_0": "KPI",
+              "KPI_UE_0012_0": "KPI",
+              "KPI_UE_0013_0": "KPI",
+              "KPI_UE_0014_0": "KPI",
+              "KPI_UE_0015_0": "KPI",
+              "KPI_UE_0016_0": "KPI",
+              "KPI_UE_0017_0": "KPI",
+              "KPI_UE_0018_0": "KPI",
+              "KPI_UE_0019_0": "KPI",
+              "KPI_UE_0020_0": "KPI",
+              "KPI_UE_0021_0": "KPI",
+              "KPI_UE_0022_0": "KPI",
+              "KPI_UE_0023_0": "KPI",
+              "KPI_UE_0024_0": "KPI",
+              "KPI_UE_0025_0": "KPI",
+              "KPI_UE_0026_0": "KPI",
+              "KPI_UE_0027_0": "KPI",
+              "KPI_UE_0028_0": "KPI",
+              "KPI_UE_0029_0": "KPI",
+              "KPI_UE_0030_0": "KPI",
+              "KPI_UE_0031_0": "KPI",
+              "KPI_UE_0032_0": "KPI",
+              "KPI_UE_0033_0": "KPI",
+              "KPI_UE_0034_0": "KPI",
+              "KPI_UE_0035_0": "KPI",
+              "KPI_UE_0036_0": "KPI",
+              "KPI_UE_0037_0": "KPI",
+              "KPI_UE_0038_0": "KPI",
+              "KPI_UE_0039_0": "KPI",
+              "KPI_UE_0040_0": "KPI",
+              "KPI_UE_0041_0": "KPI",
+              "KPI_UE_0042_0": "KPI",
+              "KPI_UE_0043_0": "KPI",
+              "KPI_UE_0044_0": "KPI",
+              "KPI_UE_0045_0": "KPI",
+              "KPI_UE_0046_0": "KPI",
+              "KPI_UE_0047_0": "KPI",
+              "KPI_UE_0048_0": "KPI",
+              "KPI_UE_0049_0": "KPI",
+              "KPI_UE_0000_1": "KPI",
+              "KPI_UE_0001_1": "KPI",
+              "KPI_UE_0002_1": "KPI",
+              "KPI_UE_0003_1": "KPI",
+              "KPI_UE_0004_1": "KPI",
+              "KPI_UE_0005_1": "KPI",
+              "KPI_UE_0006_1": "KPI",
+              "KPI_UE_0007_1": "KPI",
+              "KPI_UE_0008_1": "KPI",
+              "KPI_UE_0009_1": "KPI",
+              "KPI_UE_0010_1": "KPI",
+              "KPI_UE_0011_1": "KPI",
+              "KPI_UE_0012_1": "KPI",
+              "KPI_UE_0013_1": "KPI",
+              "KPI_UE_0014_1": "KPI",
+              "KPI_UE_0015_1": "KPI",
+              "KPI_UE_0016_1": "KPI",
+              "KPI_UE_0017_1": "KPI",
+              "KPI_UE_0018_1": "KPI",
+              "KPI_UE_0019_1": "KPI",
+              "KPI_UE_0020_1": "KPI",
+              "KPI_UE_0021_1": "KPI",
+              "KPI_UE_0022_1": "KPI",
+              "KPI_UE_0023_1": "KPI",
+              "KPI_UE_0024_1": "KPI",
+              "KPI_UE_0025_1": "KPI",
+              "KPI_UE_0026_1": "KPI",
+              "KPI_UE_0027_1": "KPI",
+              "KPI_UE_0028_1": "KPI",
+              "KPI_UE_0029_1": "KPI",
+              "KPI_UE_0030_1": "KPI",
+              "KPI_UE_0031_1": "KPI",
+              "KPI_UE_0032_1": "KPI",
+              "KPI_UE_0033_1": "KPI",
+              "KPI_UE_0034_1": "KPI",
+              "KPI_UE_0035_1": "KPI",
+              "KPI_UE_0036_1": "KPI",
+              "KPI_UE_0037_1": "KPI",
+              "KPI_UE_0038_1": "KPI",
+              "KPI_UE_0039_1": "KPI",
+              "KPI_UE_0040_1": "KPI",
+              "KPI_UE_0041_1": "KPI",
+              "KPI_UE_0042_1": "KPI",
+              "KPI_UE_0043_1": "KPI",
+              "KPI_UE_0044_1": "KPI",
+              "KPI_UE_0045_1": "KPI",
+              "KPI_UE_0046_1": "KPI",
+              "KPI_UE_0047_1": "KPI",
+              "KPI_UE_0048_1": "KPI",
+              "KPI_UE_0049_1": "KPI"
+            }
+          },
+          "connected_ues": 8,
+          "active_threats": 6,
+          "llm_insight": "Based on Nokia CFAM/3GPP knowledge base:\n{\n\"metadata\": {\n\"source\": \"Nokia System Insights MCP search_specs\",\n\"fetched\": \"2026-07-14\",\n\"queries\": [\n\"mobility robustness handover\",\n\"autonomous RAN AI scheduling\",\n\"CQI SINR PRB scheduling\"\n]\n},\n\"cfam_features\": [\n{\n\"feature_id\": \"OSS_FC_017307\",\n\"title\": \"5G Mobility Robustness Optimization for Nokia SA\",\n\"req_ids\": [\n\"OSS_FC_017307-3\",\n\"OSS_FC_017307-25\",\n\"OSS_FC_017307-53\"\n],\n\"description\": \"Measurement-based centralized SON to minimize Late/Earl",
+          "llm_provider": "nokia_cached",
+          "recommended_agents": [
+            "scheduler",
+            "qoe"
+          ]
+        }
+      },
+      {
+        "action_type": "intent",
+        "parameters": {
+          "parsed_intent": {
+            "operator_intent": "Reduce energy by 20%, improve throughput, maintain URLLC QoS",
+            "primary_agent": "scheduler",
+            "policies": [
+              {
+                "intent": "reduce_energy",
+                "agent": "energy"
+              },
+              {
+                "intent": "low_latency",
+                "agent": "scheduler"
+              },
+              {
+                "intent": "high_throughput",
+                "agent": "scheduler"
+              }
+            ],
+            "llm_reasoning": "Based on Nokia CFAM/3GPP knowledge base:\n{\n\"metadata\": {\n\"source\": \"Nokia System Insights MCP search_specs\",\n\"fetched\": \"2026-07-14\",\n\"queries\": [\n\"mobility robustness handover\",\n\"autonomous RAN AI scheduling\",\n\"CQI SINR PRB scheduling\"\n]\n},\n\"cfam_features\": [\n{\n\"feature_id\": \"OSS_FC_017307\",\n\"title\": \"5G Mobility Robustness Optimization for Nokia SA\",\n\"req_ids\": [\n\"OSS_FC_017307-3\",\n\"OSS_FC_017307-25\",\n\"OSS_FC_017307-53\"\n],\n\"description\": \"Measurement-based centralized SON to minimize Late/Early/Wrong cell HOs and Ping-pong HOs in 5G/NR SA by tuning idle and connected mode mobility parameters.\",\n\"project_mapping\": [\n\"mobility_agent\",\n\"son_benchmark\"\n],\n\"kpis\": [\n\"handover_success_rate\",\n\"ping_pong_reduction\",\n\"rlf_reduction\"\n]\n},\n{\n\"feature_id\": \"SR003080\",\n\"title\": \"Power saving with TX path switching for Energy Efficiency\",\n\"req_ids\": [\n\"SR003080-917\"\n],\n\"description\": \"DL SINR estimation based on wideband CQI for interference-aware power control and energy saving.\",\n\"project_mapping\": [\n\"energy_agent\",\n\"resource_agent\"\n],\n\"kpis\": [\n\"energy_per_bit\",\n\"power_consumption\"\n]\n},\n{\n\"feature_id\": \"RP001677\",\n\"title\": \"Handover Performance Measurements\",\n\"req_ids\": [\n\"RP001677-21448\"\n],\n\"description\": \"PM counters for Late Handovers and UE Mobility Robustness (M8021C43).\",\n\"project_mapping\": [\n\"mobility_agent\",\n\"kpi_monitoring\"\n],\n\"kpis\": [\n\"late_handover_count\",\n\"mobility_robustness\"\n]\n},\n{\n\"feature_id\": \"SR001534\",\n\"title\": \"SRAN FM combined service - Autonomous Recovery\",\n\"req_ids\": [\n\"FTM-4194\",\n\"FTM-4195\",\n\"FTM-4199\",\n\"FTM-4200\"\n],\n\"description\": \"BTS autonomous recovery reset criteria: DSP, FSP, Radio, RAT, BTS, Site reset for self-healing.\",\n\"project_mapping\": [\n\"security_agent\",\n\"closed_loop\"\n],\n\"kpis\": [\n\"self_healing_rate\",\n\"recovery_time\"\n]\n},\n{\n\"feature_id\": \"RP001727\",\n\"title\": \"BTS Fault Management Improvements\",\n\"req_ids\": [\n\"FTM-1917\",\n\"FTM-1922\",\n\"FTM-1923\"\n],\n\"description\": \"Autonomous recovery reset time window and recovery list processing.\",\n\"project_mapping\": [\n\"security_agent\",\n\"digital_t\n{\n\"metadata\": {\n\"source\": \"3GPP specifications and project alignment (Autonomous_RAN_01.docx)\",\n\"generated\": \"2026-07-14\",\n\"note\": \"Curated from 3GPP Release 18/19/20 AI-RAN studies; system-insights unavailable at generation time\"\n},\n\"specifications\": [\n{\n\"ts_number\": \"TS 38.300\",\n\"title\": \"NR; Overall description; Stage 2\",\n\"relevance\": \"NR RAN architecture, gNB, CU/DU split, RRM framework\",\n\"project_mapping\": [\n\"scheduler_agent\",\n\"resource_agent\",\n\"mobility_agent\"\n]\n},\n{\n\"ts_number\": \"TS 38.331\",\n\"title\": \"NR; Radio Resource Control (RRC) protocol specification\",\n\"relevance\": \"Handover procedures, cell reselection, measurement reporting\",\n\"project_mapping\": [\n\"mobility_agent\"\n]\n},\n{\n\"ts_number\": \"TS 38.214\",\n\"title\": \"NR; Physical layer procedures for data\",\n\"relevance\": \"MCS selection, PRB allocation, link adaptation\",\n\"project_mapping\": [\n\"scheduler_agent\",\n\"air_interface_agent\"\n]\n},\n{\n\"ts_number\": \"TS 38.215\",\n\"title\": \"NR; Physical layer measurements\",\n\"relevance\": \"RSRP, RSRQ, \n\nQuery: Parse this network operator intent into agent policies: 'Reduce energy by 20%, improve throughput, maintain URLLC QoS'. Return JSON with primary_agent, policies, kpi_targets.\n\nRelevant features: Mobility Robustness Optimization (OSS_FC_017307), Energy Efficiency (SR003080), Autonomous Recovery (SR001534). Apply multi-agent coordination per O-RAN closed-loop architecture.",
+            "llm_provider": "nokia_cached"
+          },
+          "kpi_targets": {
+            "energy_reduction_pct": 20,
+            "latency_ms": 5,
+            "throughput_improvement_pct": 25
+          },
+          "policy_distribution": "A1_to_near_rt_ric",
+          "primary_agent": "scheduler"
+        }
+      }
+    ],
+    "kpi_before": {
+      "avg_throughput_mbps": 10.0,
+      "avg_latency_ms": 5.0,
+      "avg_cqi": 8.0,
+      "avg_sinr_db": 12.0,
+      "total_power_w": 2800.0,
+      "fairness_index": 1.0,
+      "handover_success_rate": 0.98,
+      "security_score": 0.95,
+      "qoe_score": 4.95,
+      "qos_sla_compliance": 0.95,
+      "energy_efficiency": 0.1785,
+      "beamforming_gain_db": 3.0,
+      "csi_accuracy": 0.92,
+      "timestamp": 0
+    },
+    "kpi_after": {
+      "avg_throughput_mbps": 19.07,
+      "avg_latency_ms": 3.49,
+      "avg_cqi": 8.71,
+      "avg_sinr_db": 15.38,
+      "total_power_w": 1680.0,
+      "fairness_index": 0.538,
+      "handover_success_rate": 0.98,
+      "security_score": 0.95,
+      "qoe_score": 4.97,
+      "qos_sla_compliance": 0.965,
+      "energy_efficiency": 0.5673,
+      "beamforming_gain_db": 3.87,
+      "csi_accuracy": 0.667,
+      "timestamp": 1
+    },
+    "parameter_updates": [
+      {
+        "id": "55651fe4",
+        "timestamp": "2026-07-14T16:21:47.264839+00:00",
+        "source": "agent",
+        "target": "UE_0000",
+        "agent": "scheduler_agent",
+        "before": {
+          "prb": 5,
+          "throughput": 10.0
+        },
+        "after": {
+          "prb": 13,
+          "throughput": 14.333333333333334
+        }
+      },
+      {
+        "id": "6c502389",
+        "timestamp": "2026-07-14T16:21:47.264878+00:00",
+        "source": "agent",
+        "target": "UE_0001",
+        "agent": "scheduler_agent",
+        "before": {
+          "prb": 5,
+          "throughput": 10.0
+        },
+        "after": {
+          "prb": 13,
+          "throughput": 14.333333333333334
+        }
+      },
+      {
+        "id": "aa21c90c",
+        "timestamp": "2026-07-14T16:21:47.264900+00:00",
+        "source": "agent",
+        "target": "UE_0002",
+        "agent": "scheduler_agent",
+        "before": {
+          "prb": 5,
+          "throughput": 10.0
+        },
+        "after": {
+          "prb": 13,
+          "throughput": 14.333333333333334
+        }
+      },
+      {
+        "id": "7e470aa6",
+        "timestamp": "2026-07-14T16:21:47.264917+00:00",
+        "source": "agent",
+        "target": "UE_0003",
+        "agent": "scheduler_agent",
+        "before": {
+          "prb": 5,
+          "throughput": 10.0
+        },
+        "after": {
+          "prb": 13,
+          "throughput": 14.333333333333334
+        }
+      },
+      {
+        "id": "37422864",
+        "timestamp": "2026-07-14T16:21:47.264934+00:00",
+        "source": "agent",
+        "target": "UE_0004",
+        "agent": "scheduler_agent",
+        "before": {
+          "prb": 5,
+          "throughput": 10.0
+        },
+        "after": {
+          "prb": 13,
+          "throughput": 14.333333333333334
+        }
+      },
+      {
+        "id": "8b7e0ec3",
+        "timestamp": "2026-07-14T16:21:47.264949+00:00",
+        "source": "agent",
+        "target": "UE_0005",
+        "agent": "scheduler_agent",
+        "before": {
+          "prb": 5,
+          "throughput": 10.0
+        },
+        "after": {
+          "prb": 13,
+          "throughput": 14.333333333333334
+        }
+      },
+      {
+        "id": "56c34229",
+        "timestamp": "2026-07-14T16:21:47.264963+00:00",
+        "source": "agent",
+        "target": "UE_0006",
+        "agent": "scheduler_agent",
+        "before": {
+          "prb": 5,
+          "throughput": 10.0
+        },
+        "after": {
+          "prb": 13,
+          "throughput": 14.333333333333334
+        }
+      },
+      {
+        "id": "3a950875",
+        "timestamp": "2026-07-14T16:21:47.264978+00:00",
+        "source": "agent",
+        "target": "UE_0007",
+        "agent": "scheduler_agent",
+        "before": {
+          "prb": 5,
+          "throughput": 10.0
+        },
+        "after": {
+          "prb": 13,
+          "throughput": 14.333333333333334
+        }
+      },
+      {
+        "id": "535a2cb9",
+        "timestamp": "2026-07-14T16:21:47.264993+00:00",
+        "source": "agent",
+        "target": "UE_0008",
+        "agent": "scheduler_agent",
+        "before": {
+          "prb": 5,
+          "throughput": 10.0
+        },
+        "after": {
+          "prb": 13,
+          "throughput": 14.333333333333334
+        }
+      },
+      {
+        "id": "1f319bce",
+        "timestamp": "2026-07-14T16:21:47.265007+00:00",
+        "source": "agent",
+        "target": "UE_0009",
+        "agent": "scheduler_agent",
+        "before": {
+          "prb": 5,
+          "throughput": 10.0
+        },
+        "after": {
+          "prb": 13,
+          "throughput": 14.333333333333334
+        }
+      },
+      {
+        "id": "0709cd65",
+        "timestamp": "2026-07-14T16:21:47.265028+00:00",
+        "source": "agent",
+        "target": "CELL_000",
+        "agent": "resource_agent",
+        "before": {
+          "power_w": 400.0
+        },
+        "after": {
+          "power_w": 340.0
+        }
+      },
+      {
+        "id": "07f7cafe",
+        "timestamp": "2026-07-14T16:21:47.265050+00:00",
+        "source": "agent",
+        "target": "CELL_000",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 340.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      },
+      {
+        "id": "42f6d670",
+        "timestamp": "2026-07-14T16:21:47.265066+00:00",
+        "source": "agent",
+        "target": "CELL_001",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 400.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      },
+      {
+        "id": "00cfada4",
+        "timestamp": "2026-07-14T16:21:47.265080+00:00",
+        "source": "agent",
+        "target": "CELL_002",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 400.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      },
+      {
+        "id": "d4f41ab3",
+        "timestamp": "2026-07-14T16:21:47.265093+00:00",
+        "source": "agent",
+        "target": "CELL_003",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 400.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      },
+      {
+        "id": "61216022",
+        "timestamp": "2026-07-14T16:21:47.265107+00:00",
+        "source": "agent",
+        "target": "CELL_004",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 400.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      },
+      {
+        "id": "b93971d3",
+        "timestamp": "2026-07-14T16:21:47.265131+00:00",
+        "source": "agent",
+        "target": "CELL_005",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 400.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      },
+      {
+        "id": "038a3f53",
+        "timestamp": "2026-07-14T16:21:47.265145+00:00",
+        "source": "agent",
+        "target": "CELL_006",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 400.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      }
+    ],
+    "super_agent_decision": {
+      "approved_count": 12,
+      "rejected_count": 0,
+      "approved_agents": [
+        "scheduler_agent",
+        "resource_agent",
+        "mobility_agent",
+        "security_agent",
+        "energy_agent",
+        "qos_agent",
+        "qoe_agent",
+        "channel_estimation_agent",
+        "beamforming_agent",
+        "csi_agent",
+        "knowledge_agent",
+        "intent_agent"
+      ],
+      "rejected": [],
+      "global_utility": 3.4852,
+      "policy_refs": [
+        "OSS_FC_017307",
+        "SR003080"
+      ],
+      "autonomy_level": 1.0
+    }
+  },
+  "comparison": {
+    "before": {
+      "avg_throughput_mbps": 10.0,
+      "avg_latency_ms": 5.0,
+      "avg_cqi": 8.0,
+      "avg_sinr_db": 12.0,
+      "total_power_w": 2800.0,
+      "fairness_index": 1.0,
+      "handover_success_rate": 0.98,
+      "security_score": 0.95,
+      "qoe_score": 4.95,
+      "qos_sla_compliance": 0.95,
+      "energy_efficiency": 0.1785,
+      "beamforming_gain_db": 3.0,
+      "csi_accuracy": 0.92,
+      "timestamp": 0
+    },
+    "after": {
+      "avg_throughput_mbps": 19.07,
+      "avg_latency_ms": 3.49,
+      "avg_cqi": 8.71,
+      "avg_sinr_db": 15.38,
+      "total_power_w": 1680.0,
+      "fairness_index": 0.538,
+      "handover_success_rate": 0.98,
+      "security_score": 0.95,
+      "qoe_score": 4.97,
+      "qos_sla_compliance": 0.965,
+      "energy_efficiency": 0.5673,
+      "beamforming_gain_db": 3.87,
+      "csi_accuracy": 0.667,
+      "timestamp": 1
+    },
+    "delta": {
+      "avg_throughput_mbps": 9.07,
+      "avg_latency_ms": -1.51,
+      "avg_cqi": 0.71,
+      "avg_sinr_db": 3.38,
+      "total_power_w": -1120.0,
+      "fairness_index": -0.462,
+      "handover_success_rate": 0.0,
+      "security_score": 0.0,
+      "qoe_score": 0.02,
+      "qos_sla_compliance": 0.015,
+      "energy_efficiency": 0.3888,
+      "beamforming_gain_db": 0.87,
+      "csi_accuracy": -0.253
+    },
+    "delta_pct": {
+      "avg_throughput_mbps": 90.7,
+      "avg_latency_ms": -30.2,
+      "avg_cqi": 8.88,
+      "avg_sinr_db": 28.17,
+      "total_power_w": -40.0,
+      "fairness_index": -46.2,
+      "handover_success_rate": 0.0,
+      "security_score": 0.0,
+      "qoe_score": 0.4,
+      "qos_sla_compliance": 1.58,
+      "energy_efficiency": 217.82,
+      "beamforming_gain_db": 29.0,
+      "csi_accuracy": -27.5
+    },
+    "parameter_changes": [
+      {
+        "id": "535a2cb9",
+        "timestamp": "2026-07-14T16:21:47.264993+00:00",
+        "source": "agent",
+        "target": "UE_0008",
+        "agent": "scheduler_agent",
+        "before": {
+          "prb": 5,
+          "throughput": 10.0
+        },
+        "after": {
+          "prb": 13,
+          "throughput": 14.333333333333334
+        }
+      },
+      {
+        "id": "1f319bce",
+        "timestamp": "2026-07-14T16:21:47.265007+00:00",
+        "source": "agent",
+        "target": "UE_0009",
+        "agent": "scheduler_agent",
+        "before": {
+          "prb": 5,
+          "throughput": 10.0
+        },
+        "after": {
+          "prb": 13,
+          "throughput": 14.333333333333334
+        }
+      },
+      {
+        "id": "0709cd65",
+        "timestamp": "2026-07-14T16:21:47.265028+00:00",
+        "source": "agent",
+        "target": "CELL_000",
+        "agent": "resource_agent",
+        "before": {
+          "power_w": 400.0
+        },
+        "after": {
+          "power_w": 340.0
+        }
+      },
+      {
+        "id": "07f7cafe",
+        "timestamp": "2026-07-14T16:21:47.265050+00:00",
+        "source": "agent",
+        "target": "CELL_000",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 340.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      },
+      {
+        "id": "42f6d670",
+        "timestamp": "2026-07-14T16:21:47.265066+00:00",
+        "source": "agent",
+        "target": "CELL_001",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 400.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      },
+      {
+        "id": "00cfada4",
+        "timestamp": "2026-07-14T16:21:47.265080+00:00",
+        "source": "agent",
+        "target": "CELL_002",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 400.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      },
+      {
+        "id": "d4f41ab3",
+        "timestamp": "2026-07-14T16:21:47.265093+00:00",
+        "source": "agent",
+        "target": "CELL_003",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 400.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      },
+      {
+        "id": "61216022",
+        "timestamp": "2026-07-14T16:21:47.265107+00:00",
+        "source": "agent",
+        "target": "CELL_004",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 400.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      },
+      {
+        "id": "b93971d3",
+        "timestamp": "2026-07-14T16:21:47.265131+00:00",
+        "source": "agent",
+        "target": "CELL_005",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 400.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      },
+      {
+        "id": "038a3f53",
+        "timestamp": "2026-07-14T16:21:47.265145+00:00",
+        "source": "agent",
+        "target": "CELL_006",
+        "agent": "energy_agent",
+        "before": {
+          "power_w": 400.0,
+          "sleep": false
+        },
+        "after": {
+          "power_w": 240.0,
+          "sleep": false
+        }
+      }
+    ]
+  },
+  "super_agent": {
+    "role": "super_agent",
+    "agents_managed": [
+      "scheduler",
+      "resource",
+      "mobility",
+      "security",
+      "energy",
+      "qos",
+      "qoe",
+      "channel_estimation",
+      "beamforming",
+      "csi",
+      "knowledge",
+      "intent"
+    ],
+    "validations": 1,
+    "handover_success_rate": 0.98,
+    "security_score": 0.95,
+    "nokia_cfam_features": 5
+  }
+}

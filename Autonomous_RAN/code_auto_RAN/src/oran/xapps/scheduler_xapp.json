@@ -1,0 +1,24 @@
+{
+  "xapp_descriptor": {
+    "name": "scheduler_xapp",
+    "version": "1.0.0",
+    "description": "AI-Native QoS-aware scheduler xApp for Near-RT RIC",
+    "agent": "scheduler_agent",
+    "maven_group": "com.nokia.autonomousran",
+    "ric_placements": ["near_rt_ric"],
+    "interfaces": {
+      "e2_subscription": ["E2SM-KPM", "E2SM-RC"],
+      "control_actions": ["PRB_allocation", "MCS_selection", "QoS_prioritization"]
+    },
+    "runtime": {
+      "container_image": "autonomous-ran/scheduler-xapp:1.0",
+      "resources": {"cpu": "500m", "memory": "512Mi"},
+      "latency_budget_ms": 10
+    },
+    "ai_model": {
+      "type": "GradientBoostingRegressor",
+      "inputs": ["cqi", "sinr_db", "buffer_occupancy", "latency_ms", "mcs", "prb_allocated"],
+      "outputs": ["prb_assignment", "scheduling_priority", "mcs_recommendation"]
+    }
+  }
+}

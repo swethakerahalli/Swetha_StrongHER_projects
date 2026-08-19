@@ -1,0 +1,213 @@
+{
+  "agents": {
+    "scheduler": {
+      "id": "scheduler_agent",
+      "type": "reinforcement_learning",
+      "algorithms": ["PPO", "DQN"],
+      "inputs": ["cqi", "sinr", "rsrp", "rsrq", "buffer_occupancy", "latency_requirement", "traffic_class", "mcs"],
+      "outputs": ["prb_assignment", "scheduling_priority", "mcs_recommendation"],
+      "reward_components": ["throughput", "fairness", "latency", "prb_utilization"],
+      "oran_deployment": "near_rt_ric_xapp",
+      "expected_gain_pct": 25
+    },
+    "resource": {
+      "id": "resource_agent",
+      "type": "multi_agent_rl",
+      "algorithms": ["MADDPG", "PPO"],
+      "inputs": ["spectrum_usage", "power_level", "cell_load", "interference", "sinr"],
+      "outputs": ["bandwidth_allocation", "power_allocation", "mimo_streams", "carrier_aggregation"],
+      "reward_components": ["spectral_efficiency", "interference_reduction"],
+      "oran_deployment": "near_rt_ric_xapp"
+    },
+    "mobility": {
+      "id": "mobility_agent",
+      "type": "prediction",
+      "algorithms": ["LSTM", "Transformer", "GNN"],
+      "inputs": ["rsrp", "rsrq", "velocity", "direction", "cell_load", "neighbor_cells"],
+      "outputs": ["handover_recommendation", "target_cell", "mobility_trajectory"],
+      "reward_components": ["handover_success", "ping_pong_reduction", "qoe"],
+      "oran_deployment": "near_rt_ric_xapp"
+    },
+    "security": {
+      "id": "security_agent",
+      "type": "anomaly_detection",
+      "algorithms": ["Autoencoder", "IsolationForest", "GNN"],
+      "inputs": ["ids_logs", "auth_events", "packet_flow", "spectrum_anomalies"],
+      "outputs": ["threat_score", "mitigation_action", "quarantine_list"],
+      "modules": ["threat_prediction", "threat_detection", "threat_mitigation", "self_healing"],
+      "threat_types": ["jamming", "spoofing", "ddos", "rogue_gnb", "pilot_contamination", "model_poisoning"],
+      "oran_deployment": "near_rt_ric_xapp"
+    },
+    "energy": {
+      "id": "energy_agent",
+      "type": "reinforcement_learning",
+      "algorithms": ["PPO", "DQN"],
+      "inputs": ["power_consumption", "cell_utilization", "traffic_demand", "renewable_availability"],
+      "outputs": ["sleep_mode_policy", "power_control", "carbon_aware_scheduling"],
+      "reward_components": ["energy_efficiency", "throughput_per_watt"],
+      "target_reduction_pct": 50
+    },
+    "carbon": {
+      "id": "carbon_agent",
+      "type": "supervised_learning",
+      "algorithms": ["GradientBoosting"],
+      "inputs": ["power_consumption_w", "cell_utilization", "renewable_pct", "carbon_intensity_gco2_kwh", "traffic_demand_mbps"],
+      "outputs": ["carbon_reduction_pct", "renewable_routing_pct", "green_scheduling_enabled", "carbon_kg_co2_per_h"],
+      "reward_components": ["carbon_reduction", "renewable_utilization", "green_throughput"],
+      "target_reduction_pct": 55,
+      "ai_driven": true,
+      "oran_deployment": "non_rt_ric_rapp",
+      "nokia_mapping": ["SR003080", "green_telecom_carbon_aware_RAN"]
+    },
+    "ran_sleep": {
+      "id": "ran_sleep_agent",
+      "type": "supervised_learning",
+      "algorithms": ["GradientBoosting"],
+      "inputs": ["cell_utilization", "traffic_demand_mbps", "power_consumption_w", "sleep_state"],
+      "outputs": ["sleep_mode", "tx_path_switch", "power_saving_pct"],
+      "target_reduction_pct": 35,
+      "ai_driven": true,
+      "nokia_mapping": ["SR003080"]
+    },
+    "renewable_energy": {
+      "id": "renewable_energy_agent",
+      "type": "supervised_learning",
+      "algorithms": ["GradientBoosting"],
+      "inputs": ["renewable_pct", "power_consumption_w", "cell_utilization"],
+      "outputs": ["renewable_routing_pct", "green_power_priority", "carbon_offset_pct"],
+      "target_gain_pct": 45,
+      "ai_driven": true
+    },
+    "edge_inference": {
+      "id": "edge_inference_agent",
+      "type": "supervised_learning",
+      "algorithms": ["RandomForest"],
+      "inputs": ["latency_ms", "throughput_mbps", "cell_utilization", "packet_rate_pps"],
+      "outputs": ["edge_latency_ms", "inference_offload_pct", "latency_reduction_pct"],
+      "target_reduction_pct": 45,
+      "ai_driven": true,
+      "oran_deployment": "near_rt_ric_xapp"
+    },
+    "green_slice": {
+      "id": "green_slice_agent",
+      "type": "supervised_learning",
+      "algorithms": ["GradientBoosting"],
+      "inputs": ["prb_utilization", "sla_compliance", "power_consumption_w", "renewable_pct"],
+      "outputs": ["green_slice_action", "energy_saving_pct", "slice_efficiency_gain_pct"],
+      "target_gain_pct": 25,
+      "ai_driven": true
+    },
+    "traffic": {
+      "id": "traffic_agent",
+      "type": "supervised_learning",
+      "algorithms": ["GradientBoosting", "RandomForest"],
+      "inputs": ["buffer_occupancy", "throughput_mbps", "latency_ms", "packet_loss", "prb_allocated"],
+      "outputs": ["traffic_action", "reroute_pct", "congestion_reduction_pct", "peak_throughput_boost_pct"],
+      "target_congestion_reduction_pct": 35,
+      "ai_driven": true,
+      "oran_deployment": "near_rt_ric_xapp"
+    },
+    "qoe": {
+      "id": "qoe_agent",
+      "type": "supervised_learning",
+      "algorithms": ["RandomForest", "GradientBoosting"],
+      "inputs": ["throughput", "latency", "jitter", "packet_loss", "application_type"],
+      "outputs": ["qoe_score", "mos_estimate", "optimization_action"],
+      "reward_components": ["user_satisfaction", "application_performance"]
+    },
+    "slice": {
+      "id": "slice_agent",
+      "type": "supervised_learning",
+      "algorithms": ["GradientBoosting", "RandomForest"],
+      "inputs": ["prb_utilization", "active_ues", "sla_compliance", "throughput_mbps", "latency_p99_ms"],
+      "outputs": ["prb_share_pct", "isolation_level", "slice_rebalance", "sla_target"],
+      "reward_components": ["slice_efficiency", "sla_compliance", "isolation"],
+      "oran_deployment": "near_rt_ric_xapp",
+      "expected_gain_pct": 22,
+      "ai_driven": true
+    },
+    "qos": {
+      "id": "qos_agent", "type": "supervised_learning", "algorithms": ["GradientBoosting"],
+      "inputs": ["latency_ms", "throughput_mbps", "packet_loss", "prb_allocated"],
+      "outputs": ["qos_action", "priority_boost", "sla_violation_prob"],
+      "ai_driven": true, "oran_deployment": "near_rt_ric_xapp"
+    },
+    "channel_estimation": {
+      "id": "channel_estimation_agent", "type": "deep_learning", "algorithms": ["MLPRegressor"],
+      "inputs": ["sinr_db", "cqi", "velocity_mps", "rsrp_dbm"],
+      "outputs": ["csi_accuracy", "estimated_channel_power"], "ai_driven": true
+    },
+    "beamforming": {
+      "id": "beamforming_agent", "type": "supervised_learning", "algorithms": ["RandomForest"],
+      "inputs": ["sinr_db", "cqi", "rsrp_dbm"], "outputs": ["beamforming_mode", "beamforming_gain_db"],
+      "ai_driven": true, "oran_deployment": "near_rt_ric_xapp"
+    },
+    "csi": {
+      "id": "csi_agent", "type": "supervised_learning", "algorithms": ["GradientBoosting", "PCA"],
+      "inputs": ["cqi", "sinr_db", "rsrp_dbm", "mcs"], "outputs": ["csi_accuracy", "compression_ratio"],
+      "ai_driven": true
+    },
+    "air_interface": {
+      "id": "air_interface_agent", "type": "supervised_learning", "algorithms": ["GradientBoosting"],
+      "inputs": ["sinr_db", "cqi", "mcs", "prb_allocated"],
+      "outputs": ["waveform", "modulation", "optimal_mcs", "spectral_efficiency"],
+      "ai_driven": true, "standards": ["3GPP TR 38.843", "TS 38.214"]
+    },
+    "digital_twin": {
+      "id": "digital_twin_agent", "type": "supervised_learning", "algorithms": ["GradientBoosting"],
+      "inputs": ["avg_throughput_mbps", "avg_latency_ms", "total_power_w", "cell_utilization"],
+      "outputs": ["fidelity_score", "policy_validation", "what_if_recommended"],
+      "ai_driven": true, "standards": ["3GPP TS 28.104"]
+    },
+    "spectrum": {
+      "id": "spectrum_agent", "type": "supervised_learning", "algorithms": ["GradientBoosting"],
+      "inputs": ["spectrum_anomaly_score", "cell_utilization", "interference_db"],
+      "outputs": ["spectrum_action", "bandwidth_mhz", "dynamic_spectrum_sharing"],
+      "ai_driven": true, "oran_deployment": "near_rt_ric_xapp"
+    },
+    "self_healing": {
+      "id": "self_healing_agent", "type": "supervised_learning", "algorithms": ["GradientBoosting"],
+      "inputs": ["packet_rate_pps", "auth_failures", "spectrum_anomaly_score"],
+      "outputs": ["recovery_action", "healing_probability", "severity_level"],
+      "ai_driven": true, "nokia_mapping": ["SR001534"]
+    },
+    "knowledge": {
+      "id": "knowledge_agent", "type": "llm_kg", "algorithms": ["LLM", "KnowledgeGraph"],
+      "inputs": ["kpi_anomaly", "operator_intent"], "ai_driven": true,
+      "mcp_sources": ["system-insights", "sharepoint", "confluence"]
+    },
+    "intent": {
+      "id": "intent_agent", "type": "llm", "algorithms": ["Ollama", "Nokia_LLM"],
+      "inputs": ["operator_intent"], "outputs": ["parsed_intent", "kpi_targets"], "ai_driven": true
+    },
+    "agent_optimizer": {
+      "id": "agent_optimizer_agent", "type": "meta_learning",
+      "algorithms": ["GradientBoosting", "HyperparamSearch"],
+      "inputs": ["performance_index", "improvement_pct", "confidence", "degradation_score"],
+      "outputs": ["optimization_action", "retrain_epochs", "weight_adjustment"],
+      "role": "Monitor degraded agents and trigger re-optimization",
+      "oran_deployment": "non_rt_ric_rapp"
+    },
+    "coordination": {
+      "id": "coordination_agent", "type": "meta_orchestration",
+      "algorithms": ["RuleEngine", "UtilityConsensus", "GradientBoosting"],
+      "inputs": ["raw_actions", "kpi_before", "agent_conflicts", "num_actions"],
+      "outputs": ["resolved_actions", "conflict_log", "coordination_strategy"],
+      "role": "Inter-agent conflict resolution and multi-domain coordination",
+      "oran_deployment": "non_rt_ric_rapp",
+      "expected_gain_pct": 40
+    }
+  },
+  "multi_agent": {
+    "framework": "collaborative_marl",
+    "communication": ["knowledge_graph", "shared_memory", "consensus_learning"],
+    "global_reward": "R = w1*T - w2*L + w3*Q + w4*S - w5*E + w6*R"
+  },
+  "federated_learning": {
+    "framework": "fedavg",
+    "num_clients": 5,
+    "rounds": 10,
+    "local_epochs": 3,
+    "privacy": "differential_privacy_optional"
+  }
+}
