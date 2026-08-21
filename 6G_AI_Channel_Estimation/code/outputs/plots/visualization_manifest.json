@@ -1,0 +1,33 @@
+{
+  "plots_generated": [
+    "hist_dataset_splits.png",
+    "cdf_scenario_kpis.png",
+    "cdf_nmse_estimators.png",
+    "heatmap_feature_correlation.png",
+    "heatmap_scenario_profile_nmse.png",
+    "heatmap_attack_nmse.png",
+    "bar_nmse_by_scenario.png",
+    "classification_attack_distribution.png",
+    "classification_confusion_matrix.png",
+    "classification_scatter.png",
+    "classification_roc.png",
+    "benchmark_ls_mmse_ai.png",
+    "model_train_val_test.png",
+    "model_training_curves.png",
+    "ber_vs_snr.png",
+    "mobility_spatial_map.png",
+    "digital_twin_timeseries.png",
+    "digital_twin_map.png",
+    "architecture_scorecard.png",
+    "architecture_radar.png",
+    "agents/channel_hist_cdf.png",
+    "agents/csi_prediction_hist_cdf.png",
+    "agents/security_hist_cdf.png",
+    "agents/mitigation_hist_cdf.png",
+    "agents/beam_hist_cdf.png",
+    "agents/mobility_hist_cdf.png",
+    "agents/optimization_hist_cdf.png",
+    "agents/digital_twin_hist_cdf.png"
+  ],
+  "count": 28
+}

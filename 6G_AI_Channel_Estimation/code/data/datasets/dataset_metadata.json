@@ -1,0 +1,48 @@
+{
+  "n_rows": 80000,
+  "split_counts": {
+    "train": 56000,
+    "validation": 12000,
+    "test": 12000
+  },
+  "scenarios": {
+    "THz": 10081,
+    "UMi": 10037,
+    "FR2-mmWave": 10031,
+    "UMa": 10000,
+    "NTN-LEO": 9986,
+    "RMa": 9981,
+    "RIS": 9964,
+    "InH": 9920
+  },
+  "attacks": {
+    "normal": 57483,
+    "pilot_contamination": 5567,
+    "jamming": 4855,
+    "csi_spoofing": 4060,
+    "false_csi_injection": 3200,
+    "data_poisoning": 2465,
+    "adversarial": 1588,
+    "backdoor": 782
+  },
+  "profiles": {
+    "CDL-B": 8124,
+    "CDL-C": 8069,
+    "TDL-C": 8058,
+    "CDL-E": 8050,
+    "TDL-E": 8000,
+    "TDL-D": 7983,
+    "TDL-B": 7950,
+    "CDL-D": 7939,
+    "CDL-A": 7929,
+    "TDL-A": 7898
+  },
+  "standards": [
+    "3GPP TR 38.901 CDL/TDL",
+    "3GPP TS 38.211 DMRS/CSI-RS",
+    "3GPP TS 38.214 CSI reporting",
+    "3GPP TR 38.843 AI/ML for NR air interface",
+    "3GPP TR 38.811 NTN channel",
+    "3GPP TS 38.101-4 TDL-A30/B100/C300"
+  ]
+}

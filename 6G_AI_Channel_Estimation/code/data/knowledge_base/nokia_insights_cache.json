@@ -1,0 +1,24 @@
+{
+  "source": "Nokia System Insights MCP (ask + search_specs) on 2026-08-20",
+  "session_notes": "Queried 3GPP channel estimation, CDL/TDL, DMRS, Rel-18/19 AI/ML air interface.",
+  "highlights": [
+    "Channel estimation uses known DMRS for PDSCH/PUSCH demodulation (Nokia CFAM RP003187 / 5GMax algorithm spec 5G_L1_2794).",
+    "TR 38.901 CDL models for MIMO/beamforming; TDL models for demodulation performance (TS 38.101-4 TDLA30/TDLB100/TDLC300).",
+    "Rel-18 TR 38.843 studied AI/ML CSI compression, CSI prediction, and beam management; Rel-19 specifies CSI prediction and beam prediction cases.",
+    "Evaluation metrics: NMSE of estimated vs true channel, BER after equalization, CSI feedback overhead, throughput.",
+    "FR1 410 MHz–7125 MHz; FR2-1 24.25–52.6 GHz; FR2-2 52.6–71 GHz (TS 38.101-1).",
+    "NTN-TDLA100 (3 taps, 100 ns RMS) and NTN-TDLC5 from TR 38.811 / TS 36.102."
+  ],
+  "cfam_requirements": [
+    {
+      "req_id": "RP003187-2115",
+      "module": "CFAM_RP003187_Thor_SW_development_on_simulator_environment",
+      "summary": "Channel estimation of channel coefficients for data-symbol demodulation based on DMRS."
+    },
+    {
+      "req_id": "RP003187-2929",
+      "module": "CFAM_RP003187_Thor_SW_development_on_simulator_environment",
+      "summary": "PUSCH receiver channel estimation from DMRS (L1-HI EFS)."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "agents": [
+    {"id": "channel", "name": "Channel Estimation Agent", "layer": "PHY", "models": ["ls", "mmse", "cnn_mlp", "lstm_gb", "transformer_mlp", "ensemble"]},
+    {"id": "csi_prediction", "name": "CSI Prediction Agent", "layer": "PHY", "models": ["gradient_boosting"]},
+    {"id": "csi_feedback", "name": "CSI Feedback Agent", "layer": "PHY", "models": ["gradient_boosting"]},
+    {"id": "pilot", "name": "Pilot / DMRS Agent", "layer": "PHY", "models": ["gradient_boosting"]},
+    {"id": "equalizer", "name": "Equalizer Agent", "layer": "PHY", "models": ["gradient_boosting"]},
+    {"id": "air_interface", "name": "Air-Interface RS Agent", "layer": "PHY", "models": ["gradient_boosting"]},
+    {"id": "beam", "name": "Beam Management Agent", "layer": "PHY", "models": ["random_forest"]},
+    {"id": "spectrum", "name": "Spectrum / Carrier Agent", "layer": "PHY", "models": ["gradient_boosting"]},
+    {"id": "security", "name": "Security Agent", "layer": "Security", "models": ["xgboost_rf", "isolation_forest"]},
+    {"id": "mitigation", "name": "Mitigation Agent", "layer": "Security", "models": ["policy_tree"]},
+    {"id": "self_healing", "name": "Self-Healing Agent", "layer": "Security", "models": ["gradient_boosting"]},
+    {"id": "mobility", "name": "Mobility Agent", "layer": "RRC", "models": ["gradient_boosting"]},
+    {"id": "optimization", "name": "Optimization Agent", "layer": "MAC", "models": ["gradient_boosting"]},
+    {"id": "resource", "name": "Resource / PRB Agent", "layer": "MAC", "models": ["gradient_boosting"]},
+    {"id": "digital_twin", "name": "Digital Twin Agent", "layer": "Twin", "models": ["fidelity_regressor"]},
+    {"id": "explainability", "name": "Explainability Agent", "layer": "XAI", "models": ["permutation_importance"]},
+    {"id": "knowledge", "name": "Knowledge Agent", "layer": "Knowledge", "models": ["standards_map"]},
+    {"id": "orchestrator", "name": "Orchestrator Agent", "layer": "Control", "models": ["fusion"]},
+    {"id": "coordinator", "name": "Coordinator Agent", "layer": "Control", "models": ["conflict_rules", "gradient_boosting"]},
+    {"id": "super", "name": "Super Agent", "layer": "Control", "models": ["control_gate", "gradient_boosting"]}
+  ],
+  "control_loop": ["domain_agents", "orchestrator", "coordinator", "super", "digital_twin"],
+  "conflict_priority": ["security", "mitigation", "self_healing", "digital_twin", "channel", "pilot", "mobility", "beam", "spectrum", "optimization"],
+  "split": {"train": 0.70, "validation": 0.15, "test": 0.15, "random_state": 42}
+}

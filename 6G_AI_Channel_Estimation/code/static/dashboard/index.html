@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6G AI Channel Intelligence</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #060b14;
+      --panel: #0e1828;
+      --panel-2: #152338;
+      --line: #2a3d5c;
+      --text: #eef4fc;
+      --muted: #9bb0c9;
+      --cyan: #00c9ff;
+      --gold: #f5c451;
+      --green: #3ddc97;
+      --pink: #ff6b9d;
+      --orange: #ff8a3d;
+      --chatw: 320px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    header {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: 0.75rem 1.2rem;
+      background: linear-gradient(90deg, #071018 0%, #0c2744 55%, #071018 100%);
+      border-bottom: 1px solid var(--line);
+      position: sticky; top: 0; z-index: 20;
+    }
+    header h1 { font-size: 1.12rem; letter-spacing: 0.03em; }
+    header h1 span { color: var(--cyan); }
+    .sub { color: var(--muted); font-size: 0.75rem; }
+    .badges { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+    .badge { font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 999px; }
+    .live { background: var(--green); color: #042015; }
+    .ai { background: var(--cyan); color: #04202a; }
+    .std { background: var(--gold); color: #2a2108; }
+    .stat { background: var(--panel-2); color: var(--text); border: 1px solid var(--line); }
+    nav { display: flex; gap: 0.3rem; padding: 0.5rem 1.1rem; border-bottom: 1px solid var(--line); overflow-x: auto; background: #0a1422; }
+    nav button {
+      background: transparent; border: 1px solid var(--line); color: var(--muted);
+      padding: 0.42rem 0.8rem; border-radius: 8px; cursor: pointer; font-size: 0.78rem; white-space: nowrap;
+    }
+    nav button.active { color: #04202a; background: var(--cyan); border-color: var(--cyan); font-weight: 700; }
+    .wrap { display: grid; grid-template-columns: 1fr var(--chatw); gap: 0.85rem; padding: 0.85rem; }
+    body.chat-collapsed { --chatw: 0px; }
+    body.chat-collapsed .chat { display: none; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 0.95rem; }
+    .panel h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.7rem; }
+    .kpis { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 0.55rem; }
+    .kpi { background: var(--panel-2); border-radius: 10px; padding: 0.7rem; border: 1px solid transparent; }
+    .kpi .v { font-size: 1.28rem; font-weight: 700; color: var(--cyan); line-height: 1.15; }
+    .kpi .l { font-size: 0.7rem; color: var(--muted); margin-top: 0.22rem; }
+    .kpi .d { font-size: 0.72rem; color: var(--green); }
+    .target { margin: 0.45rem 0; font-size: 0.75rem; }
+    .bar { height: 8px; background: #1c2b44; border-radius: 6px; overflow: hidden; margin-top: 0.22rem; }
+    .fill { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--green)); }
+    .fill.ok { background: var(--green); }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-top: 0.85rem; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.85rem; margin-top: 0.85rem; }
+    .agents { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 0.5rem; }
+    .chip { background: var(--panel-2); border-left: 3px solid var(--cyan); padding: 0.55rem 0.6rem; border-radius: 8px; font-size: 0.72rem; cursor: pointer; }
+    .chip:hover { border-left-color: var(--gold); }
+    .chip b { display: block; margin-bottom: 0.15rem; }
+    .chip .meta { color: var(--muted); font-size: 0.65rem; }
+    .layer-PHY { border-left-color: #00c9ff; }
+    .layer-Security { border-left-color: #ff6b9d; }
+    .layer-RRC { border-left-color: #f5c451; }
+    .layer-MAC { border-left-color: #3ddc97; }
+    .layer-Twin { border-left-color: #7c9cff; }
+    .layer-XAI { border-left-color: #c9a0ff; }
+    .layer-Knowledge { border-left-color: #8aa0bd; }
+    .layer-Control { border-left-color: #ff8a3d; }
+    .plots { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0.55rem; }
+    .thumb { background: var(--panel-2); border-radius: 8px; padding: 0.4rem; cursor: pointer; border: 1px solid transparent; }
+    .thumb:hover, .thumb.on { border-color: var(--cyan); }
+    .thumb img { width: 100%; height: 128px; object-fit: contain; background: #070d18; border-radius: 6px; }
+    .thumb span { display: block; font-size: 0.65rem; color: var(--muted); margin-top: 0.28rem; }
+    .preview img { width: 100%; border-radius: 8px; background: #070d18; max-height: 420px; object-fit: contain; }
+    canvas.twin-map { width: 100%; height: 420px; display: block; min-height: 420px; background: #070d18; border-radius: 8px; border: 1px solid var(--line); }
+    .twin-legend { display: flex; gap: 0.8rem; flex-wrap: wrap; font-size: 0.7rem; color: var(--muted); margin-top: 0.5rem; }
+    .twin-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 0.3rem; }
+    .twin-side { max-height: 420px; overflow: auto; font-size: 0.72rem; }
+    .twin-row { display: flex; justify-content: space-between; padding: 0.28rem 0; border-bottom: 1px solid var(--line); }
+    .btn { background: var(--cyan); color: #04202a; border: none; padding: 0.45rem 0.8rem; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.78rem; margin: 0.12rem 0.25rem 0.12rem 0; }
+    .btn.alt { background: var(--gold); }
+    .btn.ok { background: var(--green); }
+    .btn.ghost { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+    .chat { display: flex; flex-direction: column; height: calc(100vh - 132px); position: sticky; top: 118px; }
+    .msgs { flex: 1; overflow: auto; font-size: 0.78rem; }
+    .msg { margin: 0.4rem 0; padding: 0.5rem 0.6rem; border-radius: 8px; white-space: pre-wrap; }
+    .bot { background: var(--panel-2); }
+    .user { background: #12344a; margin-left: 1.2rem; }
+    .chat-in { display: flex; gap: 0.4rem; margin-top: 0.5rem; }
+    .chat-in input { flex: 1; background: var(--panel-2); border: 1px solid var(--line); color: var(--text); padding: 0.5rem; border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.74rem; }
+    th, td { border-bottom: 1px solid var(--line); padding: 0.4rem 0.45rem; text-align: left; vertical-align: top; }
+    th { color: var(--cyan); position: sticky; top: 0; background: var(--panel); }
+    .hidden { display: none; }
+    .chart-box { position: relative; height: 220px; }
+    .chart-box.tall { height: 260px; }
+    .agent-layout { display: grid; grid-template-columns: 220px 1fr; gap: 0.85rem; min-height: 620px; }
+    .agent-list { max-height: 720px; overflow: auto; display: flex; flex-direction: column; gap: 0.35rem; }
+    .agent-item { text-align: left; background: var(--panel-2); border: 1px solid var(--line); color: var(--text); border-radius: 8px; padding: 0.45rem 0.55rem; cursor: pointer; font-size: 0.72rem; }
+    .agent-item.active { border-color: var(--cyan); background: #12344a; }
+    .agent-item .ly { font-size: 0.62rem; color: var(--muted); }
+    .params { font-family: ui-monospace, Consolas, monospace; font-size: 0.7rem; color: #c5d4e8; background: #070d18; padding: 0.55rem; border-radius: 8px; max-height: 180px; overflow: auto; }
+    .filters { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+    .filters button { font-size: 0.68rem; }
+    .viz-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.7rem; }
+    .viz-card { background: var(--panel-2); border-radius: 10px; padding: 0.45rem; }
+    .viz-card img { width: 100%; height: 180px; object-fit: contain; background: #070d18; border-radius: 6px; cursor: pointer; }
+    .viz-card figcaption { font-size: 0.68rem; color: var(--muted); margin-top: 0.3rem; }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.82); z-index: 50; align-items: center; justify-content: center; padding: 1.5rem; }
+    .lightbox.on { display: flex; }
+    .lightbox img { max-width: 96vw; max-height: 92vh; border-radius: 8px; }
+    .scroll { max-height: 280px; overflow: auto; border: 1px solid var(--line); border-radius: 8px; }
+    @media (max-width: 1100px) {
+      .wrap { grid-template-columns: 1fr; }
+      .chat { height: 380px; position: static; }
+      .agent-layout, .grid2, .grid3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>6G <span>AI Channel Intelligence</span></h1>
+      <div class="sub">Secure CSI estimation · multi-agent control · digital twin · 3GPP Rel-18/19/20</div>
+    </div>
+    <div class="badges">
+      <span class="badge live">LIVE TWIN</span>
+      <span class="badge ai" id="agentBadge">20 AGENTS</span>
+      <span class="badge stat" id="nmseBadge">NMSE —</span>
+      <span class="badge stat" id="fidBadge">FID —</span>
+      <span class="badge stat" id="policyBadge">policy —</span>
+      <button class="btn ghost" onclick="toggleChat()">Chat</button>
+    </div>
+  </header>
+  <nav id="nav"></nav>
+  <div class="wrap">
+    <div>
+      <section id="view-overview"></section>
+      <section id="view-agents" class="hidden"></section>
+      <section id="view-control" class="hidden"></section>
+      <section id="view-security" class="hidden"></section>
+      <section id="view-twin" class="hidden"></section>
+      <section id="view-plots" class="hidden"></section>
+      <section id="view-knowledge" class="hidden"></section>
+    </div>
+    <aside class="panel chat">
+      <h2>Channel intelligence chatbot</h2>
+      <div class="msgs" id="msgs"></div>
+      <div class="chat-in">
+        <input id="q" placeholder="Ask NMSE, an agent, conflicts, 3GPP…" />
+        <button class="btn" onclick="sendChat()">Send</button>
+      </div>
+    </aside>
+  </div>
+  <div class="lightbox" id="lightbox" onclick="this.classList.remove('on')"><img id="lightboxImg" alt="plot" /></div>
+<script>
+const TABS = [
+  ["overview", "Overview"],
+  ["agents", "Per-agent"],
+  ["control", "Coordinator & Super"],
+  ["security", "Security"],
+  ["twin", "Digital Twin"],
+  ["plots", "Plot gallery"],
+  ["knowledge", "Knowledge"],
+];
+const LAYER_COLOR = { PHY: "#00c9ff", Security: "#ff6b9d", RRC: "#f5c451", MAC: "#3ddc97", Twin: "#7c9cff", XAI: "#c9a0ff", Knowledge: "#8aa0bd", Control: "#ff8a3d" };
+const CHARTS = {};
+const dark = {
+  plugins: { legend: { labels: { color: "#d7e3f4", font: { size: 11 } } } },
+  scales: {
+    x: { ticks: { color: "#9bb0c9", maxRotation: 40 }, grid: { color: "#1b2a44" } },
+    y: { ticks: { color: "#9bb0c9" }, grid: { color: "#1b2a44" } }
+  }
+};
+let DATA = {};
+let SELECTED = "channel";
+let PLOT_FILTER = "All";
+
+const nav = document.getElementById("nav");
+TABS.forEach(([id, label], i) => {
+  const b = document.createElement("button");
+  b.textContent = label;
+  b.className = i === 0 ? "active" : "";
+  b.onclick = () => show(id, b);
+  nav.appendChild(b);
+});
+function show(id, btn) {
+  document.querySelectorAll("nav button").forEach(x => x.classList.remove("active"));
+  btn.classList.add("active");
+  TABS.forEach(([t]) => document.getElementById("view-" + t).classList.toggle("hidden", t !== id));
+  if (id === "twin" || id === "overview") requestAnimationFrame(() => drawTwin(DATA.viz));
+  if (id === "agents") renderAgentDetail();
+}
+function toggleChat() { document.body.classList.toggle("chat-collapsed"); }
+async function api(path, opts) {
+  const r = await fetch(path, { headers: { "Content-Type": "application/json" }, ...opts });
+  if (!r.ok) throw new Error(path + " " + r.status);
+  return r.json();
+}
+function kpiCard(label, val, delta) {
+  return `<div class="kpi"><div class="v">${fmt(val)}</div><div class="l">${label}</div>${delta != null ? `<div class="d">${delta}</div>` : ""}</div>`;
+}
+function fmt(v) {
+  if (v == null || v === "") return "—";
+  if (typeof v === "number") {
+    if (!Number.isFinite(v)) return "—";
+    if (Number.isInteger(v)) return String(v);
+    const a = Math.abs(v);
+    if (a >= 100) return v.toFixed(1);
+    if (a >= 1) return v.toFixed(3);
+    return String(Number(v.toPrecision(3)));
+  }
+  return String(v);
+}
+function chart(id, cfg) {
+  if (CHARTS[id]) CHARTS[id].destroy();
+  const el = document.getElementById(id);
+  if (!el) return;
+  CHARTS[id] = new Chart(el, cfg);
+}
+function plotUrl(rel) { return rel.startsWith("agents/") ? "/plots/" + rel : "/plots/" + rel; }
+function openPlot(src) {
+  document.getElementById("lightboxImg").src = src;
+  document.getElementById("lightbox").classList.add("on");
+}
+function agentById(id) { return (DATA.catalog?.agents || []).find(a => a.id === id); }
+
+async function load() {
+  const [cmp, targets, catalog, plots, twin, viz, ds, kb, coord, superAgent, history] = await Promise.all([
+    api("/api/kpi/comparison"),
+    api("/api/kpi/targets"),
+    api("/api/agents/catalog"),
+    api("/api/plots/gallery"),
+    api("/api/twin/state"),
+    api("/api/twin/visualization"),
+    api("/api/dataset/summary"),
+    api("/api/knowledge"),
+    api("/api/coordination/stats"),
+    api("/api/super-agent/status"),
+    api("/api/kpi/history"),
+  ]);
+  DATA = { cmp, targets, catalog, plots, twin, viz, ds, kb, coord, superAgent, history };
+  document.getElementById("agentBadge").textContent = (catalog.count || 20) + " AGENTS";
+  document.getElementById("nmseBadge").textContent = "NMSE " + fmt(cmp.architecture?.test_nmse_ai);
+  document.getElementById("fidBadge").textContent = "FID " + fmt(twin.fidelity ?? twin.mean_fidelity);
+  document.getElementById("policyBadge").textContent = "policy " + (catalog.last_policy || "—");
+  renderOverview();
+  renderAgents();
+  renderControl();
+  renderSecurity();
+  renderTwin();
+  renderPlots();
+  renderKnowledge();
+}
+
+function renderOverview() {
+  const a = DATA.cmp.architecture || {};
+  const t = DATA.targets.targets || [];
+  const ds = DATA.ds || {};
+  document.getElementById("view-overview").innerHTML = `
+    <div class="panel">
+      <h2>Architecture impact vs LS / MMSE baseline (held-out test)</h2>
+      <div class="kpis">
+        ${kpiCard("AI NMSE", a.test_nmse_ai, "↓ vs MMSE " + a.nmse_improvement_pct + "%")}
+        ${kpiCard("MMSE NMSE", a.test_nmse_mmse)}
+        ${kpiCard("LS NMSE", a.test_nmse_ls)}
+        ${kpiCard("BER reduction", (a.ber_reduction_pct ?? "—") + "%")}
+        ${kpiCard("SE gain", (a.spectral_efficiency_gain_pct ?? "—") + "%")}
+        ${kpiCard("CSI prediction", (a.csi_prediction_accuracy ?? "—") + "%")}
+        ${kpiCard("Train / val / test", `${a.n_train} / ${a.n_validation} / ${a.n_test}`)}
+        ${kpiCard("Twin fidelity", DATA.twin.fidelity ?? DATA.twin.mean_fidelity)}
+      </div>
+      <div style="margin-top:0.85rem">
+        <button class="btn" onclick="runAgents()">Run all agents</button>
+        <button class="btn alt" onclick="closedLoop()">Closed loop ×8</button>
+        <button class="btn ok" onclick="load()">Refresh</button>
+      </div>
+      <div class="grid3">
+        <div><h2>Estimator NMSE</h2><div class="chart-box"><canvas id="nmseChart"></canvas></div></div>
+        <div><h2>KPI gains (%)</h2><div class="chart-box"><canvas id="gainChart"></canvas></div></div>
+        <div><h2>Live twin history</h2><div class="chart-box"><canvas id="histChart"></canvas></div></div>
+      </div>
+      <div class="grid3">
+        <div><h2>Dataset split</h2><div class="chart-box"><canvas id="splitChart"></canvas></div></div>
+        <div><h2>Scenarios (TR 38.901 / NTN / THz / RIS)</h2><div class="chart-box"><canvas id="scenChart"></canvas></div></div>
+        <div><h2>Target KPIs</h2>${t.map(x => `
+          <div class="target">${x.label}: <b>${fmt(x.current_value)}</b> / ${x.target}${x.unit === "percent" ? "%" : " " + (x.unit || "")}
+            <div class="bar"><div class="fill ${x.achieved ? "ok" : ""}" style="width:${Math.min(100, x.progress_pct)}%"></div></div>
+          </div>`).join("")}
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="viz-card" onclick="openPlot('/plots/architecture_radar.png')"><img src="/plots/architecture_radar.png" alt="radar" /><figcaption>Architecture radar vs MMSE</figcaption></div>
+        <div class="viz-card" onclick="openPlot('/plots/benchmark_ls_mmse_ai.png')"><img src="/plots/benchmark_ls_mmse_ai.png" alt="bench" /><figcaption>LS / MMSE / AI benchmark (test)</figcaption></div>
+      </div>
+      <h2 style="margin-top:1rem">Live digital twin</h2>
+      <canvas class="twin-map" id="twinCanvasOverview" width="1100" height="420"></canvas>
+      <div class="twin-legend">
+        <span><i style="background:#00c9ff"></i>Healthy cell</span>
+        <span><i style="background:#ff6b9d"></i>Under attack</span>
+        <span><i style="background:#8aa0bd"></i>UE</span>
+        <span><i style="background:#3ddc97;border-radius:2px"></i>RIS</span>
+        <span><i style="background:#f5c451"></i>LEO</span>
+      </div>
+    </div>`;
+  chart("nmseChart", { type: "bar", data: { labels: ["LS", "MMSE", "AI"], datasets: [{ data: [a.test_nmse_ls, a.test_nmse_mmse, a.test_nmse_ai], backgroundColor: ["#ff6b9d", "#ff8a3d", "#00c9ff"] }] }, options: { ...dark, plugins: { legend: { display: false } } } });
+  chart("gainChart", { type: "bar", data: { labels: ["NMSE vs MMSE", "BER reduction", "SE gain"], datasets: [{ data: [a.nmse_improvement_pct, a.ber_reduction_pct, a.spectral_efficiency_gain_pct], backgroundColor: "#3ddc97" }] }, options: { ...dark, plugins: { legend: { display: false } } } });
+  const hist = (DATA.history?.history || []).slice(-40);
+  chart("histChart", { type: "line", data: { labels: hist.map((_, i) => i + 1), datasets: [
+    { label: "NMSE", data: hist.map(h => h.mean_nmse), borderColor: "#00c9ff", tension: 0.25 },
+    { label: "Fidelity", data: hist.map(h => h.mean_fidelity ?? h.fidelity), borderColor: "#3ddc97", tension: 0.25 }
+  ] }, options: dark });
+  const sc = ds.split_counts || {};
+  chart("splitChart", { type: "doughnut", data: { labels: Object.keys(sc), datasets: [{ data: Object.values(sc), backgroundColor: ["#00c9ff", "#f5c451", "#3ddc97"] }] }, options: { plugins: { legend: { labels: { color: "#d7e3f4" } } } } });
+  const scen = ds.scenarios || {};
+  chart("scenChart", { type: "bar", data: { labels: Object.keys(scen), datasets: [{ data: Object.values(scen), backgroundColor: "#00c9ff" }] }, options: { ...dark, plugins: { legend: { display: false } } } });
+  requestAnimationFrame(() => drawTwin(DATA.viz));
+}
+
+function renderAgents() {
+  const list = DATA.catalog?.agents || [];
+  document.getElementById("view-agents").innerHTML = `
+    <div class="panel">
+      <h2>Per-agent explorer — click an agent for metrics, last action, and dedicated plots</h2>
+      <div class="agent-layout">
+        <div class="agent-list" id="agentList">${list.map(a => `
+          <button class="agent-item ${a.id === SELECTED ? "active" : ""}" onclick="selectAgent('${a.id}')">
+            <b>${a.name}</b>
+            <div class="ly">${a.layer} · ${a.trained ? "trained" : "offline"}</div>
+          </button>`).join("")}</div>
+        <div id="agentDetail"></div>
+      </div>
+    </div>`;
+  renderAgentDetail();
+}
+
+function selectAgent(id) {
+  SELECTED = id;
+  document.querySelectorAll(".agent-item").forEach(el => el.classList.toggle("active", el.textContent.toLowerCase().includes(id.replace("_", " ")) || el.outerHTML.includes("'" + id + "'")));
+  document.querySelectorAll(".agent-item").forEach(el => {
+    el.classList.toggle("active", el.getAttribute("onclick") === `selectAgent('${id}')`);
+  });
+  renderAgentDetail();
+}
+
+function renderAgentDetail() {
+  const a = agentById(SELECTED);
+  const host = document.getElementById("agentDetail");
+  if (!host || !a) return;
+  const tvt = a.tvt || {};
+  const m = a.metrics || {};
+  const keys = Object.keys(m).filter(k => /train|valid|test/.test(k)).slice(0, 12);
+  const action = a.last_action || {};
+  host.innerHTML = `
+    <div class="kpis">
+      ${kpiCard("Layer", a.layer)}
+      ${kpiCard("Metric", tvt.metric)}
+      ${kpiCard("Train", tvt.train)}
+      ${kpiCard("Validation", tvt.validation)}
+      ${kpiCard("Test", tvt.test)}
+      ${kpiCard("Last action", action.type || "run agents")}
+    </div>
+    <p class="sub" style="margin:0.7rem 0 0.4rem">${a.role}</p>
+    <p class="sub">Models: ${(a.models || []).join(" · ") || "—"}</p>
+    <div class="grid2">
+      <div><h2>Train / validation / test</h2><div class="chart-box"><canvas id="agentTvtChart"></canvas></div></div>
+      <div>
+        <h2>Last action</h2>
+        <div class="params">${action.type ? JSON.stringify(action.parameters || {}, null, 2) : "Run the control loop to capture a live action for this agent."}</div>
+        <div class="sub" style="margin-top:0.35rem">confidence ${fmt(action.confidence)}</div>
+      </div>
+    </div>
+    <h2 style="margin-top:0.9rem">Agent-specific visualizations</h2>
+    <div class="viz-grid">${(a.plots || []).map(p => `
+      <figure class="viz-card" onclick="openPlot('${plotUrl(p)}')">
+        <img src="${plotUrl(p)}" alt="${p}" />
+        <figcaption>${p}</figcaption>
+      </figure>`).join("") || "<p class='sub'>No plots yet for this agent.</p>"}</div>
+    <h2 style="margin-top:0.9rem">Reported metrics</h2>
+    <div class="scroll"><table><tr><th>Metric</th><th>Value</th></tr>
+      ${keys.map(k => `<tr><td>${k}</td><td>${fmt(m[k])}</td></tr>`).join("") || "<tr><td colspan=2>none</td></tr>"}
+    </table></div>`;
+  const labels = [];
+  const vals = [];
+  const colors = [];
+  if (tvt.extra) {
+    Object.entries(tvt.extra).forEach(([k, v]) => { labels.push(k); vals.push(v); colors.push(k === "AI" ? "#00c9ff" : k === "LS" ? "#ff6b9d" : "#ff8a3d"); });
+  } else if (tvt.importances) {
+    Object.entries(tvt.importances).forEach(([k, v]) => { labels.push(k); vals.push(v); colors.push("#00c9ff"); });
+  } else {
+    [["train", "#00c9ff"], ["validation", "#f5c451"], ["test", "#3ddc97"]].forEach(([k, c]) => {
+      if (tvt[k] != null) { labels.push(k); vals.push(tvt[k]); colors.push(c); }
+    });
+  }
+  chart("agentTvtChart", { type: labels.length > 4 ? "bar" : "bar", data: { labels, datasets: [{ data: vals, backgroundColor: colors }] }, options: { ...dark, plugins: { legend: { display: false } }, indexAxis: tvt.importances ? "y" : "x" } });
+}
+
+function renderControl() {
+  const c = DATA.coord || {};
+  const s = DATA.superAgent || {};
+  const last = s.last_run || s.last_decision || {};
+  const enabled = s.enabled || {};
+  const conflicts = c.last_conflicts || [];
+  const resolutions = c.last_resolutions || [];
+  const health = s.health || {};
+  const weights = c.control_weights || s.weights || {};
+  document.getElementById("view-control").innerHTML = `
+    <div class="panel">
+      <h2>Coordinator — conflict resolution</h2>
+      <div class="kpis">
+        ${kpiCard("Cycles", c.cycles ?? 0)}
+        ${kpiCard("Conflicts (total)", c.total_conflicts ?? 0)}
+        ${kpiCard("Strategy", c.last?.strategy)}
+        ${kpiCard("Harmonized policy", c.last?.harmonized_policy)}
+        ${kpiCard("Priority agents", (c.priority || []).length)}
+      </div>
+      <div class="grid2">
+        <div><h2>Conflict types (this session)</h2><div class="chart-box"><canvas id="confChart"></canvas></div>
+          <table style="margin-top:0.5rem"><tr><th>Pair</th><th>Type</th></tr>
+            ${(conflicts.length ? conflicts : [{ pair: ["—"], type: "none" }]).map(x => `<tr><td>${(x.pair || []).join(" vs ")}</td><td>${x.type || ""}</td></tr>`).join("")}
+          </table>
+        </div>
+        <div>
+          <h2>Resolutions</h2>
+          ${(resolutions.length ? resolutions : ["Run agents to generate a conflict trace."]).map(r => `<div class="chip" style="cursor:default">${r}</div>`).join("")}
+          <h2 style="margin-top:0.8rem">Priority (wins from the top)</h2>
+          ${(c.priority || []).slice(0, 10).map((p, i) => `<div class="target">${i + 1}. ${p}</div>`).join("")}
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:0.8rem">
+      <h2>Super agent — control plane</h2>
+      <div class="kpis">
+        ${kpiCard("Approved", last.approved_count)}
+        ${kpiCard("Rejected", last.rejected_count)}
+        ${kpiCard("Utility", last.global_utility)}
+        ${kpiCard("Autonomy", last.autonomy_level)}
+        ${kpiCard("Healthy", health.healthy)}
+        ${kpiCard("Degraded", (health.degraded_agents || []).length)}
+      </div>
+      <div class="grid2">
+        <div><h2>Control weights</h2><div class="chart-box tall"><canvas id="wChart"></canvas></div></div>
+        <div>
+          <h2>Enable / disable</h2>
+          <div class="agents">${Object.keys(enabled).map(id => `
+            <div class="chip layer-Control">
+              <b>${id}</b>
+              <button class="btn ${enabled[id] ? "ok" : "alt"}" onclick="toggleAgent('${id}', ${enabled[id] ? "false" : "true"})">${enabled[id] ? "enabled" : "disabled"}</button>
+            </div>`).join("")}</div>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:0.8rem">
+        <div class="viz-card" onclick="openPlot('/plots/coordination_conflicts.png')"><img src="/plots/coordination_conflicts.png" alt="coord" /><figcaption>Coordinator conflict volume and priority</figcaption></div>
+        <div class="viz-card" onclick="openPlot('/plots/super_agent_control.png')"><img src="/plots/super_agent_control.png" alt="super" /><figcaption>Super-agent weights and health</figcaption></div>
+      </div>
+      <button class="btn" onclick="runAgents()">Run control loop</button>
+    </div>`;
+  const types = {};
+  (c.recent || []).forEach(h => (h.conflicts || []).forEach(x => { types[x.type || "other"] = (types[x.type || "other"] || 0) + 1; }));
+  if (!Object.keys(types).length && conflicts.length) conflicts.forEach(x => { types[x.type || "none"] = (types[x.type || "none"] || 0) + 1; });
+  chart("confChart", { type: "bar", data: { labels: Object.keys(types).length ? Object.keys(types) : ["none"], datasets: [{ data: Object.keys(types).length ? Object.values(types) : [0], backgroundColor: "#f5c451" }] }, options: { ...dark, plugins: { legend: { display: false } } } });
+  const wnames = Object.keys(weights);
+  chart("wChart", { type: "bar", data: { labels: wnames, datasets: [{ data: wnames.map(k => weights[k]), backgroundColor: "#3ddc97" }] }, options: { ...dark, indexAxis: "y", plugins: { legend: { display: false } } } });
+}
+
+function renderSecurity() {
+  const att = DATA.ds.attacks || {};
+  document.getElementById("view-security").innerHTML = `
+    <div class="panel">
+      <h2>Attack surface and security-agent visualizations</h2>
+      <div class="kpis">
+        ${kpiCard("Attack types", Object.keys(att).length)}
+        ${kpiCard("Normal samples", att.normal)}
+        ${kpiCard("Binary test acc", DATA.catalog?.agents?.find(x => x.id === "security")?.metrics?.binary_test_accuracy)}
+        ${kpiCard("Multiclass F1", DATA.catalog?.agents?.find(x => x.id === "security")?.metrics?.multiclass_test_f1)}
+      </div>
+      <div class="grid2">
+        <div><h2>Samples by attack class</h2><div class="chart-box tall"><canvas id="atkChart"></canvas></div></div>
+        <div class="viz-card" onclick="openPlot('/plots/classification_confusion_matrix.png')"><img src="/plots/classification_confusion_matrix.png" alt="cm" /><figcaption>Confusion matrix (test)</figcaption></div>
+      </div>
+      <div class="viz-grid" style="margin-top:0.8rem">
+        ${["classification_roc.png", "classification_scatter.png", "heatmap_attack_nmse.png", "classification_attack_distribution.png"].map(p => `
+          <figure class="viz-card" onclick="openPlot('/plots/${p}')"><img src="/plots/${p}" alt="${p}" /><figcaption>${p}</figcaption></figure>`).join("")}
+      </div>
+      <p class="sub" style="margin-top:0.6rem">Mitigation: pilot reassignment, beam switch, frequency hop, trust scheduling, federated retrain. Self-healing falls back to MMSE.</p>
+    </div>`;
+  chart("atkChart", { type: "bar", data: { labels: Object.keys(att), datasets: [{ data: Object.values(att), backgroundColor: "#ff6b9d" }] }, options: { ...dark, plugins: { legend: { display: false } } } });
+}
+
+function renderTwin() {
+  const cells = (DATA.viz && DATA.viz.cells) || [];
+  document.getElementById("view-twin").innerHTML = `
+    <div class="panel">
+      <h2>Radio digital twin — gNB, UE, RIS, LEO</h2>
+      <div class="kpis">
+        ${kpiCard("Step", DATA.twin.step)}
+        ${kpiCard("Cells", DATA.twin.n_cells)}
+        ${kpiCard("Mean SNR", DATA.twin.mean_snr_db != null ? DATA.twin.mean_snr_db + " dB" : "—")}
+        ${kpiCard("Mean NMSE", DATA.twin.mean_nmse)}
+        ${kpiCard("Attack cells", DATA.twin.attack_cells)}
+        ${kpiCard("Fidelity", DATA.twin.mean_fidelity ?? DATA.twin.fidelity)}
+      </div>
+      <div class="grid2" style="margin-top:0.8rem">
+        <div>
+          <canvas class="twin-map" id="twinCanvas" width="1100" height="420"></canvas>
+          <div class="twin-legend">
+            <span><i style="background:#00c9ff"></i>Healthy cell</span>
+            <span><i style="background:#ff6b9d"></i>Under attack</span>
+            <span><i style="background:#8aa0bd"></i>UE</span>
+            <span><i style="background:#3ddc97;border-radius:2px"></i>RIS</span>
+            <span><i style="background:#f5c451"></i>LEO satellite</span>
+          </div>
+        </div>
+        <div class="twin-side">${cells.map(c => `<div class="twin-row"><span>${c.id} · ${c.scenario}</span><b style="color:${c.attack === "normal" ? "#3ddc97" : "#ff6b9d"}">${c.attack}</b></div>`).join("")}</div>
+      </div>
+      <div class="grid2" style="margin-top:0.8rem">
+        <div class="viz-card" onclick="openPlot('/plots/digital_twin_map.png')"><img src="/plots/digital_twin_map.png" alt="map" /><figcaption>Cell map (fidelity, UE count)</figcaption></div>
+        <div class="viz-card" onclick="openPlot('/plots/digital_twin_timeseries.png')"><img src="/plots/digital_twin_timeseries.png" alt="ts" /><figcaption>Fidelity, 1-NMSE, load vs step</figcaption></div>
+      </div>
+    </div>`;
+  requestAnimationFrame(() => drawTwin(DATA.viz));
+}
+
+function drawTwin(viz) {
+  if (!viz || !viz.cells || !viz.cells.length) return;
+  document.querySelectorAll("canvas.twin-map").forEach((c) => {
+    const rect = c.getBoundingClientRect();
+    const w = Math.max(640, Math.floor(rect.width) || c.width || 1100);
+    const h = 420;
+    const dpr = window.devicePixelRatio || 1;
+    c.width = w * dpr; c.height = h * dpr;
+    c.style.width = w + "px"; c.style.height = h + "px";
+    const ctx = c.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#070d18"; ctx.fillRect(0, 0, w, h);
+    const sx = (v) => (v / 1000) * w;
+    const sy = (v) => (v / 900) * h;
+    ctx.strokeStyle = "#1b2a44"; ctx.lineWidth = 1;
+    for (let g = 0; g <= 10; g++) {
+      ctx.beginPath(); ctx.moveTo((g / 10) * w, 0); ctx.lineTo((g / 10) * w, h); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, (g / 10) * h); ctx.lineTo(w, (g / 10) * h); ctx.stroke();
+    }
+    ctx.fillStyle = "#8aa0bd"; ctx.font = "11px Segoe UI";
+    ctx.fillText("6G radio digital twin  ·  coverage, CSI quality, attacks", 12, 18);
+    (viz.satellites || []).forEach((s) => { ctx.fillStyle = "#f5c451"; ctx.beginPath(); ctx.arc(sx(s.x), sy(s.y), 7, 0, Math.PI * 2); ctx.fill(); ctx.fillText(s.id, sx(s.x) + 10, sy(s.y) + 4); });
+    (viz.ris || []).forEach((s) => { ctx.strokeStyle = "#3ddc97"; ctx.lineWidth = 2; ctx.strokeRect(sx(s.x) - 10, sy(s.y) - 10, 20, 20); ctx.fillStyle = "#3ddc97"; ctx.fillText(s.id, sx(s.x) + 12, sy(s.y) + 4); });
+    (viz.ues || []).forEach((u) => { ctx.fillStyle = u.attack && u.attack !== "normal" ? "#ff8a3d" : "#9bb0c9"; ctx.fillRect(sx(u.x) - 1.5, sy(u.y) - 1.5, 3, 3); });
+    (viz.cells || []).forEach((cell) => {
+      const x = sx(cell.x), y = sy(cell.y);
+      const r = 10 + (cell.load || 0.4) * 12;
+      ctx.beginPath(); ctx.arc(x, y, cell.radius ? (cell.radius * w) / 1000 : r * 2.2, 0, Math.PI * 2);
+      ctx.strokeStyle = cell.attack === "normal" ? "rgba(0,201,255,0.25)" : "rgba(255,107,157,0.35)"; ctx.lineWidth = 2; ctx.stroke();
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fillStyle = cell.attack === "normal" ? "#00c9ff" : "#ff6b9d"; ctx.fill();
+      ctx.fillStyle = "#e8eef7"; ctx.font = "11px Segoe UI";
+      ctx.fillText(`${cell.id}  SNR ${Number(cell.snr).toFixed(1)} dB`, x + 12, y - 2);
+      ctx.fillStyle = "#8aa0bd"; ctx.fillText(`${cell.scenario}  fid ${cell.fidelity}`, x + 12, y + 12);
+    });
+  });
+}
+window.addEventListener("resize", () => drawTwin(DATA.viz));
+
+function allGallery() {
+  const files = (DATA.plots.plots || []).map(f => [f, f]);
+  const agents = (DATA.plots.agent_plots || []).map(f => ["agents/" + f, "agent / " + f]);
+  const cats = DATA.catalog?.plot_categories || {};
+  return { files, agents, cats };
+}
+function renderPlots() {
+  const { files, agents, cats } = allGallery();
+  const names = ["All", ...Object.keys(cats), "Per-agent"];
+  document.getElementById("view-plots").innerHTML = `
+    <div class="panel">
+      <h2>Visualization gallery — click a thumbnail to enlarge</h2>
+      <div class="filters">${names.map(n => `<button class="btn ${PLOT_FILTER === n ? "" : "ghost"}" onclick="PLOT_FILTER='${n}'; renderPlots()">${n}</button>`).join("")}</div>
+      <div class="preview" id="preview"></div>
+      <div class="plots" id="gallery"></div>
+    </div>`;
+  let items = files.concat(agents);
+  if (PLOT_FILTER === "Per-agent") items = agents;
+  else if (PLOT_FILTER !== "All" && cats[PLOT_FILTER]) {
+    const allow = new Set(cats[PLOT_FILTER]);
+    items = files.filter(([f]) => allow.has(f));
+  }
+  const gal = document.getElementById("gallery");
+  items.forEach(([rel, name]) => {
+    const url = plotUrl(rel);
+    const d = document.createElement("div");
+    d.className = "thumb";
+    d.innerHTML = `<img src="${url}" alt="${name}" /><span>${name}</span>`;
+    d.onclick = () => { document.getElementById("preview").innerHTML = `<img src="${url}" alt="${name}" /><div class="sub">${name}</div>`; openPlot(url); };
+    gal.appendChild(d);
+  });
+  if (items[0]) document.getElementById("preview").innerHTML = `<img src="${plotUrl(items[0][0])}" />`;
+}
+
+function renderKnowledge() {
+  const kb = DATA.kb || {};
+  const cards = Object.entries(kb).map(([k, v]) => {
+    const n = Array.isArray(v) ? v.length : (v && typeof v === "object" ? Object.keys(v).length : 1);
+    return `<div class="kpi"><div class="v">${n}</div><div class="l">${k}</div></div>`;
+  }).join("");
+  document.getElementById("view-knowledge").innerHTML = `
+    <div class="panel">
+      <h2>3GPP · System Insights · SharePoint · Confluence · agent-shim</h2>
+      <div class="kpis">${cards}</div>
+      <pre class="params" style="max-height:520px;margin-top:0.8rem;white-space:pre-wrap">${JSON.stringify(kb, null, 2).slice(0, 12000)}</pre>
+    </div>`;
+}
+
+async function runAgents() {
+  const r = await api("/api/agents/run", { method: "POST" });
+  const nConf = r.coordination?.n_conflicts ?? (r.coordination?.conflicts || []).length ?? 0;
+  addMsg("bot", "Control loop: policy " + r.policy + " · conflicts " + nConf + " · super approved " + r.super?.approved_count + "\nTwin NMSE " + r.twin.mean_nmse + " · fidelity " + r.twin.mean_fidelity);
+  DATA.twin = await api("/api/twin/state");
+  DATA.viz = await api("/api/twin/visualization");
+  DATA.coord = await api("/api/coordination/stats");
+  DATA.superAgent = await api("/api/super-agent/status");
+  DATA.catalog = await api("/api/agents/catalog");
+  DATA.history = await api("/api/kpi/history");
+  document.getElementById("policyBadge").textContent = "policy " + (r.policy || "—");
+  document.getElementById("fidBadge").textContent = "FID " + fmt(DATA.twin.fidelity ?? DATA.twin.mean_fidelity);
+  renderTwin(); renderControl(); renderAgents();
+}
+async function closedLoop() {
+  const r = await api("/api/closed-loop/run", { method: "POST" });
+  addMsg("bot", "Closed loop complete. Final twin NMSE " + r.final_twin?.mean_nmse + " · fidelity " + r.final_twin?.mean_fidelity);
+  DATA.twin = await api("/api/twin/state");
+  DATA.viz = await api("/api/twin/visualization");
+  DATA.coord = await api("/api/coordination/stats");
+  DATA.superAgent = await api("/api/super-agent/status");
+  DATA.catalog = await api("/api/agents/catalog");
+  DATA.history = await api("/api/kpi/history");
+  renderTwin(); renderControl(); renderAgents();
+}
+async function toggleAgent(id, enabled) {
+  await api("/api/super-agent/enable", { method: "POST", body: JSON.stringify({ agent_id: id, enabled }) });
+  DATA.superAgent = await api("/api/super-agent/status");
+  renderControl();
+}
+function addMsg(who, text) {
+  const d = document.createElement("div");
+  d.className = "msg " + who;
+  d.textContent = text;
+  document.getElementById("msgs").appendChild(d);
+  d.scrollIntoView();
+}
+async function sendChat() {
+  const inp = document.getElementById("q");
+  const msg = inp.value.trim();
+  if (!msg) return;
+  addMsg("user", msg);
+  inp.value = "";
+  const r = await api("/api/chat", { method: "POST", body: JSON.stringify({ message: msg }) });
+  addMsg("bot", r.reply);
+}
+document.getElementById("q").addEventListener("keydown", e => { if (e.key === "Enter") sendChat(); });
+addMsg("bot", "6G Channel Intelligence online. Open Per-agent for dedicated plots, or ask about NMSE, conflicts, or 3GPP sources.");
+load().catch(e => addMsg("bot", "API not ready yet: " + e.message));
+</script>
+</body>
+</html>

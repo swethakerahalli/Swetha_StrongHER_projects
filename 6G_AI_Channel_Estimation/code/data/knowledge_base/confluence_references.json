@@ -1,0 +1,14 @@
+{
+  "source": "EE Confluence MCP (https://confluence.ext.net.nokia.com/) on 2026-08-20",
+  "status": "queried",
+  "configured_spaces_sampled": ["NRAC", "RFSW", "AICA", "FUSION", "SPECWOW"],
+  "queries": [
+    "6G channel estimation AI CSI 3GPP",
+    "text ~ \"channel estimation\" AND (text ~ \"6G\" OR text ~ \"AI/ML\" OR text ~ \"CSI\")",
+    "text ~ \"DMRS\" AND text ~ \"channel estimation\"",
+    "space=NRAC AND text ~ \"channel estimation\"",
+    "space=RFSW AND text ~ \"CSI\""
+  ],
+  "results": [],
+  "note": "Configured EE Confluence spaces returned no indexed hits for these queries from this client. Architecture therefore uses System Insights 3GPP/CFAM knowledge and SharePoint RAN1/RAN4 material as the Nokia internal knowledge base."
+}

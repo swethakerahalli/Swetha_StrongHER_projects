@@ -1,0 +1,36 @@
+{
+  "source": "Nokia SharePoint (Microsoft Graph search) on 2026-08-20",
+  "query": "6G AI channel estimation CSI MIMO CDL TDL 3GPP",
+  "documents": [
+    {
+      "name": "R1-2506757 AIML usecases for 6G.docx",
+      "title": "Views on AI/ML Operation and Use Cases for 6G Radio Air Interface",
+      "url": "https://nokia.sharepoint.com/sites/gxp/3GPP SCG  Nokia Internal/TSG RAN Plenary and WGs/RAN1 SCG/2025-10 RAN1-122bis/11 Rel-20 6G study/11.6 AI-ML/R1-2506757 AIML usecases for 6G.docx",
+      "use": "Nokia RAN1 views: AI receivers (DMRS design), CSI feedback (CSI-RS overhead reduction), beam management, power control; Rel-18/19 LCM learnings for 6G."
+    },
+    {
+      "name": "Deep Dive 4 August - AI radio.pptx",
+      "title": "GX+ PHY Group Deep Dive: AI radio use-cases",
+      "url": "https://nokia.sharepoint.com/sites/gxp/PHY Design Cluster  Nokia Internal/Internal Presentations/Deep Dive Review Meetings/2026 Deep Dives/AI Radio - August 4th/Deep Dive 4 August - AI radio.pptx",
+      "use": "Internal PHY AI radio use-case deep dive (CSI, receivers, beam)."
+    },
+    {
+      "name": "RAN1_126_external_review_6G_AIML.pptx",
+      "title": "AIML use cases for 6GR air interface",
+      "url": "https://nokia.sharepoint.com/sites/gxp/3GPP SCG  Nokia Internal/TSG RAN Plenary and WGs/RAN1 SCG/2026-08 RAN1-126/Reviews/6G AI use-cases/RAN1_126_external_review_6G_AIML.pptx",
+      "use": "Rel-20 6GR AI/ML air-interface contribution review."
+    },
+    {
+      "name": "(draft)R4-2612210_Topic Summary for [120][107-A] 6G AI_v00.docx",
+      "title": "RAN4 #120 Topic Summary for 6G AI",
+      "url": "https://nokia.sharepoint.com/sites/gxp/3GPP SCG  Nokia Internal/TSG RAN Plenary and WGs/RAN4 SCG/RAN4 meetings/RAN4 120 - Maastricht/Rel-20 & 6G/6G AI/Moderator_Summary/6G_AI_Part_1/(draft)R4-2612210_Topic Summary for [120][107-A] 6G AI_v00.docx",
+      "use": "RAN4 testing/performance requirements discussion for 6G AI."
+    },
+    {
+      "name": "AIML in 6G (for pre-standard discussion).pptx",
+      "title": "AI/ML in 6G (materials for pre-standard discussions)",
+      "url": "https://nokia.sharepoint.com/sites/gxp/AI_ML Cluster  Nokia Internal/External Presentations/Air interface/AIML in 6G (for pre-standard discussion).pptx",
+      "use": "Nokia 6G day-1 radio specs allowing flexible AI productization."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "security-mitigation-xapp",
+  "type": "xApp",
+  "ric": "near-RT",
+  "function": "Detect pilot contamination, jamming, spoofing; trigger mitigation"
+}

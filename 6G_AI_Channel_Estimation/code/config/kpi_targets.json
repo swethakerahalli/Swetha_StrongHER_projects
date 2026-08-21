@@ -1,0 +1,14 @@
+{
+  "targets": [
+    {"id": "nmse_improvement_pct", "label": "NMSE vs MMSE", "unit": "percent", "target": 35, "direction": "higher"},
+    {"id": "ber_reduction_pct", "label": "BER reduction", "unit": "percent", "target": 25, "direction": "higher"},
+    {"id": "csi_prediction_accuracy", "label": "CSI prediction accuracy", "unit": "percent", "target": 95, "direction": "higher"},
+    {"id": "attack_detection_accuracy", "label": "Attack detection accuracy", "unit": "percent", "target": 97, "direction": "higher"},
+    {"id": "false_alarm_rate", "label": "False alarm rate", "unit": "percent", "target": 2, "direction": "lower"},
+    {"id": "beam_prediction_accuracy", "label": "Beam prediction accuracy", "unit": "percent", "target": 95, "direction": "higher"},
+    {"id": "handover_success_rate", "label": "Handover success rate", "unit": "percent", "target": 98, "direction": "higher"},
+    {"id": "inference_latency_ms", "label": "Inference latency", "unit": "ms", "target": 10, "direction": "lower"},
+    {"id": "spectral_efficiency_gain_pct", "label": "Spectral efficiency gain", "unit": "percent", "target": 18, "direction": "higher"},
+    {"id": "energy_efficiency_gain_pct", "label": "Energy efficiency gain", "unit": "percent", "target": 20, "direction": "higher"}
+  ]
+}

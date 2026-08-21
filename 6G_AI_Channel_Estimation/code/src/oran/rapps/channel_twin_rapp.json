@@ -1,0 +1,6 @@
+{
+  "name": "channel-twin-rapp",
+  "type": "rApp",
+  "ric": "non-RT",
+  "function": "Digital twin analytics, retraining policy, dataset curation"
+}

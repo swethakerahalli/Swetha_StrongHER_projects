@@ -1,0 +1,54 @@
+{
+  "source": "3GPP / ETSI public specifications and Nokia System Insights synthesis",
+  "retrieved": "2026-08-20",
+  "documents": [
+    {
+      "id": "TR-38.901",
+      "title": "Study on channel model for frequencies from 0.5 to 100 GHz",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/38_series/38.901/",
+      "use": "CDL-A/E and TDL-A/E clustered/tapped delay line models, delay-spread scaling (Clause 7.7)"
+    },
+    {
+      "id": "TS-38.211",
+      "title": "NR; Physical channels and modulation",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/38_series/38.211/",
+      "use": "DMRS, CSI-RS, SRS, PTRS reference-signal structure for channel estimation"
+    },
+    {
+      "id": "TS-38.214",
+      "title": "NR; Physical layer procedures for data",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/38_series/38.214/",
+      "use": "CSI reporting, CQI/PMI/RI, beam management measurements"
+    },
+    {
+      "id": "TS-38.101-4",
+      "title": "NR UE radio transmission and reception; Part 4: Performance requirements",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/38_series/38.101-4/",
+      "use": "TDLA30 / TDLB100 / TDLC300 demodulation channel profiles"
+    },
+    {
+      "id": "TR-38.843",
+      "title": "Study on Artificial Intelligence (AI)/Machine Learning (ML) for NR air interface",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/38_series/38.843/",
+      "use": "Rel-18 AI/ML CSI feedback, beam prediction, life-cycle management"
+    },
+    {
+      "id": "TR-38.811",
+      "title": "Study on New Radio (NR) to support non-terrestrial networks",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/38_series/38.811/",
+      "use": "NTN-TDL delay profiles for LEO/MEO/GEO"
+    },
+    {
+      "id": "TR-38.743",
+      "title": "Study on enhancements for AI/ML for NG-RAN",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/38_series/38.743/",
+      "use": "NG-RAN sided model management"
+    },
+    {
+      "id": "O-RAN-mMIMO",
+      "title": "O-RAN Massive MIMO Use Cases Technical Report",
+      "url": "https://www.o-ran.org/",
+      "use": "Near-RT RIC xApp deployment of CSI/beam intelligence"
+    }
+  ]
+}

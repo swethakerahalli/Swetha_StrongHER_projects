@@ -1,0 +1,6 @@
+{
+  "requested": "https://scm.cci.nokia.net/AN/AI/agent-developer-artifacts/agent-shim.git",
+  "status": "not_cloned",
+  "reason": "HTTPS authentication failed (HTTP Basic Access denied). SSH host key not configured for scm.cci.nokia.net on this workstation.",
+  "adapter": "src/shim/agent_shim_adapter.py implements a local contract compatible with typical agent-shim run/observe/act loops so agents can be swapped to the Nokia shim when credentials are available."
+}

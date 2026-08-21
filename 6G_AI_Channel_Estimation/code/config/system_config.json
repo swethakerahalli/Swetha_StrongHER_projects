@@ -1,0 +1,25 @@
+{
+  "project": "6G AI-Based Secure Channel Estimation",
+  "version": "1.0.0",
+  "seed": 42,
+  "dataset": {
+    "n_samples": 80000,
+    "train_frac": 0.70,
+    "val_frac": 0.15,
+    "test_frac": 0.15
+  },
+  "simulation": {
+    "num_cells": 24,
+    "num_ues": 480,
+    "num_ris": 8,
+    "num_satellites": 4,
+    "twin_steps": 200
+  },
+  "paths": {
+    "datasets": "data/datasets",
+    "knowledge_base": "data/knowledge_base",
+    "models": "outputs/models",
+    "plots": "outputs/plots",
+    "reports": "outputs/reports"
+  }
+}

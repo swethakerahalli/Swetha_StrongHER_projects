@@ -1,0 +1,299 @@
+{
+  "agents": {
+    "channel": {
+      "trained": true,
+      "metrics": {
+        "cnn_train_r2": -0.8646,
+        "cnn_train_rmse": 1.575019,
+        "cnn_train_nmse": 1.864547,
+        "cnn_validation_r2": -0.8969,
+        "cnn_validation_rmse": 1.610184,
+        "cnn_validation_nmse": 1.896911,
+        "cnn_test_r2": -0.8581,
+        "cnn_test_rmse": 1.562714,
+        "cnn_test_nmse": 1.857912,
+        "lstm_train_r2": 0.0138,
+        "lstm_train_rmse": 1.145414,
+        "lstm_train_nmse": 0.986114,
+        "lstm_validation_r2": 0.0004,
+        "lstm_validation_rmse": 1.168842,
+        "lstm_validation_nmse": 0.999557,
+        "lstm_test_r2": -0.0025,
+        "lstm_test_rmse": 1.147863,
+        "lstm_test_nmse": 1.002411,
+        "transformer_train_r2": -0.2792,
+        "transformer_train_rmse": 1.304554,
+        "transformer_train_nmse": 1.279163,
+        "transformer_validation_r2": -0.3032,
+        "transformer_validation_rmse": 1.334596,
+        "transformer_validation_nmse": 1.303154,
+        "transformer_test_r2": -0.3017,
+        "transformer_test_rmse": 1.307975,
+        "transformer_test_nmse": 1.301562,
+        "gnn_train_r2": 0.0627,
+        "gnn_train_rmse": 1.116672,
+        "gnn_train_nmse": 0.937244,
+        "gnn_validation_r2": -0.0012,
+        "gnn_validation_rmse": 1.1698,
+        "gnn_validation_nmse": 1.001196,
+        "gnn_test_r2": -0.0038,
+        "gnn_test_rmse": 1.148584,
+        "gnn_test_nmse": 1.003671,
+        "ensemble_train_r2": -0.0554,
+        "ensemble_train_rmse": 1.184926,
+        "ensemble_validation_r2": -0.0903,
+        "ensemble_validation_rmse": 1.220716,
+        "ensemble_test_r2": -0.0838,
+        "ensemble_test_rmse": 1.193477,
+        "baseline_test_nmse_ls": 8900.167216,
+        "baseline_test_nmse_mmse": 6506.677645,
+        "baseline_test_nmse_ai": 1741.093907,
+        "samples_train": 18000,
+        "samples_validation": 9750,
+        "samples_test": 9750
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\channel_agent.joblib"
+    },
+    "csi_prediction": {
+      "trained": true,
+      "metrics": {
+        "train_r2": 0.997,
+        "train_rmse": 0.009441,
+        "train_mean_accuracy": 0.8934,
+        "validation_r2": 0.9965,
+        "validation_rmse": 0.01005,
+        "validation_mean_accuracy": 0.8932,
+        "test_r2": 0.9969,
+        "test_rmse": 0.009642,
+        "test_mean_accuracy": 0.8905
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\csi_prediction_agent.joblib"
+    },
+    "security": {
+      "trained": true,
+      "metrics": {
+        "multiclass_train_accuracy": 0.9057,
+        "multiclass_train_precision": 0.9592,
+        "multiclass_train_recall": 0.9057,
+        "multiclass_train_f1": 0.8877,
+        "binary_train_accuracy": 1.0,
+        "binary_train_precision": 1.0,
+        "binary_train_recall": 1.0,
+        "binary_train_f1": 1.0,
+        "binary_train_roc_auc": 1.0,
+        "multiclass_validation_accuracy": 0.8955,
+        "multiclass_validation_precision": 0.8912,
+        "multiclass_validation_recall": 0.8955,
+        "multiclass_validation_f1": 0.8734,
+        "binary_validation_accuracy": 1.0,
+        "binary_validation_precision": 1.0,
+        "binary_validation_recall": 1.0,
+        "binary_validation_f1": 1.0,
+        "binary_validation_roc_auc": 1.0,
+        "multiclass_test_accuracy": 0.8987,
+        "multiclass_test_precision": 0.8773,
+        "multiclass_test_recall": 0.8987,
+        "multiclass_test_f1": 0.8764,
+        "binary_test_accuracy": 1.0,
+        "binary_test_precision": 1.0,
+        "binary_test_recall": 1.0,
+        "binary_test_f1": 1.0,
+        "binary_test_roc_auc": 1.0,
+        "samples_train": 45500,
+        "samples_validation": 9750,
+        "samples_test": 9750
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\security_agent.joblib"
+    },
+    "mitigation": {
+      "trained": true,
+      "metrics": {
+        "train_accuracy": 0.8148,
+        "train_success_rate": 0.9615,
+        "validation_accuracy": 0.7725,
+        "validation_success_rate": 0.9631,
+        "test_accuracy": 0.7843,
+        "test_success_rate": 0.9607
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\mitigation_agent.joblib"
+    },
+    "beam": {
+      "trained": true,
+      "metrics": {
+        "train_accuracy": 0.2704,
+        "validation_accuracy": 0.1275,
+        "test_accuracy": 0.1195
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\beam_agent.joblib"
+    },
+    "mobility": {
+      "trained": true,
+      "metrics": {
+        "train_accuracy": 0.9663,
+        "train_ho_success": 0.9988,
+        "validation_accuracy": 0.9644,
+        "validation_ho_success": 0.9986,
+        "test_accuracy": 0.9652,
+        "test_ho_success": 0.9983
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\mobility_agent.joblib"
+    },
+    "optimization": {
+      "trained": true,
+      "metrics": {
+        "train_r2": 0.9994,
+        "train_se_gain_vs_mmse": 9.84,
+        "validation_r2": 0.9993,
+        "validation_se_gain_vs_mmse": 9.94,
+        "test_r2": 0.9993,
+        "test_se_gain_vs_mmse": 9.78
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\optimization_agent.joblib"
+    },
+    "digital_twin": {
+      "trained": true,
+      "metrics": {
+        "train_r2": 0.9984,
+        "train_mean_fidelity": 0.9335,
+        "validation_r2": 0.9985,
+        "validation_mean_fidelity": 0.9317,
+        "test_r2": 0.9975,
+        "test_mean_fidelity": 0.9309
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\digital_twin_agent.joblib"
+    },
+    "explainability": {
+      "trained": true,
+      "metrics": {
+        "importance_snr_db": 0.04514,
+        "importance_doppler_hz": 2.13461,
+        "importance_delay_spread_ns": 1.10307,
+        "importance_n_tx": 0.01431,
+        "importance_attack_severity": 0.00044,
+        "importance_cqi": 6e-05
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\explainability_agent.joblib"
+    },
+    "orchestrator": {
+      "trained": true,
+      "metrics": {
+        "test_mean_nmse_ai": 0.058723,
+        "test_mean_nmse_mmse": 0.179981,
+        "nmse_improvement_pct": 67.37,
+        "attack_rate": 0.2803
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\orchestrator_agent.joblib"
+    },
+    "csi_feedback": {
+      "trained": true,
+      "metrics": {
+        "train_r2": 0.9894,
+        "train_mean_acc": 0.9309,
+        "validation_r2": 0.9891,
+        "validation_mean_acc": 0.9319,
+        "test_r2": 0.9885,
+        "test_mean_acc": 0.9283
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\csi_feedback_agent.joblib"
+    },
+    "pilot": {
+      "trained": true,
+      "metrics": {
+        "train_accuracy": 1.0,
+        "train_mean_pilot_overhead": 0.1333,
+        "validation_accuracy": 1.0,
+        "validation_mean_pilot_overhead": 0.1337,
+        "test_accuracy": 1.0,
+        "test_mean_pilot_overhead": 0.1329
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\pilot_agent.joblib"
+    },
+    "equalizer": {
+      "trained": true,
+      "metrics": {
+        "train_r2": 0.996,
+        "validation_r2": 0.9956,
+        "test_r2": 0.9956
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\equalizer_agent.joblib"
+    },
+    "air_interface": {
+      "trained": true,
+      "metrics": {
+        "train_accuracy": 1.0,
+        "validation_accuracy": 1.0,
+        "test_accuracy": 1.0
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\air_interface_agent.joblib"
+    },
+    "spectrum": {
+      "trained": true,
+      "metrics": {
+        "train_accuracy": 1.0,
+        "validation_accuracy": 1.0,
+        "test_accuracy": 1.0
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\spectrum_agent.joblib"
+    },
+    "self_healing": {
+      "trained": true,
+      "metrics": {
+        "train_accuracy": 1.0,
+        "validation_accuracy": 1.0,
+        "test_accuracy": 1.0
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\self_healing_agent.joblib"
+    },
+    "resource": {
+      "trained": true,
+      "metrics": {
+        "train_r2": 0.9988,
+        "validation_r2": 0.9989,
+        "test_r2": 0.9987
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\resource_agent.joblib"
+    },
+    "knowledge": {
+      "trained": true,
+      "metrics": {
+        "test_profiles": 10,
+        "test_scenarios": 8,
+        "knowledge_sources": 6
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\knowledge_agent.joblib"
+    },
+    "coordinator": {
+      "trained": true,
+      "metrics": {
+        "train_accuracy": 1.0,
+        "validation_accuracy": 1.0,
+        "test_accuracy": 1.0,
+        "conflict_rate_test": 0.2827
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\coordinator_agent.joblib"
+    },
+    "super": {
+      "trained": true,
+      "metrics": {
+        "train_accuracy": 1.0,
+        "validation_accuracy": 1.0,
+        "test_accuracy": 1.0,
+        "n_controlled_agents": 19
+      },
+      "model_path": "C:\\swetha\\swetha_info\\work\\AI_ML\\StrongHER\\Swetha_StrongHER_projects\\6G_AI_Channel_Estimation\\code\\outputs\\models\\super_agent.joblib"
+    }
+  },
+  "architecture": {
+    "test_nmse_ls": 0.226474,
+    "test_nmse_mmse": 0.179981,
+    "test_nmse_ai": 0.058723,
+    "nmse_improvement_pct": 67.37,
+    "ber_reduction_pct": 35.04,
+    "spectral_efficiency_gain_pct": 7.61,
+    "csi_prediction_accuracy": 92.79,
+    "attack_rate_test": 0.2803,
+    "n_train": 56000,
+    "n_validation": 12000,
+    "n_test": 12000
+  }
+}

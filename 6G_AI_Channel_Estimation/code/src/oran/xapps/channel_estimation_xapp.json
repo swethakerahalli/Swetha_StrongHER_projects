@@ -1,0 +1,8 @@
+{
+  "name": "channel-estimation-xapp",
+  "type": "xApp",
+  "ric": "near-RT",
+  "e2sm": ["E2SM-KPM", "E2SM-RC"],
+  "function": "AI CSI estimation and prediction from DMRS/CSI-RS telemetry",
+  "control": ["pilot_density", "csi_report_periodicity"]
+}
