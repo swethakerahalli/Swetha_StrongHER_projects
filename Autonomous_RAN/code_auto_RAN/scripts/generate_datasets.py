@@ -11,7 +11,14 @@ from src.data.dataset_generator import generate_datasets
 
 
 if __name__ == "__main__":
-    paths = generate_datasets()
-    print("Generated datasets:")
+    import pandas as pd
+
+    paths = generate_datasets(num_samples=80_000)
+    print("Generated datasets (80,000 rows each):")
     for name, path in paths.items():
-        print(f"  {name}: {path}")
+        if path.suffix == ".csv":
+            n = sum(1 for _ in open(path, encoding="utf-8")) - 1
+            cols = pd.read_csv(path, nrows=0).columns.tolist()
+            print(f"  {name}: {path.name}  rows={n}  cols={len(cols)}")
+        else:
+            print(f"  {name}: {path}")

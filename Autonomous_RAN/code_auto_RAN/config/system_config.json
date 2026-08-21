@@ -7,10 +7,11 @@
     "standards_alignment": ["3GPP Rel-18", "3GPP Rel-19", "3GPP Rel-20", "O-RAN Alliance", "ITU IMT-2030"]
   },
   "simulation": {
-    "num_cells": 7,
-    "num_ues": 50,
-    "num_prbs": 100,
+    "num_cells": 21,
+    "num_ues": 200,
+    "num_prbs": 273,
     "simulation_steps": 500,
+    "dataset_samples": 80000,
     "time_slot_ms": 1.0,
     "carrier_frequency_ghz": 3.5,
     "bandwidth_mhz": 100,

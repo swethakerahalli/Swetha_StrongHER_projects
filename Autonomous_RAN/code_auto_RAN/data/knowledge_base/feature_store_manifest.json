@@ -1,12 +1,12 @@
 {
   "feature_groups": {
-    "scheduling": ["cqi", "sinr_db", "buffer_occupancy", "latency_ms", "mcs", "prb_allocated"],
-    "resource": ["cell_utilization", "traffic_demand_mbps", "power_consumption_w", "renewable_pct"],
-    "mobility": ["velocity_mps", "direction_deg", "rsrp_dbm", "handover_pending"],
-    "security": ["packet_rate_pps", "auth_failures", "spectrum_anomaly_score", "flow_entropy"],
-    "energy": ["power_consumption_w", "cell_utilization", "sleep_state", "renewable_pct"],
-    "qos": ["latency_ms", "throughput_mbps", "packet_loss", "prb_allocated"],
-    "slice": ["prb_utilization", "active_ues", "sla_compliance", "throughput_mbps", "latency_p99_ms"],
+    "scheduling": ["cqi", "sinr_db", "buffer_occupancy", "latency_ms", "mcs", "prb_allocated", "wideband_cqi", "ri", "dl_prb_util"],
+    "resource": ["cell_utilization", "traffic_demand_mbps", "power_consumption_w", "renewable_pct", "num_active_tx_paths"],
+    "mobility": ["velocity_mps", "direction_deg", "rsrp_dbm", "handover_pending", "a3_offset_db", "ttt_ms", "neighbor_rsrp_dbm"],
+    "security": ["packet_rate_pps", "auth_failures", "spectrum_anomaly_score", "flow_entropy", "nas_auth_fail", "jammer_power_dbm"],
+    "energy": ["power_consumption_w", "cell_utilization", "sleep_state", "renewable_pct", "energy_per_bit_uj", "num_active_tx_paths"],
+    "qos": ["latency_ms", "throughput_mbps", "packet_loss", "prb_allocated", "fiveqi", "pdb_ms", "jitter_ms"],
+    "slice": ["prb_utilization", "active_ues", "sla_compliance", "throughput_mbps", "latency_p99_ms", "sst", "gfbr_mbps"],
     "qoe": ["throughput_mbps", "latency_ms", "packet_loss", "slice"],
     "channel_estimation": ["sinr_db", "cqi", "velocity_mps", "rsrp_dbm"],
     "beamforming": ["sinr_db", "cqi", "rsrp_dbm", "cell_utilization"],
@@ -24,6 +24,8 @@
     "slice": "slice_utilization.csv",
     "handover": "handover_events.csv"
   },
-  "mcp_sources": ["system-insights", "sharepoint", "confluence", "pronto-prod"],
+  "samples_per_dataset": 80000,
+  "catalog": "data/datasets/DATASET_CATALOG.md",
+  "mcp_sources": ["system-insights", "sharepoint", "confluence", "pronto-prod", "3gpp"],
   "ai_driven_agents": 17
 }

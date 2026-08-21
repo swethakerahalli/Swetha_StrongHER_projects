@@ -89,12 +89,14 @@ All datasets are synthetic, 3GPP-aligned, seed=42.
 
 | CSV File | Rows | Key Columns | Used By Agents |
 |----------|------|-------------|----------------|
-| `ran_kpi_dataset.csv` | 25,000 | ue_id, cell_id, slice, cqi, sinr_db, throughput_mbps, latency_ms | scheduler, qos, qoe, beamforming, csi, air_interface |
-| `mobility_traces.csv` | 5,000 | velocity_mps, rsrp_dbm, handover_pending | mobility, channel_estimation |
-| `security_events.csv` | 5,000 | packet_rate_pps, spectrum_anomaly_score, is_attack | security, spectrum, self_healing |
-| `energy_metrics.csv` | 3,500 | power_consumption_w, cell_utilization, sleep_state | energy, resource, digital_twin |
-| `slice_utilization.csv` | 1,500 | slice, prb_utilization, sla_compliance | slice |
-| `handover_events.csv` | 2,000 | source_cell, target_cell, ho_success | mobility |
+| `ran_kpi_dataset.csv` | 80,000 | CQI/SINR/RSRP, 5QI/SST, DL/UL PRB, BLER, TA | scheduler, qos, qoe, beamforming, csi, air_interface |
+| `mobility_traces.csv` | 80,000 | velocity, RSRP, A3/TTT, MRO late/early HO flags | mobility, channel_estimation |
+| `security_events.csv` | 80,000 | packet_rate, spectrum anomaly, 5G-AKA, FM recovery | security, spectrum, self_healing |
+| `energy_metrics.csv` | 80,000 | power, sleep, TX paths, EE bit/J, carbon | energy, resource, digital_twin |
+| `slice_utilization.csv` | 80,000 | S-NSSAI, PRB, SLA, GFBR/MFBR, isolation | slice |
+| `handover_events.csv` | 80,000 | source/target PCI, too-early/late, M8021C43 | mobility |
+
+Full column dictionary: `data/datasets/DATASET_CATALOG.md`
 
 **Regenerate:** `python scripts/generate_datasets.py`  
 **Export inventory:** `python scripts/export_e2e_csv.py` → `outputs/reports/dataset_inventory.csv`

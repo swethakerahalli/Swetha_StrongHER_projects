@@ -1,18 +1,130 @@
 {
   "generator": "RANDatasetGenerator",
   "seed": 42,
-  "num_cells": 7,
-  "num_ues": 50,
+  "num_cells": 21,
+  "num_ues": 200,
   "num_steps": 500,
+  "num_samples_per_dataset": 80000,
   "slices": [
     "eMBB",
     "URLLC",
     "mMTC"
   ],
+  "sst_mapping": {
+    "eMBB": 1,
+    "URLLC": 2,
+    "mMTC": 3
+  },
+  "fiveqi_mapping": {
+    "eMBB": 9,
+    "URLLC": 82,
+    "mMTC": 9
+  },
+  "catalog": "DATASET_CATALOG.md",
   "3gpp_alignment": [
     "TS 38.215",
     "TS 38.214",
+    "TS 38.331",
+    "TS 38.133",
+    "TS 38.321",
+    "TS 38.304",
+    "TS 38.213",
     "TS 28.552",
-    "TS 33.501"
-  ]
+    "TS 28.554",
+    "TS 23.501",
+    "TS 23.503",
+    "TS 33.501",
+    "TS 28.310"
+  ],
+  "nokia_cfam": [
+    "OSS_FC_017307 (5G MRO)",
+    "RP001677 / M8021C43 (late HO PM)",
+    "SR003080 (TX path switching EE)",
+    "SR001534 (BTS autonomous recovery)"
+  ],
+  "sharepoint_refs": [
+    "5G counters and KPIs, v8.0.pptx (RRM-CA Core Team)",
+    "NPN- 5G Radio KPI Configuration_Full.pptx",
+    "Analytic for 5G Slices v5.pptx",
+    "Swetha_Autonomous_RAN_Proj_01.pptx",
+    "Multi-agent_green_telecom_carbon_aware_RAN.pdf"
+  ],
+  "confluence": "EE Confluence MCP timed out during generation; CFAM + local project docs used as fallback",
+  "system_insights": "ask/search_specs timed out during generation; cached nokia_cfam_references.json used",
+  "backward_compatible_columns": {
+    "ran_kpi_dataset.csv": [
+      "timestamp",
+      "ue_id",
+      "cell_id",
+      "slice",
+      "cqi",
+      "sinr_db",
+      "rsrp_dbm",
+      "rsrq_db",
+      "mcs",
+      "prb_allocated",
+      "buffer_occupancy",
+      "throughput_mbps",
+      "latency_ms",
+      "packet_loss"
+    ],
+    "mobility_traces.csv": [
+      "timestamp",
+      "ue_id",
+      "cell_id",
+      "x_m",
+      "y_m",
+      "velocity_mps",
+      "direction_deg",
+      "neighbor_cells",
+      "rsrp_dbm",
+      "handover_pending"
+    ],
+    "security_events.csv": [
+      "event_id",
+      "timestamp",
+      "source_ip",
+      "target_cell",
+      "threat_type",
+      "is_attack",
+      "packet_rate_pps",
+      "auth_failures",
+      "spectrum_anomaly_score",
+      "flow_entropy",
+      "bytes_transferred"
+    ],
+    "energy_metrics.csv": [
+      "timestamp",
+      "cell_id",
+      "power_consumption_w",
+      "cell_utilization",
+      "sleep_state",
+      "renewable_pct",
+      "carbon_intensity_gco2_kwh",
+      "traffic_demand_mbps"
+    ],
+    "slice_utilization.csv": [
+      "timestamp",
+      "slice",
+      "prb_utilization",
+      "active_ues",
+      "sla_compliance",
+      "throughput_mbps",
+      "latency_p99_ms"
+    ],
+    "handover_events.csv": [
+      "event_id",
+      "timestamp",
+      "ue_id",
+      "source_cell",
+      "target_cell",
+      "ho_type",
+      "rsrp_source_dbm",
+      "rsrp_target_dbm",
+      "velocity_mps",
+      "success",
+      "failure_cause",
+      "delay_ms"
+    ]
+  }
 }
